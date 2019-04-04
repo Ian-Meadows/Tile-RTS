@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+/.vs/Game1.1/v15/.suo
+/.vs
+/Game1.1/.vs/Game1.1/v15/Browse.VC.opendb
+/Game1.1/.vs/Game1.1/v15/Browse.VC.db
