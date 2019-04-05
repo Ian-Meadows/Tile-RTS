@@ -1,5 +1,5 @@
 #pragma once
-
+#include <glm/glm.hpp>
 
 
 namespace Window {
@@ -8,11 +8,13 @@ namespace Window {
 	//getters
 	int GetWidth();
 	int GetHeight();
+	int GetSize();
+	glm::mat4 GetPerspective();
 
 	//setters
-	void SetSize(int, int);
-	void SetHeight(int);
-	void SetWidth(int);
+	void ChangeSize(float);
+	void ChangeSize(int, int);
+	void ChangeSize(int, int , float);
 }
 
 

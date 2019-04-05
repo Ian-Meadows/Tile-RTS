@@ -1,39 +1,59 @@
 #include "Window.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace Window {
 	//use for private methods and variables
 	namespace {
 		int WIDTH, HEIGHT;
+		float SIZE = 1;
+
+		glm::mat4 perspective;
+
+		void SetUpPerspective() {
+			perspective = glm::ortho(-(WIDTH / 2.0f * SIZE), WIDTH / 2.0f * SIZE,
+				-(HEIGHT / 2.0f * SIZE), HEIGHT / 2.0f * SIZE,
+				0.1f, 100.0f);
+		}
 	}
 
 	//put public mathods and variables here
-	void InitWindow(int width, int height) {
+	void Window::InitWindow(int width, int height) {
 		WIDTH = width;
 		HEIGHT = height;
+
+		Window::SetUpPerspective();
 	}
 
 
 	//getters
-	int GetWidth() {
+	int Window::GetWidth() {
 		return WIDTH;
 	}
-	int GetHeight() {
+	int Window::GetHeight() {
 		return HEIGHT;
+	}
+	int Window::GetSize() {
+		return SIZE;
+	}
+	glm::mat4 Window::GetPerspective() {
+		return perspective;
 	}
 
 	//setters
-	void SetSize(int width, int height) {
+	void Window::ChangeSize(float size) {
+		SIZE = size;
+		Window::SetUpPerspective();
+	}
+	void Window::ChangeSize(int width, int height) {
 		WIDTH = width;
 		HEIGHT = height;
-		//TODO:actually resize window
+		Window::SetUpPerspective();
 	}
-	void SetHeight(int height) {
-		HEIGHT = height;
-		//TODO:actually resize window
-	}
-	void SetWidth(int width) {
+	void Window::ChangeSize(int width, int height, float size) {
 		WIDTH = width;
-		//TODO:actually resize window
+		HEIGHT = height;
+		SIZE = size;
+		Window::SetUpPerspective();
 	}
 }
 

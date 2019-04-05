@@ -15,5 +15,14 @@ private:
 	
 	unsigned int VAO;
 	unsigned int VBO;
+
+	glm::vec3 position;
+	unsigned int size;
+	float rotation;
+
+	glm::mat4 GetModel();
+
+	void InitShape();
+
 };
 

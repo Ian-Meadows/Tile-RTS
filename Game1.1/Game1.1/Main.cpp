@@ -4,6 +4,7 @@
 
 #include "Input.h"
 #include "Window.h"
+#include "Camera.h"
 #include "TestRenderer.h"
 
 void mouse_callback(GLFWwindow*, double, double);
@@ -20,7 +21,7 @@ int main() {
 	
 	//init namespaces
 	Window::InitWindow(600, 400);
-
+	Camera::Init(glm::vec3(0, 0, 0), 0);
 
 
 
@@ -58,6 +59,7 @@ int main() {
 	while (!glfwWindowShouldClose(window))
 	{
 		Input::ProcessInput();
+		Camera::Update();
 		test->Update();
 		test->Draw();
 		glfwSwapBuffers(window);
