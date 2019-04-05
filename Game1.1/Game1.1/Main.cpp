@@ -2,6 +2,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "Input.h"
+#include "Window.h"
+
 void mouse_callback(GLFWwindow*, double, double);
 void ProcessInput(GLFWwindow*);
 
@@ -14,7 +17,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 int main() {
 
 	
-
+	//init namespaces
+	Window::InitWindow(600, 400);
 
 
 
@@ -25,7 +29,7 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_DOUBLEBUFFER, GL_TRUE);
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	GLFWwindow* window = glfwCreateWindow(600, 400, "LearnOpenGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(Window::GetWidth(), Window::GetHeight(), "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -41,16 +45,16 @@ int main() {
 		return -1;
 	}
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-	//SceneHandler::AddRenderObject(new TestObject(camera, glm::vec3(0, 0, 0)));
 	
+	//init input namespace
+	Input::InitInput(window);
 
-	glfwSetCursorPosCallback(window, mouse_callback);
+	//glfwSetCursorPosCallback(window, mouse_callback);
 	
 
 	while (!glfwWindowShouldClose(window))
 	{
-		ProcessInput(window);
+		Input::ProcessInput();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -67,11 +71,5 @@ int main() {
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 
-}
-
-void ProcessInput(GLFWwindow* window) {
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-		glfwSetWindowShouldClose(window, true);
-	}
 }
 
