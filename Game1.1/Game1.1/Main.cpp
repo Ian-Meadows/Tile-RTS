@@ -5,15 +5,11 @@
 #include "Input.h"
 #include "Window.h"
 #include "Camera.h"
-#include "TestRenderer.h"
-
-void mouse_callback(GLFWwindow*, double, double);
-void ProcessInput(GLFWwindow*);
+#include "Game.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	std::cout << "X: " << width << " Y: " << height << std::endl;
 	glViewport(0, 0, width, height);
 	Window::ChangeSize(width, height);
 }
@@ -55,15 +51,18 @@ int main() {
 
 	//glfwSetCursorPosCallback(window, mouse_callback);
 	
-	TestRenderer* test = new TestRenderer();
+	Game::Init();
 
 
 	while (!glfwWindowShouldClose(window))
 	{
 		Input::ProcessInput();
+		Game::Update();
 		Camera::Update();
-		test->Update();
-		test->Draw();
+		Game::Draw();
+
+		
+		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -73,13 +72,8 @@ int main() {
 
 	glfwTerminate();
 
-	delete test;
+	Game::Uninit();
 
 	return 0;
-}
-
-
-void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
-
 }
 
