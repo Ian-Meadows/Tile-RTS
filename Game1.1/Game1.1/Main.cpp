@@ -13,15 +13,17 @@ void ProcessInput(GLFWwindow*);
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
+	std::cout << "X: " << width << " Y: " << height << std::endl;
 	glViewport(0, 0, width, height);
+	Window::ChangeSize(width, height);
 }
 
 int main() {
 
 	
 	//init namespaces
-	Window::InitWindow(600, 400);
-	Camera::Init(glm::vec3(0, 0, 0), 0);
+	Window::InitWindow(800, 600);
+	Camera::Init(glm::vec3(0, 0, -1), 0);
 
 
 

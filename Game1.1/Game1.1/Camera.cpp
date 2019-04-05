@@ -17,7 +17,7 @@ namespace Camera {
 		}
 	}
 	void Camera::Init() {
-		position = glm::vec3(0, 0, 0);
+		position = glm::vec3(0, 0, -1);
 		rotation = 0;
 		UpdateView();
 	}
