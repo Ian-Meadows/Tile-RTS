@@ -30,6 +30,9 @@
 *.out
 *.app
 
+*.suo
+
 /.vs
+*.vcxproj
 /Game1.1/.vs/Game1.1/v15/Browse.VC.opendb
 /Game1.1/.vs/Game1.1/v15/Browse.VC.db

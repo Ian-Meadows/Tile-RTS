@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Game1.1\CPPLibs\Includes;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Game1.1\CPPLibs\Libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\ian\source\repos\Game1.1\Game1.1\Game1.1\CPPLibs\Includes;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\ian\source\repos\Game1.1\Game1.1\Game1.1\CPPLibs\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -79,11 +79,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Game1.1\CPPLibs\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\ian\source\repos\Game1.1\Game1.1\Game1.1\CPPLibs\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Game1.1\CPPLibs\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\ian\source\repos\Game1.1\Game1.1\Game1.1\CPPLibs\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
