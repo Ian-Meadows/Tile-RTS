@@ -1,0 +1,6 @@
+﻿  Building Custom Rule C:/Users/ian/Desktop/glfw-3.2.1/examples/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/ian/CPPLibs/glfwBuild/examples/CMakeFiles/generate.stamp is up-to-date.
+  splitview.c
+  glad.c
+  Generating Code...
+  splitview.vcxproj -> C:\Users\ian\CPPLibs\glfwBuild\examples\Debug\splitview.exe
