@@ -4,6 +4,7 @@
 
 #include "Input.h"
 #include "Window.h"
+#include "TestRenderer.h"
 
 void mouse_callback(GLFWwindow*, double, double);
 void ProcessInput(GLFWwindow*);
@@ -51,11 +52,14 @@ int main() {
 
 	//glfwSetCursorPosCallback(window, mouse_callback);
 	
+	TestRenderer* test = new TestRenderer();
+
 
 	while (!glfwWindowShouldClose(window))
 	{
 		Input::ProcessInput();
-
+		test->Update();
+		test->Draw();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -64,6 +68,8 @@ int main() {
 	
 
 	glfwTerminate();
+
+	delete test;
 
 	return 0;
 }
