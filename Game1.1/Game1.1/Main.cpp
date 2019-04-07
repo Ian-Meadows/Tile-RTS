@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "Camera.h"
 #include "Game.h"
+#include "Time.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -15,7 +16,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 int main() {
-
+	
 	
 	//init namespaces
 	Window::InitWindow(800, 600);
@@ -47,6 +48,7 @@ int main() {
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	
 	//init input namespace
+	Time::Init(false);
 	Input::InitInput(window);
 
 	//glfwSetCursorPosCallback(window, mouse_callback);
@@ -56,15 +58,19 @@ int main() {
 
 	while (!glfwWindowShouldClose(window))
 	{
+		Time::Update();
+
 		Input::ProcessInput();
 		Game::Update();
 		Camera::Update();
 		Game::Draw();
 
 		
-		
+		Input::ClearOldInputs();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+
+
 	}
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 

@@ -1,6 +1,8 @@
 #include "Camera.h"
+#include <iostream>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "Input.h"
 
 
 namespace Camera {
@@ -52,6 +54,14 @@ namespace Camera {
 
 	//do everything here
 	void Camera::Update() {
-
+		if (Input::GetKeyPressed(KeyCode::E)) {
+			std::cout << "Pressed" << std::endl;
+		}
+		if (Input::GetKeyHeld(KeyCode::E)) {
+			std::cout << "held" << std::endl;
+		}
+		if (Input::GetKeyReleased(KeyCode::E)) {
+			std::cout << "Released" << std::endl;
+		}
 	}
 }
