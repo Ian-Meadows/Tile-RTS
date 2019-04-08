@@ -1,6 +1,12 @@
 #include "Camera.h"
+#include <iostream>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "Input.h"
+#include "Time.h"
+
+
+#define MOVEMENT_SPEED 100
 
 
 namespace Camera {
@@ -15,6 +21,8 @@ namespace Camera {
 			view = glm::translate(view, position);
 			view = glm::rotate(view, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
 		}
+
+
 	}
 	void Camera::Init() {
 		position = glm::vec3(0, 0, -1);
@@ -48,10 +56,27 @@ namespace Camera {
 		UpdateView();
 	}
 
+	void ChangePosition(glm::vec3 change) {
+		Camera::position -= change;
+		UpdateView();
+	}
+
 
 
 	//do everything here
 	void Camera::Update() {
+		if (Input::GetKeyHeld(KeyCode::W)) {
+			ChangePosition(glm::vec3(0, MOVEMENT_SPEED * Time::GetDeltaTime(), 0));
+		}
+		else if (Input::GetKeyHeld(KeyCode::S)) {
+			ChangePosition(glm::vec3(0, -MOVEMENT_SPEED * Time::GetDeltaTime(), 0));
+		}
 
+		if (Input::GetKeyHeld(KeyCode::A)) {
+			ChangePosition(glm::vec3(-MOVEMENT_SPEED * Time::GetDeltaTime(), 0, 0));
+		}
+		else if (Input::GetKeyHeld(KeyCode::D)) {
+			ChangePosition(glm::vec3(MOVEMENT_SPEED * Time::GetDeltaTime(), 0, 0));
+		}
 	}
 }

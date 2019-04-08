@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "Camera.h"
 #include "Game.h"
+#include "Time.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -15,7 +16,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 int main() {
-
+	
 	
 	//init namespaces
 	Window::InitWindow(800, 600);
@@ -47,24 +48,37 @@ int main() {
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	
 	//init input namespace
+	Time::Init(false);
 	Input::InitInput(window);
 
 	//glfwSetCursorPosCallback(window, mouse_callback);
 	
 	Game::Init();
 
+	
 
 	while (!glfwWindowShouldClose(window))
 	{
+		//clear window with black
+		glClearColor(0, 0, 0, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//update time to get fps and delta time
+		Time::Update();
+
+		//
 		Input::ProcessInput();
 		Game::Update();
 		Camera::Update();
 		Game::Draw();
 
-		
-		
+		//clear keys pressed
+		Input::ClearOldInputs();
+
+		//glfw stuff
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+
+
 	}
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
