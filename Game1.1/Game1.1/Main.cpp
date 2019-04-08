@@ -55,18 +55,26 @@ int main() {
 	
 	Game::Init();
 
+	
 
 	while (!glfwWindowShouldClose(window))
 	{
+		//clear window with black
+		glClearColor(0, 0, 0, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//update time to get fps and delta time
 		Time::Update();
 
+		//
 		Input::ProcessInput();
 		Game::Update();
 		Camera::Update();
 		Game::Draw();
 
-		
+		//clear keys pressed
 		Input::ClearOldInputs();
+
+		//glfw stuff
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 

@@ -13,5 +13,7 @@ namespace Camera {
 	void SetRotation(float);
 
 	void Update();
+
+	void ChangePosition(glm::vec3);
 }
 
