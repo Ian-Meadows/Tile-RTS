@@ -48,13 +48,13 @@
     <ClCompile Include="TestRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ChunkHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Chunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,13 +77,13 @@
     <ClInclude Include="TestRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChunkHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Chunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,6 +92,12 @@
       <Filter>Resource Files\Shaders\FragmentShaders</Filter>
     </None>
     <None Include="TestVertexShader.vert">
+      <Filter>Resource Files\Shaders\VertexShaders</Filter>
+    </None>
+    <None Include="ChunkFragmentShader.frag">
+      <Filter>Resource Files\Shaders\FragmentShaders</Filter>
+    </None>
+    <None Include="ChunkVertexShader.vert">
       <Filter>Resource Files\Shaders\VertexShaders</Filter>
     </None>
   </ItemGroup>

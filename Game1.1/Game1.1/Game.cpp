@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "TestRenderer.h"
+#include "ChunkHandler.h"
 
 
 namespace Game {
@@ -8,6 +9,7 @@ namespace Game {
 	}
 
 	void Game::Init() {
+		ChunkHandler::Init();
 		test = new TestRenderer();
 	}
 
@@ -16,9 +18,11 @@ namespace Game {
 	}
 	void Game::Draw() {
 		test->Draw();
+		ChunkHandler::Draw();
 	}
 
 	void Game::Uninit() {
+		ChunkHandler::Uninit();
 		delete test;
 	}
 }
