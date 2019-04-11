@@ -1,2 +1,8 @@
 ﻿  Chunk.cpp
+  ChunkHandler.cpp
+  ChunkRenderer.cpp
+  Game.cpp
+  Window.cpp
+c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\window.cpp(36): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   Game1.1.vcxproj -> C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Debug\Game1.1.exe

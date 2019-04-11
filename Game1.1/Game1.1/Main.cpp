@@ -48,14 +48,12 @@ int main() {
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	
 	//init input namespace
-	Time::Init(false);
+	Time::Init(true);
 	Input::InitInput(window);
 
 	//glfwSetCursorPosCallback(window, mouse_callback);
 	
 	Game::Init();
-
-	
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -74,9 +72,17 @@ int main() {
 		//clear keys pressed
 		Input::ClearOldInputs();
 
+
+		GLenum error = glGetError();
+
+		if (error != GL_NO_ERROR) {
+			std::cout << "opengl ERROR: " << error << std::endl;
+		}
+
 		//glfw stuff
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+
 
 
 	}

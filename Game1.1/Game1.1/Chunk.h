@@ -2,8 +2,9 @@
 #include <glm/glm.hpp>
 #include <glad/glad.h>
 #include "ChunkHandler.h"
+#include "ChunkRenderer.h"
 
-#define CHUNK_SIZE 5
+#define CHUNK_SIZE 32
 #define UNIT_SIZE 20
 /*
 draw options
@@ -19,14 +20,19 @@ public:
 	~Chunk();
 	void Draw();
 
+	glm::ivec2 GetPosition();
+
 private:
+
 	glm::ivec2 position;
 
 	unsigned int VAO;
-	unsigned int VBO;
-	unsigned int EBO;
+	unsigned int VBO[CHUNK_SIZE * CHUNK_SIZE];
+	unsigned int EBO[CHUNK_SIZE * CHUNK_SIZE];
 
 	GLsizei indicesSize;
+
+	ChunkRenderer* cr;
 
 };
 

@@ -6,7 +6,7 @@
 #include "Time.h"
 
 
-#define MOVEMENT_SPEED 100
+#define MOVEMENT_SPEED 1000
 
 
 namespace Camera {

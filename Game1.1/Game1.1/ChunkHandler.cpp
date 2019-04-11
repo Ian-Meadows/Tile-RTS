@@ -34,13 +34,14 @@ namespace ChunkHandler {
 		else {
 			std::cout << "not found" << std::endl;
 		}
-
+		shader->use();
+		shader->setInt("chunkSize", CHUNK_SIZE);
 	}
 
 	void ChunkHandler::Draw() {
 		shader->use();
 		shader->setMat4("view", Camera::GetView());
-		shader->setMat4("perspective", Window::GetPerspective());
+		shader->setMat4("projection", Window::GetPerspective());
 
 		Chunk* chunk = chunks[glm::ivec2(0, 0)];
 		if (chunk != nullptr) {
