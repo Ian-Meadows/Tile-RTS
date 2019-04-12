@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Game.h"
 #include "Time.h"
+#include "TextureAtlasCreator.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -15,14 +16,19 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	Window::ChangeSize(width, height);
 }
 
+void AddImagesToAtlas() {
+
+}
+
 int main() {
 	
 	
 	//init namespaces
 	Window::InitWindow(800, 600);
 	Camera::Init(glm::vec3(0, 0, -1), 0);
+	TextureAtlasCreator::Init(100);
 
-
+	AddImagesToAtlas();
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
