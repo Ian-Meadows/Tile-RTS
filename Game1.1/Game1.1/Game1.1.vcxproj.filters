@@ -66,6 +66,9 @@
     <ClCompile Include="TextureAtlasCreator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImageTester.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h">
@@ -104,6 +107,9 @@
     <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ImageTester.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TestFragmentShader.frag">
@@ -118,5 +124,34 @@
     <None Include="ChunkVertexShader.vert">
       <Filter>Resource Files\Shaders\VertexShaders</Filter>
     </None>
+    <None Include="ImageFragmentShader.frag">
+      <Filter>Resource Files\Shaders\FragmentShaders</Filter>
+    </None>
+    <None Include="ImageVertexShader.vert">
+      <Filter>Resource Files\Shaders\VertexShaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\archer.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Images\BaseCharacter.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Images\eyes2.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Images\GunPoint.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Images\head2.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Images\horseman.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Images\house.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
   </ItemGroup>
 </Project>

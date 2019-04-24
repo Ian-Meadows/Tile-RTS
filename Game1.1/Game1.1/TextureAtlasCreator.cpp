@@ -1,6 +1,11 @@
 #include "TextureAtlasCreator.h"
 #include <vector>
 #include <math.h>
+#include <iostream>
+
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 
 
@@ -13,6 +18,9 @@ namespace TextureAtlasCreator {
 
 	void TextureAtlasCreator::Init(int imageSizes) {
 		TextureAtlasCreator::imageSizes = imageSizes;
+		if (textureAtlas != nullptr) {
+			delete textureAtlas;
+		}
 		textureAtlas = nullptr;
 	}
 
@@ -38,8 +46,34 @@ namespace TextureAtlasCreator {
 		int totalWidth = square * imageSizes;
 		int totalHeight = totalWidth;
 
-		for (int i = 0; i < total; i++) {
+		//init image in texture atlas
+		textureAtlas->image = new char*[totalWidth];
+		for (int i = 0; i < totalWidth; i++) {
+			textureAtlas->image[i] = new char[totalHeight];
+		}
 
+		textureAtlas->width = totalWidth;
+		textureAtlas->height = totalHeight;
+
+		int width, height, nrChannels;
+		for (int i = 0; i < total; i++) {
+			unsigned char *data = stbi_load(files[i], &width, &height, &nrChannels, 0);
+			if (data == nullptr) {
+				std::cout << "failed to load image " << files[i] << ". Cannot create texture atlas returning."<<std::endl;
+				return;
+			}
+
+			int imageIndex = 0;
+			for (int x = 0; x < width; x++) {
+				for (int y = 0; y < height; y++) {
+					textureAtlas->image[x][y] = data[imageIndex];
+					imageIndex++;
+				}
+			}
+
+
+			stbi_image_free(data);
+			//std::cout << width << std::endl;
 		}
 	}
 
@@ -47,11 +81,46 @@ namespace TextureAtlasCreator {
 		return textureAtlas;
 	}
 
-	char* TextureAtlasCreator::CompressTextureAtlas() {
-		return nullptr;
+	char* TextureAtlasCreator::CompressTextureAtlas(int* size) {
+		if (textureAtlas == nullptr) {
+			*size = 0;
+			return nullptr;
+		}
+		int s = textureAtlas->width * textureAtlas->height;
+		*size = s;
+
+		char* image = new char[s];
+		
+		int i = 0;
+		for (int x = 0; x < textureAtlas->width; x++) {
+			for (int y = 0; y < textureAtlas->height; y++) {
+				image[i] = textureAtlas->image[x][y];
+				i++;
+			}
+		}
+		
+		return image;
 	}
-	char* CompressTextureAtlas(TextureAtlas* atlas) {
-		return nullptr;
+	char* CompressTextureAtlas(TextureAtlas* atlas, int* size) {
+
+		if (atlas == nullptr) {
+			*size = 0;
+			return nullptr;
+		}
+		int s = atlas->width * atlas->height;
+		*size = s;
+
+		char* image = new char[s];
+
+		int i = 0;
+		for (int x = 0; x < atlas->width; x++) {
+			for (int y = 0; y < atlas->height; y++) {
+				image[i] = atlas->image[x][y];
+				i++;
+			}
+		}
+
+		return image;
 	}
 
 	void Uninit() {

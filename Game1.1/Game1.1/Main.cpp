@@ -17,7 +17,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 void AddImagesToAtlas() {
-
+	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
 }
 
 int main() {
@@ -58,7 +58,7 @@ int main() {
 	Input::InitInput(window);
 
 	//glfwSetCursorPosCallback(window, mouse_callback);
-	
+	TextureAtlasCreator::CreateAtlas();
 	Game::Init();
 
 	while (!glfwWindowShouldClose(window))
@@ -99,6 +99,7 @@ int main() {
 	glfwTerminate();
 
 	Game::Uninit();
+	TextureAtlasCreator::Uninit();
 
 	return 0;
 }

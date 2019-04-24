@@ -5,6 +5,13 @@ struct TextureAtlas {
 	int width;
 	int height;
 	char** image;
+
+	~TextureAtlas() {
+		for (int i = 0; i < height; i++) {
+			delete[] image[i];
+		}
+		delete[] image;
+	}
 };
 
 //note this requres all the images to have the same size
@@ -18,8 +25,8 @@ namespace TextureAtlasCreator {
 
 	TextureAtlas* GetAtlas();
 
-	char* CompressTextureAtlas();
-	char* CompressTextureAtlas(TextureAtlas*);
+	char* CompressTextureAtlas(int*);
+	char* CompressTextureAtlas(TextureAtlas*, int*);
 
 	void Uninit();
 }
