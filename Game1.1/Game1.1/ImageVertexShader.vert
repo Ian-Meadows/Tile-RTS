@@ -6,6 +6,11 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
+uniform int totalImages;
+uniform int imgSize;
+uniform int unit;
+
+
 out vec3 oPos;
 out vec2 TexCoord;
 
@@ -15,5 +20,10 @@ void main()
 	//gl_Position = vec4(aPos, 1.0);
 	//gl_Position = projection *  view * vec4(aPos, 1.0);
 	oPos = aPos;
+
+	float s = (imgSize / float(totalImages)) * unit;
+
+	
 	TexCoord = texCoords;
+	TexCoord.y = (TexCoord.y / float(totalImages)) + s;
 }

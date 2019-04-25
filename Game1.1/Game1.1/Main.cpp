@@ -21,6 +21,27 @@ void AddImagesToAtlas() {
 	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png");
 	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
 	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	//TextureAtlasCreator::AddImageFile("Images/horseman.png");
+
+	/*
+	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
+	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	TextureAtlasCreator::AddImageFile("Images/horseman.png");
+
+	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
+	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	TextureAtlasCreator::AddImageFile("Images/horseman.png");
+
+	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
+	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	TextureAtlasCreator::AddImageFile("Images/horseman.png");
+	*/
 }
 
 int main() {
