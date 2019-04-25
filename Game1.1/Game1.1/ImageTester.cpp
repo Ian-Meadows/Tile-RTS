@@ -3,6 +3,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "Camera.h"
 #include "Window.h"
+#include "TextureAtlasCreator.h"
 
 
 ImageTester::ImageTester()
@@ -14,6 +15,7 @@ ImageTester::ImageTester()
 	shader = new Shader("ImageVertexShader.vert", "ImageFragmentShader.frag");
 
 	InitShape();
+	InitTexture();
 }
 
 
@@ -24,7 +26,10 @@ ImageTester::~ImageTester()
 
 void ImageTester::InitShape() {
 	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &VBO);
+
+	//0:verticies
+	//1:texture coords
+	glGenBuffers(2, VBO);
 	glGenBuffers(1, &EBO);
 
 
@@ -44,7 +49,7 @@ void ImageTester::InitShape() {
 	glBindVertexArray(VAO);
 
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vert), vert, GL_STATIC_DRAW);
 
 
@@ -53,6 +58,46 @@ void ImageTester::InitShape() {
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
+
+	float texCoords[] = {
+		1.0f, 1.0f,
+		1.0f, 0.0f,
+		0.0f, 0.0f,
+		0.0f, 1.0f
+	};
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vert), texCoords, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(1);
+
+}
+
+void ImageTester::InitTexture() {
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	int width = TextureAtlasCreator::GetWidth();
+	int height = TextureAtlasCreator::GetHeight();
+
+	int size;
+	char* image = TextureAtlasCreator::CompressTextureAtlas(&size);
+
+	if (image == nullptr) {
+		std::cout << "unable to load image to texture" << std::endl;
+	}
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	//free image
+	delete[] image;
+
 
 }
 
@@ -76,6 +121,7 @@ void ImageTester::Draw() {
 	shader->setMat4("view", Camera::GetView());
 	shader->setMat4("model", GetModel());
 
+	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

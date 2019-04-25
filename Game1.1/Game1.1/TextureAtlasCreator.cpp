@@ -47,9 +47,21 @@ namespace TextureAtlasCreator {
 		int totalHeight = totalWidth;
 
 		//init image in texture atlas
-		textureAtlas->image = new char*[totalWidth];
+		textureAtlas->image = new char**[totalWidth];
 		for (int i = 0; i < totalWidth; i++) {
-			textureAtlas->image[i] = new char[totalHeight];
+			textureAtlas->image[i] = new char*[totalHeight];
+			for (int j = 0; j < totalHeight; j++) {
+				textureAtlas->image[i][j] = new char[4];
+			}
+		}
+
+		//init to 0
+		for (int x = 0; x < totalWidth; x++) {
+			for (int y = 0; y < totalHeight; y++) {
+				for (int z = 0; z < 4; z++) {
+					textureAtlas->image[x][y][z] = 0;
+				}
+			}
 		}
 
 		textureAtlas->width = totalWidth;
@@ -62,12 +74,14 @@ namespace TextureAtlasCreator {
 				std::cout << "failed to load image " << files[i] << ". Cannot create texture atlas returning."<<std::endl;
 				return;
 			}
-
+			std::cout << nrChannels << std::endl;
 			int imageIndex = 0;
 			for (int x = 0; x < width; x++) {
 				for (int y = 0; y < height; y++) {
-					textureAtlas->image[x][y] = data[imageIndex];
-					imageIndex++;
+					for (int z = 0; z < 4; z++) {
+						textureAtlas->image[x][y][z] = data[imageIndex];
+						imageIndex++;
+					}
 				}
 			}
 
@@ -86,7 +100,7 @@ namespace TextureAtlasCreator {
 			*size = 0;
 			return nullptr;
 		}
-		int s = textureAtlas->width * textureAtlas->height;
+		int s = textureAtlas->width * textureAtlas->height * 4;
 		*size = s;
 
 		char* image = new char[s];
@@ -94,20 +108,22 @@ namespace TextureAtlasCreator {
 		int i = 0;
 		for (int x = 0; x < textureAtlas->width; x++) {
 			for (int y = 0; y < textureAtlas->height; y++) {
-				image[i] = textureAtlas->image[x][y];
-				i++;
+				for (int z = 0; z < 4; z++) {
+					image[i] = textureAtlas->image[x][y][z];
+					i++;
+				}
 			}
 		}
 		
 		return image;
 	}
-	char* CompressTextureAtlas(TextureAtlas* atlas, int* size) {
+	char* TextureAtlasCreator::CompressTextureAtlas(TextureAtlas* atlas, int* size) {
 
 		if (atlas == nullptr) {
 			*size = 0;
 			return nullptr;
 		}
-		int s = atlas->width * atlas->height;
+		int s = atlas->width * atlas->height * 4;
 		*size = s;
 
 		char* image = new char[s];
@@ -115,15 +131,30 @@ namespace TextureAtlasCreator {
 		int i = 0;
 		for (int x = 0; x < atlas->width; x++) {
 			for (int y = 0; y < atlas->height; y++) {
-				image[i] = atlas->image[x][y];
-				i++;
+				for (int z = 0; z < 4; z++) {
+					image[i] = atlas->image[x][y][z];
+					i++;
+				}
 			}
 		}
 
 		return image;
 	}
 
-	void Uninit() {
+	int TextureAtlasCreator::GetWidth() {
+		if (textureAtlas == nullptr) {
+			return 0;
+		}
+		return textureAtlas->width;
+	}
+	int TextureAtlasCreator::GetHeight() {
+		if (textureAtlas == nullptr) {
+			return 0;
+		}
+		return textureAtlas->height;
+	}
+
+	void TextureAtlasCreator::Uninit() {
 		if (textureAtlas != nullptr) {
 			delete textureAtlas;
 		}

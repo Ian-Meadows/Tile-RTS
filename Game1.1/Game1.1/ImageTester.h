@@ -10,7 +10,9 @@ public:
 	void Draw();
 
 private:
-	unsigned int VAO, VBO, EBO;
+	unsigned int VAO, EBO;
+	unsigned int VBO[2];
+	unsigned int texture;
 	Shader* shader;
 
 	glm::vec3 position;
@@ -20,5 +22,6 @@ private:
 	glm::mat4 GetModel();
 
 	void InitShape();
+	void InitTexture();
 };
 
