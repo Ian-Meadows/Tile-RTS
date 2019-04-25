@@ -18,6 +18,9 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 void AddImagesToAtlas() {
 	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
+	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
 }
 
 int main() {
@@ -35,6 +38,9 @@ int main() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_DOUBLEBUFFER, GL_TRUE);
+
+	
+
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	GLFWwindow* window = glfwCreateWindow(Window::GetWidth(), Window::GetHeight(), "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
@@ -52,7 +58,8 @@ int main() {
 		return -1;
 	}
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//init input namespace
 	Time::Init(true);
 	Input::InitInput(window);
@@ -65,7 +72,7 @@ int main() {
 	{
 		//clear window with black
 		glClearColor(0, 0.5, 1, 1);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT);
 		//update time to get fps and delta time
 		Time::Update();
 

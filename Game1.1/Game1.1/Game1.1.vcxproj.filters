@@ -51,22 +51,22 @@
     <ClCompile Include="TestRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ChunkHandler.cpp">
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageTester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Chunk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
+    <ClCompile Include="ChunkHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ChunkRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TextureAtlasCreator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageTester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,25 +89,25 @@
     <ClInclude Include="TestRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChunkHandler.h">
+    <ClInclude Include="Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageTester.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h">
+    <ClInclude Include="ChunkHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ChunkRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextureAtlasCreator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ImageTester.h">
+    <ClInclude Include="TextureAtlasCreator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -121,13 +121,13 @@
     <None Include="ChunkFragmentShader.frag">
       <Filter>Resource Files\Shaders\FragmentShaders</Filter>
     </None>
-    <None Include="ChunkVertexShader.vert">
-      <Filter>Resource Files\Shaders\VertexShaders</Filter>
-    </None>
     <None Include="ImageFragmentShader.frag">
       <Filter>Resource Files\Shaders\FragmentShaders</Filter>
     </None>
     <None Include="ImageVertexShader.vert">
+      <Filter>Resource Files\Shaders\VertexShaders</Filter>
+    </None>
+    <None Include="ChunkVertexShader.vert">
       <Filter>Resource Files\Shaders\VertexShaders</Filter>
     </None>
   </ItemGroup>

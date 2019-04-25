@@ -60,10 +60,10 @@ void ImageTester::InitShape() {
 	glEnableVertexAttribArray(0);
 
 	float texCoords[] = {
-		1.0f, 1.0f,
-		1.0f, 0.0f,
-		0.0f, 0.0f,
-		0.0f, 1.0f
+		100.0f, 50.0f,
+		100.0f, 25.0f,
+		0.0f, 25.0f,
+		0.0f, 50.0f
 	};
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
@@ -76,12 +76,12 @@ void ImageTester::InitShape() {
 
 void ImageTester::InitTexture() {
 	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
+	glBindTexture(GL_TEXTURE_RECTANGLE, texture);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 	int width = TextureAtlasCreator::GetWidth();
 	int height = TextureAtlasCreator::GetHeight();
@@ -92,12 +92,13 @@ void ImageTester::InitTexture() {
 	if (image == nullptr) {
 		std::cout << "unable to load image to texture" << std::endl;
 	}
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-	glGenerateMipmap(GL_TEXTURE_2D);
+	glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 
 	//free image
 	delete[] image;
 
+	shader->use();
+	shader->setInt("ourTexture", 0);
 
 }
 
@@ -121,7 +122,9 @@ void ImageTester::Draw() {
 	shader->setMat4("view", Camera::GetView());
 	shader->setMat4("model", GetModel());
 
-	glBindTexture(GL_TEXTURE_2D, texture);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_RECTANGLE, texture);
+
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

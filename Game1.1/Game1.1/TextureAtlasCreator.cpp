@@ -42,9 +42,9 @@ namespace TextureAtlasCreator {
 
 		int total = files.size();
 		
-		int square = ceil(sqrt(total));
-		int totalWidth = square * imageSizes;
-		int totalHeight = totalWidth;
+		
+		int totalWidth = total * imageSizes;
+		int totalHeight = imageSizes;
 
 		//init image in texture atlas
 		textureAtlas->image = new char**[totalWidth];
@@ -59,7 +59,7 @@ namespace TextureAtlasCreator {
 		for (int x = 0; x < totalWidth; x++) {
 			for (int y = 0; y < totalHeight; y++) {
 				for (int z = 0; z < 4; z++) {
-					textureAtlas->image[x][y][z] = 0;
+					textureAtlas->image[x][y][z] = 1;
 				}
 			}
 		}
@@ -68,23 +68,53 @@ namespace TextureAtlasCreator {
 		textureAtlas->height = totalHeight;
 
 		int width, height, nrChannels;
+
+		//for width for loop
+		int currentMaxWidth = imageSizes;
+		int x = 0;
+
 		for (int i = 0; i < total; i++) {
 			unsigned char *data = stbi_load(files[i], &width, &height, &nrChannels, 0);
 			if (data == nullptr) {
-				std::cout << "failed to load image " << files[i] << ". Cannot create texture atlas returning."<<std::endl;
+				std::cout << "failed to load image " << files[i] << ". Cannot create texture atlas. returning."<<std::endl;
 				return;
 			}
 			std::cout << nrChannels << std::endl;
 			int imageIndex = 0;
-			for (int x = 0; x < width; x++) {
+			for (; x < currentMaxWidth && x < totalWidth; x++) {
 				for (int y = 0; y < height; y++) {
-					for (int z = 0; z < 4; z++) {
-						textureAtlas->image[x][y][z] = data[imageIndex];
-						imageIndex++;
+					
+					if (nrChannels == 4) {
+						for (int z = 0; z < 4; z++) {
+							textureAtlas->image[x][y][z] = data[imageIndex];
+							imageIndex++;
+						}
 					}
+					else if(nrChannels == 3){
+						for (int z = 0; z < 3; z++) {
+							textureAtlas->image[x][y][z] = data[imageIndex];
+							imageIndex++;
+						}
+						textureAtlas->image[x][y][3] = 0xff;
+						//imageIndex++;
+					}
+					else {
+						std::cout << "what texture have you brought to this program? cannot make texture atlas. returning" << std::endl;
+						return;
+					}
+					
+					
+
+					/*
+					textureAtlas->image[x][y][0] = data[imageIndex];
+					textureAtlas->image[x][y][1] = 0;
+					textureAtlas->image[x][y][2] = 0;
+					textureAtlas->image[x][y][3] = 0;
+					imageIndex+=4;
+					*/
 				}
 			}
-
+			currentMaxWidth += imageSizes;
 
 			stbi_image_free(data);
 			//std::cout << width << std::endl;
