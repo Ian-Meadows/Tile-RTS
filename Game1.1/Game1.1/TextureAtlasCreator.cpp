@@ -13,11 +13,13 @@ namespace TextureAtlasCreator {
 	namespace {
 		std::vector<const char*> files;
 		int imageSizes;
+		int spacing;
 		TextureAtlas* textureAtlas;
 	}
 
-	void TextureAtlasCreator::Init(int imageSizes) {
+	void TextureAtlasCreator::Init(int imageSizes, int spacing) {
 		TextureAtlasCreator::imageSizes = imageSizes;
+		TextureAtlasCreator::spacing = spacing;
 		if (textureAtlas != nullptr) {
 			delete textureAtlas;
 		}
@@ -41,10 +43,10 @@ namespace TextureAtlasCreator {
 		textureAtlas = new TextureAtlas();
 
 		int total = files.size();
+		int size = (int)ceil(sqrt((double)total));
 		
-		
-		int totalWidth = total * imageSizes;
-		int totalHeight = imageSizes;
+		int totalWidth = size * imageSizes + (size * spacing);
+		int totalHeight = size * imageSizes + (size * spacing);
 
 		//init image in texture atlas
 		textureAtlas->image = new char**[totalWidth];
@@ -59,19 +61,25 @@ namespace TextureAtlasCreator {
 		for (int x = 0; x < totalWidth; x++) {
 			for (int y = 0; y < totalHeight; y++) {
 				for (int z = 0; z < 4; z++) {
-					textureAtlas->image[x][y][z] = 1;
+					textureAtlas->image[x][y][z] = 0;
 				}
 			}
 		}
 
 		textureAtlas->width = totalWidth;
 		textureAtlas->height = totalHeight;
+		textureAtlas->spacing = spacing;
+		textureAtlas->imagesInLength = size;
+		textureAtlas->totalImages = size * size;
 
 		int width, height, nrChannels;
 
 		//for width for loop
 		int currentMaxWidth = imageSizes;
+		int currentMaxHeight = imageSizes;
+		int currentYStart = 0;
 		int x = 0;
+		int y = 0;
 
 		for (int i = 0; i < total; i++) {
 			unsigned char *data = stbi_load(files[i], &width, &height, &nrChannels, 0);
@@ -79,10 +87,20 @@ namespace TextureAtlasCreator {
 				std::cout << "failed to load image " << files[i] << ". Cannot create texture atlas. returning."<<std::endl;
 				return;
 			}
-			std::cout << nrChannels << std::endl;
+			std::cout << size << std::endl;
 			int imageIndex = 0;
+
+			//if image overflows and will be cut off
+			if (x + width >= totalWidth) {
+				currentMaxWidth = imageSizes;
+				x = 0;
+				currentMaxHeight += imageSizes + spacing;
+				currentYStart += imageSizes + spacing;
+				
+			}
+			
 			for (; x < currentMaxWidth && x < totalWidth; x++) {
-				for (int y = 0; y < height; y++) {
+				for (y = currentYStart; y < currentMaxHeight && y < totalHeight; y++) {
 					
 					if (nrChannels == 4) {
 						for (int z = 0; z < 4; z++) {
@@ -114,7 +132,14 @@ namespace TextureAtlasCreator {
 					*/
 				}
 			}
-			currentMaxWidth += imageSizes;
+			x += spacing;
+			if (currentMaxWidth >= totalWidth) {
+				currentMaxWidth = -spacing;
+				x = 0;
+				currentMaxHeight+= imageSizes + spacing;
+				currentYStart += imageSizes + spacing;
+			}
+			currentMaxWidth += imageSizes + spacing;
 
 			stbi_image_free(data);
 			//std::cout << width << std::endl;
@@ -182,6 +207,27 @@ namespace TextureAtlasCreator {
 			return 0;
 		}
 		return textureAtlas->height;
+	}
+
+	int TextureAtlasCreator::GetSpacing() {
+		if (textureAtlas == nullptr) {
+			return 0;
+		}
+		return spacing;
+	}
+
+	int GetTotalImages() {
+		if (textureAtlas == nullptr) {
+			return 0;
+		}
+		return textureAtlas->totalImages;
+	}
+
+	int GetImagesPerLength() {
+		if (textureAtlas == nullptr) {
+			return 0;
+		}
+		return textureAtlas->imagesInLength;
 	}
 
 	void TextureAtlasCreator::Uninit() {

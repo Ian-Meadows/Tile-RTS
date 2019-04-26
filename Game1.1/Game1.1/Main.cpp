@@ -20,8 +20,8 @@ void AddImagesToAtlas() {
 	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
 	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png");
 	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
-	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
-	//TextureAtlasCreator::AddImageFile("Images/horseman.png");
+	TextureAtlasCreator::AddImageFile("Images/head2.png");
+	TextureAtlasCreator::AddImageFile("Images/horseman.png");
 
 	/*
 	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
@@ -41,7 +41,16 @@ void AddImagesToAtlas() {
 	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
 	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
 	TextureAtlasCreator::AddImageFile("Images/horseman.png");
+
+	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
+	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
+	TextureAtlasCreator::AddImageFile("Images/horseman.png");
 	*/
+
+	
+	
 }
 
 int main() {
@@ -50,7 +59,7 @@ int main() {
 	//init namespaces
 	Window::InitWindow(800, 600);
 	Camera::Init(glm::vec3(0, 0, -1), 0);
-	TextureAtlasCreator::Init(100);
+	TextureAtlasCreator::Init(100, 20);
 
 	AddImagesToAtlas();
 

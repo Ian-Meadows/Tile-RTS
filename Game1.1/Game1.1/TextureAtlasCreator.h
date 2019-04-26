@@ -4,6 +4,9 @@
 struct TextureAtlas {
 	int width;
 	int height;
+	int totalImages;
+	int imagesInLength;
+	int spacing;
 	char*** image;
 
 	~TextureAtlas() {
@@ -23,7 +26,7 @@ struct TextureAtlas {
 //note this requres all the images to have the same size
 //note this only works for one atlas at a time
 namespace TextureAtlasCreator {
-	void Init(int);
+	void Init(int, int);
 	void AddImageFile(const char*);
 	void AddImageFiles(const char**, int);
 
@@ -32,6 +35,9 @@ namespace TextureAtlasCreator {
 	TextureAtlas* GetAtlas();
 	int GetWidth();
 	int GetHeight();
+	int GetSpacing();
+	int GetTotalImages();
+	int GetImagesPerLength();
 
 	char* CompressTextureAtlas(int*);
 	char* CompressTextureAtlas(TextureAtlas*, int*);

@@ -9,6 +9,7 @@ uniform mat4 projection;
 uniform int totalImages;
 uniform int imgSize;
 uniform int unit;
+uniform int spacing;
 
 
 out vec3 oPos;
@@ -22,8 +23,18 @@ void main()
 	oPos = aPos;
 
 	float s = (imgSize / float(totalImages)) * unit;
+	int size = int(ceil(sqrt(totalImages)));
 
+	int y = int(mod(unit, size));
+	int x = (unit - y) / size;
+
+	float xSpacing = spacing / float(imgSize);
+	float ySpacing = spacing / float(imgSize);
+
+	float sx = (1.0f / float(size)) * float(x);
+	float sy = (1.0f / float(size)) * float(y);
 	
 	TexCoord = texCoords;
-	TexCoord.y = (TexCoord.y / float(totalImages)) + s;
+	TexCoord.x = (TexCoord.x / float(size)) + sx;
+	TexCoord.y = (TexCoord.y / float(size)) + sy;
 }

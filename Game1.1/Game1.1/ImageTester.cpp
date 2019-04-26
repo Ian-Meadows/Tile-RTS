@@ -4,13 +4,14 @@
 #include "Camera.h"
 #include "Window.h"
 #include "TextureAtlasCreator.h"
+#include "Time.h"
 
 
 ImageTester::ImageTester()
 {
-	position = glm::vec3(-50, -50, 0);
+	position = glm::vec3(-200, -200, 0);
 	rotation = 0.0f;
-	size = 50;
+	size = 200;
 
 	shader = new Shader("ImageVertexShader.vert", "ImageFragmentShader.frag");
 
@@ -59,11 +60,15 @@ void ImageTester::InitShape() {
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
+	float diff = TextureAtlasCreator::GetSpacing() * TextureAtlasCreator::GetImagesPerLength() / (float)TextureAtlasCreator::GetWidth();
+
+	//std::cout << diff <<
+
 	float texCoords[] = {
-		1.0f, 1.0f,
-		1.0f, 0.0f,
+		1.0f - diff, 1.0f - diff,
+		1.0f - diff, 0.0f,
 		0.0f, 0.0f,
-		0.0f, 1.0f
+		0.0f, 1.0f - diff
 	};
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
@@ -80,8 +85,8 @@ void ImageTester::InitTexture() {
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	int width = TextureAtlasCreator::GetWidth();
 	int height = TextureAtlasCreator::GetHeight();
@@ -103,7 +108,15 @@ void ImageTester::InitTexture() {
 }
 
 void ImageTester::Update() {
-
+	t += Time::GetDeltaTime();
+	if (t > 1.0) {
+		t = 0;
+		unitNum++;
+		if (unitNum >= TextureAtlasCreator::GetTotalImages()) {
+			unitNum = 0;
+			std::cout << "flip" << std::endl;
+		}
+	}
 }
 
 glm::mat4 ImageTester::GetModel() {
@@ -122,9 +135,10 @@ void ImageTester::Draw() {
 	shader->setMat4("view", Camera::GetView());
 	shader->setMat4("model", GetModel());
 
-	shader->setInt("totalImages", 4);
-	shader->setInt("imgSize", 1);
-	shader->setInt("unit", 2);
+	shader->setInt("totalImages", TextureAtlasCreator::GetTotalImages());
+	shader->setInt("imgSize", TextureAtlasCreator::GetWidth());
+	shader->setInt("unit", unitNum);
+	shader->setInt("spacing", TextureAtlasCreator::GetSpacing());
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);

@@ -19,6 +19,9 @@ private:
 	unsigned int size;
 	float rotation;
 
+	int unitNum = 0;
+	double t = 0;
+
 	glm::mat4 GetModel();
 
 	void InitShape();
