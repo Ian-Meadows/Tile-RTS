@@ -98,10 +98,10 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 		for (int x = 0; x < CHUNK_SIZE; x++) {
 			for (int y = 0; y < CHUNK_SIZE; y++) {
 				if (x > 2 && x < CHUNK_SIZE - 2 && y > 2 && y < CHUNK_SIZE - 2) {
-					unitNumbers[i] = glm::ivec2(0, 1);
+					unitNumbers[i] = glm::ivec2(0, 0x9C1BF3);
 				}
 				else {
-					unitNumbers[i] = glm::ivec2(1, 1);
+					unitNumbers[i] = glm::ivec2(1, 0x1BF330);
 				}
 				
 				i++;

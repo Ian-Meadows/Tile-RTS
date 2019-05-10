@@ -13,7 +13,7 @@ uniform int imgSize;
 uniform int spacing;
 
 out vec3 oPos;
-flat out ivec2 unitInfo;
+flat out int unitColor;
 out vec2 texCoord;
 
 
@@ -48,7 +48,7 @@ void main()
 	//gl_Position = vec4(aPos, 1.0);
 	//gl_Position = projection *  view * vec4(aPos, 1.0);
 	oPos = aPos * unitInformation.x;
-	unitInfo = unitInformation;
 	oPos.x = unitInformation.x;
 	SetTextCoords();
+	unitColor = unitInformation.y;
 }
