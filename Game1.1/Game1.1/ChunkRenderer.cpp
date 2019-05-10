@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "TextureAtlasCreator.h"
 
 
 
@@ -18,6 +19,8 @@ ChunkRenderer::ChunkRenderer(Chunk* chunk)
 	Init();
 	SetPositions();
 	SetUnitInfo(true);
+	SetTextureCoordinates();
+	InitTexture();
 }
 
 
@@ -34,7 +37,7 @@ ChunkRenderer::~ChunkRenderer()
 
 void ChunkRenderer::Init() {
 	glGenVertexArrays(1, &VAO);
-	glGenBuffers(3, VBO);
+	glGenBuffers(4, VBO);
 	glGenBuffers(1, &EBO);
 
 	float vert[] = {
@@ -63,6 +66,8 @@ void ChunkRenderer::Init() {
 
 }
 
+
+
 void ChunkRenderer::SetPositions() {
 	positions = new glm::ivec2[CHUNK_SIZE * CHUNK_SIZE];
 
@@ -76,7 +81,7 @@ void ChunkRenderer::SetPositions() {
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
 
-	glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &positions[0], GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &positions[0], GL_STATIC_DRAW);
 
 	
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(glm::ivec2), (void*)0);
@@ -114,9 +119,74 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 	}
 }
 
+void ChunkRenderer::SetTextureCoordinates() {
+
+	float diff = TextureAtlasCreator::GetSpacing() * TextureAtlasCreator::GetImagesPerLength() / (float)TextureAtlasCreator::GetWidth();
+
+	
+	float texCoords[] = {
+		1.0f - diff, 1.0f - diff,
+		1.0f - diff, 0.0f,
+		0.0f, 0.0f,
+		0.0f, 1.0f - diff
+	};
+	
+
+	/*
+	float texCoords[] = {
+		1.0f, 1.0f,
+		1.0f, 0.0f,
+		0.0f, 0.0f,
+		0.0f, 1.0f
+	};
+	*/
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO[3]);
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(texCoords), texCoords, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(3);
+}
+
+void ChunkRenderer::InitTexture() {
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	int width = TextureAtlasCreator::GetWidth();
+	int height = TextureAtlasCreator::GetHeight();
+
+	int size;
+	char* image = TextureAtlasCreator::CompressTextureAtlas(&size);
+
+	if (image == nullptr) {
+		std::cout << "unable to load image to texture" << std::endl;
+		return;
+	}
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+
+	//free image
+	delete[] image;
+
+	Shader* shader = ChunkHandler::GetShader();
+	shader->use();
+	shader->setInt("chunkTexture", 0);
+	shader->setInt("totalImages", TextureAtlasCreator::GetTotalImages());
+	shader->setInt("imgSize", TextureAtlasCreator::GetWidth());
+	shader->setInt("spacing", TextureAtlasCreator::GetSpacing());
+}
+
 void ChunkRenderer::Draw() {
 
 	//SetUnitNumbers(false);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
 
 	glBindVertexArray(VAO);
 	glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, CHUNK_SIZE * CHUNK_SIZE);

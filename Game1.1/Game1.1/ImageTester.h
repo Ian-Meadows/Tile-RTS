@@ -11,6 +11,9 @@ public:
 
 private:
 	unsigned int VAO, EBO;
+
+	//0:shape
+	//1:texcoords
 	unsigned int VBO[2];
 	unsigned int texture;
 	Shader* shader;

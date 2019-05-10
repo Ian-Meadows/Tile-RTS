@@ -21,7 +21,7 @@ void AddImagesToAtlas() {
 	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png");
 	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
 	TextureAtlasCreator::AddImageFile("Images/head2.png");
-	TextureAtlasCreator::AddImageFile("Images/horseman.png");
+	//TextureAtlasCreator::AddImageFile("Images/horseman.png");
 
 	/*
 	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
