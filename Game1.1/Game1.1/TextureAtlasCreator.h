@@ -1,6 +1,7 @@
 #pragma once
+#include "TextureAtlas.h"
 
-
+/*
 struct TextureAtlas {
 	int width;
 	int height;
@@ -22,6 +23,7 @@ struct TextureAtlas {
 		delete[] image;
 	}
 };
+*/
 
 //note this requres all the images to have the same size
 //note this only works for one atlas at a time
@@ -32,15 +34,7 @@ namespace TextureAtlasCreator {
 
 	void CreateAtlas();
 
-	TextureAtlas* GetAtlas();
-	int GetWidth();
-	int GetHeight();
-	int GetSpacing();
-	int GetTotalImages();
-	int GetImagesPerLength();
-
-	char* CompressTextureAtlas(int*);
-	char* CompressTextureAtlas(TextureAtlas*, int*);
+	TextureAtlas* GetAtlas(bool newCopy);
 
 	void Uninit();
 }

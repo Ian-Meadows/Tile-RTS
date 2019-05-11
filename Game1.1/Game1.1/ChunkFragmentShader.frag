@@ -2,7 +2,7 @@
 out vec4 FragColor;
 
 in vec3 oPos;
-//must be in hexidecimal ex. white:0xffffff. Note: a is not included
+//must be in hexidecimal ex. white:0xffffff. Note: alpha is not included
 flat in int unitColor;
 in vec2 texCoord;
 
@@ -21,7 +21,7 @@ vec4 GetColor(){
 	int r, g, b;
 
 	//outside of hex range(might wanna remove)
-	if(unitColor > 16777215){
+	if(unitColor > 16777215 || unitColor < 0){
 	//return a wild pink color
 		return vec4(0.95f, 0.11f, 0.87f, 1.0f);
 	}

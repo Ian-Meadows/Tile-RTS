@@ -40,7 +40,7 @@ namespace TextureAtlasCreator {
 		if (textureAtlas != nullptr) {
 			delete textureAtlas;
 		}
-		textureAtlas = new TextureAtlas();
+		
 
 		int total = files.size();
 		int size = (int)ceil(sqrt((double)total));
@@ -49,11 +49,11 @@ namespace TextureAtlasCreator {
 		int totalHeight = size * imageSizes + (size * spacing);
 
 		//init image in texture atlas
-		textureAtlas->image = new char**[totalWidth];
+		char*** image = new char**[totalWidth];
 		for (int i = 0; i < totalWidth; i++) {
-			textureAtlas->image[i] = new char*[totalHeight];
+			image[i] = new char*[totalHeight];
 			for (int j = 0; j < totalHeight; j++) {
-				textureAtlas->image[i][j] = new char[4];
+				image[i][j] = new char[4];
 			}
 		}
 
@@ -61,16 +61,14 @@ namespace TextureAtlasCreator {
 		for (int x = 0; x < totalWidth; x++) {
 			for (int y = 0; y < totalHeight; y++) {
 				for (int z = 0; z < 4; z++) {
-					textureAtlas->image[x][y][z] = 0;
+					image[x][y][z] = 0;
 				}
 			}
 		}
 
-		textureAtlas->width = totalWidth;
-		textureAtlas->height = totalHeight;
-		textureAtlas->spacing = spacing;
-		textureAtlas->imagesInLength = size;
-		textureAtlas->totalImages = size * size;
+		
+
+		textureAtlas = new TextureAtlas(totalWidth, totalHeight, size*size, size, spacing, image);
 
 		int width, height, nrChannels;
 
@@ -104,32 +102,22 @@ namespace TextureAtlasCreator {
 					
 					if (nrChannels == 4) {
 						for (int z = 0; z < 4; z++) {
-							textureAtlas->image[x][y][z] = data[imageIndex];
+							textureAtlas->SetImagePixel(x, y, z, data[imageIndex]);
 							imageIndex++;
 						}
 					}
 					else if(nrChannels == 3){
 						for (int z = 0; z < 3; z++) {
-							textureAtlas->image[x][y][z] = data[imageIndex];
+							textureAtlas->SetImagePixel(x, y, z, data[imageIndex]);
 							imageIndex++;
 						}
-						textureAtlas->image[x][y][3] = 0xff;
+						textureAtlas->SetImagePixel(x, y, 3, 0xff);
 						//imageIndex++;
 					}
 					else {
 						std::cout << "what texture have you brought to this program? cannot make texture atlas. returning" << std::endl;
 						return;
 					}
-					
-					
-
-					/*
-					textureAtlas->image[x][y][0] = data[imageIndex];
-					textureAtlas->image[x][y][1] = 0;
-					textureAtlas->image[x][y][2] = 0;
-					textureAtlas->image[x][y][3] = 0;
-					imageIndex+=4;
-					*/
 				}
 			}
 			x += spacing;
@@ -146,88 +134,20 @@ namespace TextureAtlasCreator {
 		}
 	}
 
-	TextureAtlas* TextureAtlasCreator::GetAtlas() {
-		return textureAtlas;
-	}
-
-	char* TextureAtlasCreator::CompressTextureAtlas(int* size) {
+	TextureAtlas* TextureAtlasCreator::GetAtlas(bool newCopy) {
 		if (textureAtlas == nullptr) {
-			*size = 0;
 			return nullptr;
 		}
-		int s = textureAtlas->width * textureAtlas->height * 4;
-		*size = s;
-
-		char* image = new char[s];
-		
-		int i = 0;
-		for (int x = 0; x < textureAtlas->width; x++) {
-			for (int y = 0; y < textureAtlas->height; y++) {
-				for (int z = 0; z < 4; z++) {
-					image[i] = textureAtlas->image[x][y][z];
-					i++;
-				}
+		else {
+			if (newCopy) {
+				return new TextureAtlas(textureAtlas);
+			}
+			else {
+				return textureAtlas;
 			}
 		}
 		
-		return image;
-	}
-	char* TextureAtlasCreator::CompressTextureAtlas(TextureAtlas* atlas, int* size) {
-
-		if (atlas == nullptr) {
-			*size = 0;
-			return nullptr;
-		}
-		int s = atlas->width * atlas->height * 4;
-		*size = s;
-
-		char* image = new char[s];
-
-		int i = 0;
-		for (int x = 0; x < atlas->width; x++) {
-			for (int y = 0; y < atlas->height; y++) {
-				for (int z = 0; z < 4; z++) {
-					image[i] = atlas->image[x][y][z];
-					i++;
-				}
-			}
-		}
-
-		return image;
-	}
-
-	int TextureAtlasCreator::GetWidth() {
-		if (textureAtlas == nullptr) {
-			return 0;
-		}
-		return textureAtlas->width;
-	}
-	int TextureAtlasCreator::GetHeight() {
-		if (textureAtlas == nullptr) {
-			return 0;
-		}
-		return textureAtlas->height;
-	}
-
-	int TextureAtlasCreator::GetSpacing() {
-		if (textureAtlas == nullptr) {
-			return 0;
-		}
-		return spacing;
-	}
-
-	int GetTotalImages() {
-		if (textureAtlas == nullptr) {
-			return 0;
-		}
-		return textureAtlas->totalImages;
-	}
-
-	int GetImagesPerLength() {
-		if (textureAtlas == nullptr) {
-			return 0;
-		}
-		return textureAtlas->imagesInLength;
+		
 	}
 
 	void TextureAtlasCreator::Uninit() {

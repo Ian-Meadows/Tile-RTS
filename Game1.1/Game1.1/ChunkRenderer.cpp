@@ -101,7 +101,7 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 					unitNumbers[i] = glm::ivec2(0, 0x9C1BF3);
 				}
 				else {
-					unitNumbers[i] = glm::ivec2(1, 0x1BF330);
+					unitNumbers[i] = glm::ivec2(1, 0xffffff);
 				}
 				
 				i++;
@@ -121,7 +121,9 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 
 void ChunkRenderer::SetTextureCoordinates() {
 
-	float diff = TextureAtlasCreator::GetSpacing() * TextureAtlasCreator::GetImagesPerLength() / (float)TextureAtlasCreator::GetWidth();
+	TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
+
+	float diff = ta->GetSpacing() * ta->GetTotalImagesInLength() / (float)ta->GetWidth();
 
 	
 	float texCoords[] = {
@@ -158,17 +160,16 @@ void ChunkRenderer::InitTexture() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	int width = TextureAtlasCreator::GetWidth();
-	int height = TextureAtlasCreator::GetHeight();
+	TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
 
 	int size;
-	char* image = TextureAtlasCreator::CompressTextureAtlas(&size);
+	char* image = ta->Compress(&size);
 
 	if (image == nullptr) {
 		std::cout << "unable to load image to texture" << std::endl;
 		return;
 	}
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ta->GetWidth(), ta->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 
 	//free image
 	delete[] image;
@@ -176,9 +177,9 @@ void ChunkRenderer::InitTexture() {
 	Shader* shader = ChunkHandler::GetShader();
 	shader->use();
 	shader->setInt("chunkTexture", 0);
-	shader->setInt("totalImages", TextureAtlasCreator::GetTotalImages());
-	shader->setInt("imgSize", TextureAtlasCreator::GetWidth());
-	shader->setInt("spacing", TextureAtlasCreator::GetSpacing());
+	shader->setInt("totalImages", ta->GetTotalImages());
+	shader->setInt("imgSize", ta->GetWidth());
+	shader->setInt("spacing", ta->GetSpacing());
 }
 
 void ChunkRenderer::Draw() {
