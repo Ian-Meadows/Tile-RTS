@@ -2,6 +2,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Input.h"
 
+
+#define XRESOLUTION 800
+#define YRESOLUTION 600
+
 namespace Window {
 	//use for private methods and variables
 	namespace {
@@ -11,9 +15,14 @@ namespace Window {
 		glm::mat4 perspective;
 
 		void SetUpPerspective() {
+			perspective = glm::ortho(-(XRESOLUTION / 2.0f * SIZE), XRESOLUTION / 2.0f * SIZE,
+				-(YRESOLUTION / 2.0f * SIZE), YRESOLUTION / 2.0f * SIZE,
+				0.1f, 100.0f);
+			/*
 			perspective = glm::ortho(-(WIDTH / 2.0f * SIZE), WIDTH / 2.0f * SIZE,
 				-(HEIGHT / 2.0f * SIZE), HEIGHT / 2.0f * SIZE,
 				0.1f, 100.0f);
+			*/
 		}
 	}
 
