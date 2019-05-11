@@ -1,5 +1,6 @@
 #include "Window.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include "Input.h"
 
 namespace Window {
 	//use for private methods and variables
@@ -24,6 +25,20 @@ namespace Window {
 		Window::SetUpPerspective();
 	}
 
+
+	void Window::Update() {
+		glm::vec2 sd = Input::GetScrollDelta();
+		if (sd.y != 0) {
+			SIZE -= sd.y / 5.0f;
+			if (SIZE < 0.25f) {
+				SIZE = 0.25f;
+			}
+			else if (SIZE > 5) {
+				SIZE = 5;
+			}
+			Window::SetUpPerspective();
+		}
+	}
 
 	//getters
 	int Window::GetWidth() {

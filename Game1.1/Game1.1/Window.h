@@ -5,6 +5,8 @@
 namespace Window {
 	void InitWindow(int, int);
 
+	void Update();
+
 	//getters
 	int GetWidth();
 	int GetHeight();

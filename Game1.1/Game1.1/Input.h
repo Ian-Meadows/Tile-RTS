@@ -1,5 +1,6 @@
 #pragma once
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 
 enum KeyCode{
 	A = GLFW_KEY_A,
@@ -41,6 +42,9 @@ namespace Input {
 	bool GetKeyPressed(int);
 	bool GetKeyReleased(int);
 	bool GetKeyHeld(int);
+
+	glm::vec2 GetScrollDelta();
+	glm::vec2 GetMousePosition();
 }
 
 

@@ -1,7 +1,7 @@
 #include "Input.h"
 #include <iostream>
 #include <vector>
-
+#include <glm/glm.hpp>
 
 //only used once
 namespace Input {
@@ -12,9 +12,15 @@ namespace Input {
 		std::vector<int> keysReleased;
 		std::vector<int> keysHeld;
 
+		glm::vec2 scrollDelta;
+		glm::vec2 mousePosition;
 
 		void MouseCallback(GLFWwindow* window, double xpos, double ypos) {
-			
+			mousePosition = glm::vec2(xpos, ypos);
+		}
+
+		void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset) {
+			scrollDelta = glm::vec2(xOffset, yOffset);
 		}
 
 		void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -36,13 +42,15 @@ namespace Input {
 
 	}
 
-	//put public mathods and variables here
+	//put public methods and variables here
 
 	void Input::InitInput(GLFWwindow* window) {
 		Input::window = window;
+		scrollDelta = glm::vec2(0.0f, 0.0f);
 		//init callbacks
 		glfwSetCursorPosCallback(window, MouseCallback);
 		glfwSetKeyCallback(window, KeyCallback);
+		glfwSetScrollCallback(window, ScrollCallback);
 	}
 
 
@@ -52,9 +60,17 @@ namespace Input {
 		}
 	}
 
+	glm::vec2 Input::GetScrollDelta() {
+		return scrollDelta;
+	}
+	glm::vec2 Input::GetMousePosition() {
+		return mousePosition;
+	}
+
 	void Input::ClearOldInputs() {
 		keysPressed.clear();
 		keysReleased.clear();
+		scrollDelta = glm::vec2(0.0f, 0.0f);
 	}
 
 	bool GetKeyPressed(int key) {

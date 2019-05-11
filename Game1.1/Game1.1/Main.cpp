@@ -110,6 +110,7 @@ int main() {
 		Input::ProcessInput();
 		Game::Update();
 		Camera::Update();
+		Window::Update();
 		Game::Draw();
 
 		//clear keys pressed
