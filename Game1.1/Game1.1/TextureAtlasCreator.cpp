@@ -35,7 +35,6 @@ namespace TextureAtlasCreator {
 		}
 	}
 
-
 	void TextureAtlasCreator::CreateAtlas() {
 		if (textureAtlas != nullptr) {
 			delete textureAtlas;
@@ -65,7 +64,6 @@ namespace TextureAtlasCreator {
 				}
 			}
 		}
-
 		
 
 		textureAtlas = new TextureAtlas(totalWidth, totalHeight, size*size, size, spacing, image);
@@ -99,7 +97,6 @@ namespace TextureAtlasCreator {
 			
 			for (; x < currentMaxWidth && x < totalWidth; x++) {
 				for (y = currentYStart; y < currentMaxHeight && y < totalHeight; y++) {
-					
 					if (nrChannels == 4) {
 						for (int z = 0; z < 4; z++) {
 							textureAtlas->SetImagePixel(x, y, z, data[imageIndex]);
@@ -112,7 +109,6 @@ namespace TextureAtlasCreator {
 							imageIndex++;
 						}
 						textureAtlas->SetImagePixel(x, y, 3, 0xff);
-						//imageIndex++;
 					}
 					else {
 						std::cout << "what texture have you brought to this program? cannot make texture atlas. returning" << std::endl;
@@ -130,7 +126,6 @@ namespace TextureAtlasCreator {
 			currentMaxWidth += imageSizes + spacing;
 
 			stbi_image_free(data);
-			//std::cout << width << std::endl;
 		}
 	}
 
@@ -146,8 +141,6 @@ namespace TextureAtlasCreator {
 				return textureAtlas;
 			}
 		}
-		
-		
 	}
 
 	void TextureAtlasCreator::Uninit() {
