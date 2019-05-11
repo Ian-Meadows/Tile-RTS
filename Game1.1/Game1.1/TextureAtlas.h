@@ -1,4 +1,6 @@
 #pragma once
+#include <map>
+#include <string>
 class TextureAtlas
 {
 public:
@@ -6,11 +8,13 @@ public:
 	TextureAtlas(TextureAtlas* ta);
 	~TextureAtlas();
 
+	void AddNewImageLocation(std::string name, int location);
 
 	void SetImagePixel(int x, int y, int rgb, int value);
 
 	char* Compress(int* size);
 
+	int GetImageLocation(std::string name);
 	int GetWidth();
 	int GetHeight();
 	int GetTotalImages();
@@ -25,5 +29,7 @@ private:
 	int imagesInLength;
 	int spacing;
 	char*** image;
+
+	std::map<std::string, int> imageLocations;
 };
 

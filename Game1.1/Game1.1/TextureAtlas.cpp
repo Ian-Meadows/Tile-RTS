@@ -80,6 +80,13 @@ char* TextureAtlas::Compress(int* size) {
 	return compressedImage;
 }
 
+void TextureAtlas::AddNewImageLocation(std::string name, int location) {
+	imageLocations[name] = location;
+}
+int TextureAtlas::GetImageLocation(std::string name) {
+	return imageLocations[name];
+}
+
 void TextureAtlas::SetImagePixel(int x, int y, int rgba, int value) {
 	image[x][y][rgba] = value;
 }

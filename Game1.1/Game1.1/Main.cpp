@@ -17,10 +17,10 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 void AddImagesToAtlas() {
-	TextureAtlasCreator::AddImageFile("Images/GunPoint.png");
-	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png");
-	TextureAtlasCreator::AddImageFile("Images/eyes2.png");
-	TextureAtlasCreator::AddImageFile("Images/head2.png");
+	TextureAtlasCreator::AddImageFile("Images/GunPoint.png", "Vertical Line");
+	TextureAtlasCreator::AddImageFile("Images/BaseCharacter.png", "Square");
+	TextureAtlasCreator::AddImageFile("Images/eyes2.png", "2 Dots");
+	TextureAtlasCreator::AddImageFile("Images/head2.png", "Circle");
 	//TextureAtlasCreator::AddImageFile("Images/horseman.png");
 
 	/*

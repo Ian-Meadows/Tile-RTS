@@ -11,7 +11,7 @@
 
 namespace TextureAtlasCreator {
 	namespace {
-		std::vector<const char*> files;
+		std::vector<ImageFile*> iFiles;
 		int imageSizes;
 		int spacing;
 		TextureAtlas* textureAtlas;
@@ -26,12 +26,12 @@ namespace TextureAtlasCreator {
 		textureAtlas = nullptr;
 	}
 
-	void TextureAtlasCreator::AddImageFile(const char* file) {
-		files.push_back(file);
+	void TextureAtlasCreator::AddImageFile(const char* imagePath, const char* imageName) {
+		iFiles.push_back(new ImageFile(imagePath, imageName));
 	}
-	void TextureAtlasCreator::AddImageFiles(const char** files, int size) {
+	void TextureAtlasCreator::AddImageFiles(const char** imagePaths, const char** imageNames, int size) {
 		for (int i = 0; i < size; i++) {
-			AddImageFile(files[i]);
+			AddImageFile(imagePaths[i], imageNames[i]);
 		}
 	}
 
@@ -41,7 +41,7 @@ namespace TextureAtlasCreator {
 		}
 		
 
-		int total = files.size();
+		int total = iFiles.size();
 		int size = (int)ceil(sqrt((double)total));
 		
 		int totalWidth = size * imageSizes + (size * spacing);
@@ -78,11 +78,14 @@ namespace TextureAtlasCreator {
 		int y = 0;
 
 		for (int i = 0; i < total; i++) {
-			unsigned char *data = stbi_load(files[i], &width, &height, &nrChannels, 0);
+			unsigned char *data = stbi_load(iFiles[i]->path, &width, &height, &nrChannels, 0);
 			if (data == nullptr) {
-				std::cout << "failed to load image " << files[i] << ". Cannot create texture atlas. returning."<<std::endl;
+				std::cout << "failed to load image " << iFiles[i]->path << ". Cannot create texture atlas. returning."<<std::endl;
 				return;
 			}
+
+			textureAtlas->AddNewImageLocation(iFiles[i]->name, i);
+
 			std::cout << size << std::endl;
 			int imageIndex = 0;
 
@@ -146,6 +149,13 @@ namespace TextureAtlasCreator {
 	void TextureAtlasCreator::Uninit() {
 		if (textureAtlas != nullptr) {
 			delete textureAtlas;
+		}
+		if (iFiles.size() > 0) {
+			for (int i = 0; i < iFiles.size(); i++) {
+				if (iFiles[i] != nullptr) {
+					delete iFiles[i];
+				}
+			}
 		}
 	}
 }
