@@ -35,7 +35,7 @@ void Chunk::Draw() {
 
 	glm::mat4 model = glm::mat4(1.0f);
 	
-	model = glm::translate(model, glm::vec3(position.x, position.y, 0));
+	model = glm::translate(model, glm::vec3(position.x * CHUNK_SIZE * UNIT_SIZE, position.y * CHUNK_SIZE * UNIT_SIZE, 0));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::scale(model, glm::vec3(UNIT_SIZE, UNIT_SIZE, UNIT_SIZE));
 

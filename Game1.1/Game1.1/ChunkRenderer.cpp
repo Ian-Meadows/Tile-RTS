@@ -100,7 +100,7 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 		for (int x = 0; x < CHUNK_SIZE; x++) {
 			for (int y = 0; y < CHUNK_SIZE; y++) {
 				if (x > 2 && x < CHUNK_SIZE - 2 && y > 2 && y < CHUNK_SIZE - 2) {
-					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("Vertical Line"), 0x9C1BF3);
+					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("2 Dots"), 0x9C1BF3);
 				}
 				else {
 					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("Square"), 0xffffff);

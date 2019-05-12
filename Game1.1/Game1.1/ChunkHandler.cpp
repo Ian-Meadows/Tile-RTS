@@ -20,6 +20,8 @@ namespace ChunkHandler {
 
 		Chunk* temp = new Chunk(glm::ivec2(0, 0));
 		chunks[glm::ivec2(0, 0)] = temp;
+		temp = new Chunk(glm::ivec2(0, 1));
+		chunks[glm::ivec2(0, 1)] = temp;
 		std::unordered_map<glm::ivec2, Chunk*>::iterator it = chunks.find(glm::ivec2(0, 0));
 		if (it != chunks.end()) {
 			std::cout << "found" << std::endl;
@@ -28,7 +30,7 @@ namespace ChunkHandler {
 			std::cout << "not found" << std::endl;
 		}
 
-		if (chunks[glm::ivec2(0, 0)] != nullptr) {
+		if (chunks[glm::ivec2(0, 1)] != nullptr) {
 			std::cout << "found" << std::endl;
 		}
 		else {
@@ -44,9 +46,14 @@ namespace ChunkHandler {
 		shader->setMat4("projection", Window::GetPerspective());
 
 		Chunk* chunk = chunks[glm::ivec2(0, 0)];
+		Chunk* chunk2 = chunks[glm::ivec2(0, 1)];
 		if (chunk != nullptr) {
 			chunk->Draw();
 		}
+		if (chunk2 != nullptr) {
+			chunk2->Draw();
+		}
+
 	}
 
 	void ChunkHandler::Uninit() {

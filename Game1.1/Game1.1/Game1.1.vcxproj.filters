@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Engine">
       <UniqueIdentifier>{25933438-66d1-42a2-bd08-89491f909b63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{77a47a84-6701-4395-b32f-eb35da68d540}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{4f2c227d-981f-4793-8e26-2030e6161b73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLibs\glad\src\glad.c">
