@@ -9,12 +9,14 @@ in vec2 texCoord;
 uniform sampler2D chunkTexture;
 uniform int chunkSize;
 
+
+
 //shift 16 bits for red location
-const int maskR = 255 << 16;
+#define MASK_R 255 << 16
 //shift 8 bits for green location
-const int maskG = 255 << 8;
+#define MASK_G 255 << 8
 //don't need to shift because bits are already set for blue
-const int maskB = 255;
+#define MASK_B 255
 
 vec4 GetColor(){
 
@@ -27,11 +29,11 @@ vec4 GetColor(){
 	}
 	
 	//Use mask to retrive the red hex number. Then shift back 16 to get a number between 0 and 255.
-	r = (unitColor & maskR) >> 16;
+	r = (unitColor & MASK_R) >> 16;
 	//Use mask to retrieve the green hex number. Then shift back 8 to get a number between 0 and 255.
-	g = (unitColor & maskG) >> 8;
+	g = (unitColor & MASK_G) >> 8;
 	//Use mask to retrieve the blue hex number.
-	b = unitColor & maskB;
+	b = unitColor & MASK_B;
 
 	//r, g, b need to be converted from integers betweet 0 and 255 to floats between 0.0f and 1.0f
 	return vec4(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
