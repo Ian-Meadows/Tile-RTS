@@ -1,5 +1,2 @@
-﻿  Main.cpp
-  Window.cpp
-c:\users\ian\source\repos\game1.1\game1.1\game1.1\window.cpp(60): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
+﻿  Camera.cpp
   Game1.1.vcxproj -> C:\Users\ian\source\repos\Game1.1\Game1.1\Debug\Game1.1.exe

@@ -14,6 +14,9 @@ namespace Camera {
 
 	void Update();
 
+	void CameraMovement();
+	void ZoomMovement();
+
 	void ChangePosition(glm::vec3);
 }
 

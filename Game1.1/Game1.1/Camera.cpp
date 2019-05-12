@@ -7,7 +7,8 @@
 
 
 #define MOVEMENT_SPEED 1000
-
+#define MINZOOM -25
+#define MAXZOOM -1000
 
 namespace Camera {
 	namespace {
@@ -65,6 +66,11 @@ namespace Camera {
 
 	//do everything here
 	void Camera::Update() {
+		CameraMovement();
+		ZoomMovement();
+	}
+
+	void Camera::CameraMovement() {
 		if (Input::GetKeyHeld(KeyCode::W)) {
 			ChangePosition(glm::vec3(0, MOVEMENT_SPEED * Time::GetDeltaTime(), 0));
 		}
@@ -77,6 +83,20 @@ namespace Camera {
 		}
 		else if (Input::GetKeyHeld(KeyCode::D)) {
 			ChangePosition(glm::vec3(MOVEMENT_SPEED * Time::GetDeltaTime(), 0, 0));
+		}
+	}
+
+	void Camera::ZoomMovement() {
+		glm::vec2 sd = Input::GetScrollDelta();
+		if (sd.y != 0) {
+			Camera::position.z += sd.y * 10;
+			if (Camera::position.z > MINZOOM) {
+				Camera::position.z = MINZOOM;
+			}
+			else if (Camera::position.z < MAXZOOM) {
+				Camera::position.z = MAXZOOM;
+			}
+			UpdateView();
 		}
 	}
 }
