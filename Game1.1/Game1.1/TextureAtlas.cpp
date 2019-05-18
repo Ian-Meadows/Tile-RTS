@@ -84,7 +84,13 @@ void TextureAtlas::AddNewImageLocation(std::string name, int location) {
 	imageLocations[name] = location;
 }
 int TextureAtlas::GetImageLocation(std::string name) {
-	return imageLocations[name];
+	if (name == "none") {
+		return -1;
+	}
+	else {
+		return imageLocations[name];
+	}
+	
 }
 
 void TextureAtlas::SetImagePixel(int x, int y, int rgba, int value) {

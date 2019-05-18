@@ -101,7 +101,7 @@ int main() {
 	while (!glfwWindowShouldClose(window))
 	{
 		//clear window with black
-		glClearColor(0, 0.5, 1, 1);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		//update time to get fps and delta time
 		Time::Update();

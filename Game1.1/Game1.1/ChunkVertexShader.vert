@@ -15,6 +15,8 @@ uniform int spacing;
 out vec3 oPos;
 flat out int unitColor;
 out vec2 texCoord;
+//supposed to be a bool
+flat out int solidColor;//1:true //2:false
 
 
 void SetTextCoords(){
@@ -23,7 +25,12 @@ void SetTextCoords(){
 	//return;
 	
 	int unit = unitInformation.x;
-
+	if(unit == -1){
+		texCoord.x = -1;
+		texCoord.y = -1;
+		solidColor = 1;
+		return;
+	}
 	//float s = (imgSize / float(totalImages)) * unit;
 	int size = int(ceil(sqrt(totalImages)));
 
@@ -39,7 +46,8 @@ void SetTextCoords(){
 	texCoord = wholeTexCoords;
 	texCoord.x = (texCoord.x / float(size)) + sx;
 	texCoord.y = (texCoord.y / float(size)) + sy;
-	
+
+	solidColor = 0;
 }
 
 void main()

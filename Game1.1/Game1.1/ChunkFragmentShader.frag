@@ -6,6 +6,9 @@ in vec3 oPos;
 flat in int unitColor;
 in vec2 texCoord;
 
+//supposed to be a bool
+flat in int solidColor;//1:true //2:false
+
 uniform sampler2D chunkTexture;
 uniform int chunkSize;
 
@@ -55,8 +58,13 @@ void main(){
 		FragColor = vec4(1, oPos.y, 0 , 1.0f);
 	}
 	*/
-
-	FragColor = texture(chunkTexture, texCoord) * GetColor();
+	if(solidColor == 1){
+		FragColor = GetColor();
+	}
+	else{
+		FragColor = texture(chunkTexture, texCoord) * GetColor();
+	}
+	
 	
 	
 	
