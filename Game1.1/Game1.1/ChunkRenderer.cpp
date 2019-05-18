@@ -20,7 +20,6 @@ ChunkRenderer::ChunkRenderer(Chunk* chunk)
 	SetPositions();
 	SetUnitInfo(true);
 	SetTextureCoordinates();
-	InitTexture();
 }
 
 
@@ -103,7 +102,7 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("2 Dots"), 0x9C1BF3);
 				}
 				else {
-					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("none"), 0x0);
+					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("none"), 0xffffff);
 				}
 				
 				i++;
@@ -153,43 +152,9 @@ void ChunkRenderer::SetTextureCoordinates() {
 	glEnableVertexAttribArray(3);
 }
 
-void ChunkRenderer::InitTexture() {
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-	TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
-
-	int size;
-	char* image = ta->Compress(&size);
-
-	if (image == nullptr) {
-		std::cout << "unable to load image to texture" << std::endl;
-		return;
-	}
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ta->GetWidth(), ta->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-
-	//free image
-	delete[] image;
-
-	Shader* shader = ChunkHandler::GetShader();
-	shader->use();
-	shader->setInt("chunkTexture", 0);
-	shader->setInt("totalImages", ta->GetTotalImages());
-	shader->setInt("imgSize", ta->GetWidth());
-	shader->setInt("spacing", ta->GetSpacing());
-}
-
 void ChunkRenderer::Draw() {
 
 	//SetUnitNumbers(false);
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture);
 
 	glBindVertexArray(VAO);
 	glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, CHUNK_SIZE * CHUNK_SIZE);

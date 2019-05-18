@@ -5,6 +5,7 @@
 
 #include "Camera.h"
 #include "Window.h"
+#include "TextureAtlasCreator.h"
 
 namespace ChunkHandler {
 	namespace {
@@ -12,11 +13,48 @@ namespace ChunkHandler {
 		std::unordered_map<glm::ivec2, Chunk*, GLMKeyFunctions, GLMKeyFunctions> chunks;
 
 		Shader* shader;
+		unsigned int texture;
+
+		void InitTexture() {
+			glGenTextures(1, &texture);
+			glBindTexture(GL_TEXTURE_2D, texture);
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+			TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
+
+			int size;
+			char* image = ta->Compress(&size);
+
+			if (image == nullptr) {
+				std::cout << "unable to load image to texture" << std::endl;
+				return;
+			}
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ta->GetWidth(), ta->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+
+			//free image
+			delete[] image;
+
+			//Shader* shader = ChunkHandler::GetShader();
+			shader->use();
+			shader->setInt("chunkTexture", 0);
+			shader->setInt("totalImages", ta->GetTotalImages());
+			shader->setInt("imgSize", ta->GetWidth());
+			shader->setInt("spacing", ta->GetSpacing());
+		}
+
 	}
 
 	void ChunkHandler::Init() {
 
 		shader = new Shader("ChunkVertexShader.vert", "ChunkFragmentShader.frag");
+
+		InitTexture();
+
+
 
 		Chunk* temp = new Chunk(glm::ivec2(0, 0));
 		chunks[glm::ivec2(0, 0)] = temp;
@@ -45,6 +83,9 @@ namespace ChunkHandler {
 		shader->setMat4("view", Camera::GetView());
 		shader->setMat4("projection", Window::GetPerspective());
 
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture);
+
 		Chunk* chunk = chunks[glm::ivec2(0, 0)];
 		Chunk* chunk2 = chunks[glm::ivec2(0, 1)];
 		if (chunk != nullptr) {
@@ -62,6 +103,9 @@ namespace ChunkHandler {
 			delete chunksList[i];
 		}
 		chunksList.clear();
+
+		//TODO: delete texure
+
 		delete shader;
 	}
 

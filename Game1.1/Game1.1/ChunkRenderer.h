@@ -17,7 +17,6 @@ private:
 	void SetPositions();
 	void SetUnitInfo(bool);
 	void SetTextureCoordinates();
-	void InitTexture();
 
 	unsigned int VAO;
 	//0:shape
