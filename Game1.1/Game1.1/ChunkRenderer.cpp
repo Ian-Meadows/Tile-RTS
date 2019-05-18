@@ -26,11 +26,11 @@ ChunkRenderer::ChunkRenderer(Chunk* chunk)
 ChunkRenderer::~ChunkRenderer()
 {
 	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(CHUNK_SIZE * CHUNK_SIZE, VBO);
+	glDeleteBuffers(4, VBO);
 	glDeleteBuffers(1, &EBO);
 
-	delete positions;
-	delete unitNumbers;
+	delete[] positions;
+	delete[] unitNumbers;
 }
 
 

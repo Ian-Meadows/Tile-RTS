@@ -25,7 +25,6 @@ private:
 	//3:texCoords
 	unsigned int VBO[4];
 	unsigned int EBO;
-	unsigned int texture;
 
 	Chunk* chunk;
 

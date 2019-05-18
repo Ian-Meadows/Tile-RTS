@@ -1,7 +1,9 @@
 #pragma once
 #include <glm/glm.hpp>
-#include "Chunk.h"
+
 #include "Shader.h"
+
+class Chunk;
 
 struct GLMKeyFunctions {
 	size_t operator()(const glm::ivec2& k)const
@@ -25,7 +27,7 @@ namespace ChunkHandler {
 
 	Shader* GetShader();
 
-	//Chunk* GetChunk(glm::ivec2);
+	Chunk* GetChunk(glm::ivec2 pos);
 
 }
 

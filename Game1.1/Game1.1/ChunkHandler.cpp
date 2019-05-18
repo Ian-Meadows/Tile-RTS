@@ -2,10 +2,13 @@
 #include <unordered_map>
 #include <vector>
 #include <iostream>
+#include <glm/glm.hpp>
 
 #include "Camera.h"
 #include "Window.h"
 #include "TextureAtlasCreator.h"
+#include "Chunk.h"
+
 
 namespace ChunkHandler {
 	namespace {
@@ -104,16 +107,16 @@ namespace ChunkHandler {
 		}
 		chunksList.clear();
 
-		//TODO: delete texure
+		glDeleteTextures(1, &texture);
 
 		delete shader;
 	}
 
-	/*
+	
 	Chunk* ChunkHandler::GetChunk(glm::ivec2 pos) {
-		return nullptr;
+		return chunks[pos];
 	}
-	*/
+	
 
 	Shader* GetShader() {
 		return ChunkHandler::shader;
