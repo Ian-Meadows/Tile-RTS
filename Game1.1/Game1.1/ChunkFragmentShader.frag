@@ -5,13 +5,16 @@ in vec3 oPos;
 //must be in hexidecimal ex. white:0xffffff. Note: alpha is not included
 flat in int unitColor;
 in vec2 texCoord;
+in vec2 unitSelectionTexCoord;
 
 //supposed to be a bool
 flat in int solidColor;//1:true //2:false
 
 uniform sampler2D chunkTexture;
-uniform int chunkSize;
+uniform sampler2D unitSelectionTexture;
 
+uniform int chunkSize;
+uniform vec3 unitSelectionColor;
 
 
 //shift 16 bits for red location
@@ -44,6 +47,15 @@ vec4 GetColor(){
 }
 
 
+vec4 GetVectorWithPriority(vec4 priority, vec4 extra){
+	if(priority.w > 0.0f){
+		return priority;
+	}
+	else{
+		return extra;
+	}
+}
+
 void main(){
 	
 	/*
@@ -62,7 +74,14 @@ void main(){
 		FragColor = GetColor();
 	}
 	else{
-		FragColor = texture(chunkTexture, texCoord) * GetColor();
+
+		/*
+		FragColor = mix(texture(chunkTexture, texCoord) * GetColor(),
+			texture(unitSelectionTexture, unitSelectionTexCoord) * vec4(unitSelectionColor, 1.0f), 0.2f);
+		*/
+		FragColor = GetVectorWithPriority(texture(unitSelectionTexture, unitSelectionTexCoord) * vec4(unitSelectionColor, 1.0f),
+			texture(chunkTexture, texCoord) * GetColor());
+		
 	}
 	
 	

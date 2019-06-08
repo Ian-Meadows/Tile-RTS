@@ -10,13 +10,15 @@
 #include "Chunk.h"
 
 
+#include "stb_image.h"
+
 namespace ChunkHandler {
 	namespace {
 		std::vector<Chunk*> chunksList;
 		std::unordered_map<glm::ivec2, Chunk*, GLMKeyFunctions, GLMKeyFunctions> chunks;
 
 		Shader* shader;
-		unsigned int texture;
+		unsigned int texture, unitSelectionTexture;
 
 		void InitTexture() {
 			glGenTextures(1, &texture);
@@ -49,6 +51,34 @@ namespace ChunkHandler {
 			shader->setInt("spacing", ta->GetSpacing());
 		}
 
+		void LoadUnitSelectionTexture(const char* textureFilePath) {
+			glGenTextures(1, &unitSelectionTexture);
+			glBindTexture(GL_TEXTURE_2D, unitSelectionTexture);
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+
+			int width;
+			int height;
+			int nrChannels;
+			unsigned char *image = stbi_load(textureFilePath, &width, &height, &nrChannels, 0);
+			if (image == NULL) {
+				std::cout << "ERROR::Unable to load unit selection texture" << std::endl;
+				return;
+			}
+			
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+
+			stbi_image_free(image);
+
+			shader->use();
+			shader->setInt("unitSelectionTexture", 1);
+			shader->setVec3("unitSelectionColor", glm::vec3(0.0f, 1.0f, 0.0f));
+		}
+
 	}
 
 	void ChunkHandler::Init() {
@@ -56,7 +86,7 @@ namespace ChunkHandler {
 		shader = new Shader("ChunkVertexShader.vert", "ChunkFragmentShader.frag");
 
 		InitTexture();
-
+		LoadUnitSelectionTexture("Images/OutLine.png");
 
 
 		Chunk* temp = new Chunk(glm::ivec2(0, 0));
@@ -87,7 +117,9 @@ namespace ChunkHandler {
 		shader->setMat4("projection", Window::GetPerspective());
 
 		glActiveTexture(GL_TEXTURE0);
+		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, texture);
+		glBindTexture(GL_TEXTURE_2D, unitSelectionTexture);
 
 		Chunk* chunk = chunks[glm::ivec2(0, 0)];
 		Chunk* chunk2 = chunks[glm::ivec2(0, 1)];
@@ -108,6 +140,7 @@ namespace ChunkHandler {
 		chunksList.clear();
 
 		glDeleteTextures(1, &texture);
+		glDeleteTextures(1, &unitSelectionTexture);
 
 		delete shader;
 	}

@@ -20,6 +20,7 @@ ChunkRenderer::ChunkRenderer(Chunk* chunk)
 	SetPositions();
 	SetUnitInfo(true);
 	SetTextureCoordinates();
+	SetBasicTextureCoordinates();
 }
 
 
@@ -36,7 +37,7 @@ ChunkRenderer::~ChunkRenderer()
 
 void ChunkRenderer::Init() {
 	glGenVertexArrays(1, &VAO);
-	glGenBuffers(4, VBO);
+	glGenBuffers(5, VBO);
 	glGenBuffers(1, &EBO);
 
 	float vert[] = {
@@ -150,6 +151,23 @@ void ChunkRenderer::SetTextureCoordinates() {
 
 	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(3);
+}
+
+void ChunkRenderer::SetBasicTextureCoordinates() {
+	float texCoords[] = {
+		1.0f, 1.0f,
+		1.0f, 0.0f,
+		0.0f, 0.0f,
+		0.0f, 1.0f
+	};
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO[4]);
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(texCoords), texCoords, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(4);
+
 }
 
 void ChunkRenderer::Draw() {

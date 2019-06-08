@@ -17,13 +17,15 @@ private:
 	void SetPositions();
 	void SetUnitInfo(bool);
 	void SetTextureCoordinates();
+	void SetBasicTextureCoordinates();
 
 	unsigned int VAO;
 	//0:shape
 	//1:position
 	//2:unit number
 	//3:texCoords
-	unsigned int VBO[4];
+	//4:basicTexCoords
+	unsigned int VBO[5];
 	unsigned int EBO;
 
 	Chunk* chunk;

@@ -3,6 +3,7 @@ layout (location = 0) in vec3 aPos;
 layout (location = 1) in ivec2 bPos;
 layout (location = 2) in ivec2 unitInformation;
 layout (location = 3) in vec2 wholeTexCoords;
+layout (location = 4) in vec2 basicTexCoords;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -12,9 +13,11 @@ uniform int totalImages;
 uniform int imgSize;
 uniform int spacing;
 
+
 out vec3 oPos;
 flat out int unitColor;
 out vec2 texCoord;
+out vec2 unitSelectionTexCoord;
 //supposed to be a bool
 flat out int solidColor;//1:true //2:false
 
@@ -59,4 +62,6 @@ void main()
 	oPos.x = unitInformation.x;
 	SetTextCoords();
 	unitColor = unitInformation.y;
+
+	unitSelectionTexCoord = basicTexCoords;
 }
