@@ -6,28 +6,45 @@
 #define XRESOLUTION 800
 #define YRESOLUTION 600
 
+#define MAXZOOM 2.0f
+#define MINZOOM 0.01f
+
 namespace Window {
 	//use for private methods and variables
 	namespace {
 		int WIDTH, HEIGHT;
-		float SIZE = 90;
+		float SIZE = 0.25f;
 
 		glm::mat4 perspective;
 
 		void SetUpPerspective() {
 
-			perspective = glm::perspective(glm::radians(SIZE), ((float)XRESOLUTION / (float)YRESOLUTION), 0.1f, 1000.0f);
+			//perspective = glm::perspective(glm::radians(SIZE), ((float)XRESOLUTION / (float)YRESOLUTION), 0.1f, 1000.0f);
 
-			/*
+			//probably use this, might want to use the one below it though
 			perspective = glm::ortho(-(XRESOLUTION / 2.0f * SIZE), XRESOLUTION / 2.0f * SIZE,
 				-(YRESOLUTION / 2.0f * SIZE), YRESOLUTION / 2.0f * SIZE,
-				0.1f, 100.0f);
-			*/
+				0.1f, 10.0f);
+			
 			/*
 			perspective = glm::ortho(-(WIDTH / 2.0f * SIZE), WIDTH / 2.0f * SIZE,
 				-(HEIGHT / 2.0f * SIZE), HEIGHT / 2.0f * SIZE,
 				0.1f, 100.0f);
 			*/
+		}
+
+		void ZoomMovement() {
+			glm::vec2 sd = Input::GetScrollDelta();
+			if (sd.y != 0) {
+				SIZE -= sd.y / 15.0f;
+				if (SIZE < MINZOOM) {
+					SIZE = MINZOOM;
+				}
+				else if (SIZE > MAXZOOM) {
+					SIZE = MAXZOOM;
+				}
+				Window::SetUpPerspective();
+			}
 		}
 	}
 
@@ -41,19 +58,7 @@ namespace Window {
 
 
 	void Window::Update() {
-		/*
-		glm::vec2 sd = Input::GetScrollDelta();
-		if (sd.y != 0) {
-			SIZE -= sd.y / 5.0f;
-			if (SIZE < 0.25f) {
-				SIZE = 0.25f;
-			}
-			else if (SIZE > 5) {
-				SIZE = 5;
-			}
-			Window::SetUpPerspective();
-		}
-		*/
+		ZoomMovement();
 	}
 
 	//getters

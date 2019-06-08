@@ -4,9 +4,11 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "Input.h"
 #include "Time.h"
+#include "Window.h"
+#include "Chunk.h"
 
 
-#define MOVEMENT_SPEED 1000
+#define MOVEMENT_SPEED 100
 #define MINZOOM -25
 #define MAXZOOM -1000
 
@@ -48,6 +50,10 @@ namespace Camera {
 		return view;
 	}
 
+	glm::vec3 Camera::GetPosition() {
+		return position;
+	}
+
 	void Camera::SetPosition(glm::vec3 position) {
 		Camera::position = position;
 		UpdateView();
@@ -67,7 +73,7 @@ namespace Camera {
 	//do everything here
 	void Camera::Update() {
 		CameraMovement();
-		ZoomMovement();
+		//ZoomMovement();
 	}
 
 	void Camera::CameraMovement() {
@@ -99,4 +105,23 @@ namespace Camera {
 			UpdateView();
 		}
 	}
+
+	//util Functions
+	glm::vec3 Camera::ScreenToWorld(glm::vec2 pos) {
+		int width = Window::GetWidth();
+		int height = Window::GetHeight();
+
+		glm::mat4 proj = Window::GetPerspective() * view;
+
+		glm::vec4 viewport = glm::vec4(0, 0, width, height);
+		
+		glm::vec3 worldPos = glm::unProject(glm::vec3(pos, 0.0f), glm::mat4(1.0f), proj, viewport);
+
+		//change worldPos to match chunk/unit alignment
+		worldPos.y *= -1;
+		worldPos.x += UNIT_SIZE / 2.0f;
+		return worldPos;
+	}
+
+
 }

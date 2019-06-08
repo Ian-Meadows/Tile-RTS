@@ -8,6 +8,7 @@ namespace Camera {
 	void Init(float);
 
 	glm::mat4 GetView();
+	glm::vec3 GetPosition();
 
 	void SetPosition(glm::vec3);
 	void SetRotation(float);
@@ -18,5 +19,7 @@ namespace Camera {
 	void ZoomMovement();
 
 	void ChangePosition(glm::vec3);
+
+	glm::vec3 ScreenToWorld(glm::vec2 pos);
 }
 

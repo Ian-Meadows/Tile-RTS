@@ -102,7 +102,7 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("2 Dots"), 0x9C1BF3);
 				}
 				else {
-					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("none"), 0xffffff);
+					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("Circle"), 0xffffff);
 				}
 				
 				i++;

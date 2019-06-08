@@ -5,7 +5,7 @@
 #include "ChunkRenderer.h"
 
 #define CHUNK_SIZE 32
-#define UNIT_SIZE 20
+#define UNIT_SIZE 1
 /*
 draw options
 have vao for every chunk always in vram(lot of space)
