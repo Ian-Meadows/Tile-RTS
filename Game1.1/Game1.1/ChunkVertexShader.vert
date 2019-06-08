@@ -18,8 +18,9 @@ out vec3 oPos;
 flat out int unitColor;
 out vec2 texCoord;
 out vec2 unitSelectionTexCoord;
-//supposed to be a bool
+//supposed to be bools
 flat out int solidColor;//1:true //2:false
+flat out int isSelected;//1:true //2:false
 
 
 void SetTextCoords(){
@@ -28,11 +29,15 @@ void SetTextCoords(){
 	//return;
 	
 	int unit = unitInformation.x;
-	if(unit == -1){
+	if(unit == (1 << 31)){
 		texCoord.x = -1;
 		texCoord.y = -1;
 		solidColor = 1;
 		return;
+	}
+	else if(unit < 0){
+		unit *= -1;
+		isSelected = 1;
 	}
 	//float s = (imgSize / float(totalImages)) * unit;
 	int size = int(ceil(sqrt(totalImages)));

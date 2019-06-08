@@ -54,7 +54,9 @@ void AddImagesToAtlas() {
 }
 
 int main() {
-	
+
+
+
 	
 	//init namespaces
 	Window::InitWindow(800, 600);

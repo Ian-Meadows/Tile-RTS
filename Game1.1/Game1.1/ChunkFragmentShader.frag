@@ -7,8 +7,9 @@ flat in int unitColor;
 in vec2 texCoord;
 in vec2 unitSelectionTexCoord;
 
-//supposed to be a bool
+//supposed to be bools
 flat in int solidColor;//1:true //2:false
+flat in int isSelected;//1:true //2:false
 
 uniform sampler2D chunkTexture;
 uniform sampler2D unitSelectionTexture;
@@ -74,14 +75,13 @@ void main(){
 		FragColor = GetColor();
 	}
 	else{
-
-		/*
-		FragColor = mix(texture(chunkTexture, texCoord) * GetColor(),
-			texture(unitSelectionTexture, unitSelectionTexCoord) * vec4(unitSelectionColor, 1.0f), 0.2f);
-		*/
-		FragColor = GetVectorWithPriority(texture(unitSelectionTexture, unitSelectionTexCoord) * vec4(unitSelectionColor, 1.0f),
-			texture(chunkTexture, texCoord) * GetColor());
-		
+		if(isSelected == 1){
+			FragColor = GetVectorWithPriority(texture(unitSelectionTexture, unitSelectionTexCoord) * vec4(unitSelectionColor, 1.0f),
+				texture(chunkTexture, texCoord) * GetColor());
+		}
+		else{
+			FragColor = texture(chunkTexture, texCoord) * GetColor();
+		}
 	}
 	
 	

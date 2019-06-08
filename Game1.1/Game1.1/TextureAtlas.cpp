@@ -85,7 +85,8 @@ void TextureAtlas::AddNewImageLocation(std::string name, int location) {
 }
 int TextureAtlas::GetImageLocation(std::string name) {
 	if (name == "none") {
-		return -1;
+		//gpu vertex shader expects largest negative number when using a solid color
+		return (1 << 31);
 	}
 	else {
 		return imageLocations[name];
