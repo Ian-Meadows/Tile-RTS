@@ -101,7 +101,13 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 			for (int y = 0; y < CHUNK_SIZE; y++) {
 				//send a negative number for gpu showing unit is selected
 				if (x > 2 && x < CHUNK_SIZE - 2 && y > 2 && y < CHUNK_SIZE - 2) {
-					unitNumbers[i] = glm::ivec2(-ta->GetImageLocation("2 Dots"), 0x9C1BF3);
+					if (x == 10 && y == 10) {
+						unitNumbers[i] = glm::ivec2(-ta->GetImageLocation("Circle"), 0x9C1BF3);
+					}
+					else {
+						unitNumbers[i] = glm::ivec2(ta->GetImageLocation("2 Dots"), 0x9C1BF3);
+					}
+					
 				}
 				else {
 					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("none"), 0xffffff);
