@@ -1,3 +1,5 @@
-﻿  Window.cpp
-c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\window.cpp(72): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+﻿  ChunkRenderHandler.cpp
+c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(103): warning C4307: '-': integral constant overflow
+c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(123): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(128): warning C4018: '<': signed/unsigned mismatch
   Game1.1.vcxproj -> C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Debug\Game1.1.exe

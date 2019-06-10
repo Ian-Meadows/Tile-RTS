@@ -1,6 +1,6 @@
 #include "ChunkRenderer.h"
 #include "Chunk.h"
-#include "ChunkHandler.h"
+#include "ChunkRenderHandler.h"
 #include "Window.h"
 #include "Camera.h"
 #include <glm/glm.hpp>
@@ -10,9 +10,8 @@
 
 
 
-ChunkRenderer::ChunkRenderer(Chunk* chunk)
+ChunkRenderer::ChunkRenderer()
 {
-	this->chunk = chunk;
 
 	
 
@@ -32,6 +31,10 @@ ChunkRenderer::~ChunkRenderer()
 
 	delete[] positions;
 	delete[] unitNumbers;
+}
+
+void ChunkRenderer::SetChunk(Chunk* chunk) {
+	this->chunk = chunk;
 }
 
 
@@ -187,9 +190,29 @@ void ChunkRenderer::SetBasicTextureCoordinates() {
 void ChunkRenderer::Draw() {
 
 	//SetUnitNumbers(false);
+	if (chunk != nullptr) {
 
-	glBindVertexArray(VAO);
-	glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, CHUNK_SIZE * CHUNK_SIZE);
+		glm::mat4 model = glm::mat4(1.0f);
+		glm::ivec2 position = chunk->GetPosition();
+
+		//do math to create model
+		model = glm::translate(model, glm::vec3(position.x * CHUNK_SIZE * UNIT_SIZE, position.y * CHUNK_SIZE * UNIT_SIZE, 0));
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::scale(model, glm::vec3(UNIT_SIZE, UNIT_SIZE, UNIT_SIZE));
+
+		//set model on gpu
+		ChunkRenderHandler::GetShader()->setMat4("model", model);
+
+		//bind vao
+		glBindVertexArray(VAO);
+		//render chunk
+		glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, CHUNK_SIZE * CHUNK_SIZE);
+	}
+	else {
+		std::cout << "ERROR::no chunk set to render" << std::endl;
+		return;
+	}
+	
 
 
 }

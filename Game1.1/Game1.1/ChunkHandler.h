@@ -1,8 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
 
-#include "Shader.h"
-
 class Chunk;
 
 struct GLMKeyFunctions {
@@ -24,8 +22,6 @@ namespace ChunkHandler {
 	void Draw();
 
 	void Uninit();
-
-	Shader* GetShader();
 
 	Chunk* GetChunk(glm::ivec2 pos);
 

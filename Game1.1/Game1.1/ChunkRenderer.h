@@ -6,10 +6,12 @@ class Chunk;
 class ChunkRenderer
 {
 public:
-	ChunkRenderer(Chunk*);
+	ChunkRenderer();
 	~ChunkRenderer();
 
 	void Draw();
+
+	void SetChunk(Chunk* chunk);
 
 private:
 	void Init();

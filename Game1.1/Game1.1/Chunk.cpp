@@ -10,7 +10,7 @@ Chunk::Chunk(glm::ivec2 position)
 	this->position = position;
 
 	
-	cr = new ChunkRenderer(this);
+	//cr = new ChunkRenderer(this);
 
 
 }
@@ -18,7 +18,7 @@ Chunk::Chunk(glm::ivec2 position)
 
 Chunk::~Chunk()
 {
-	delete cr;
+	//delete cr;
 	/*
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(CHUNK_SIZE * CHUNK_SIZE, VBO);
@@ -29,7 +29,7 @@ Chunk::~Chunk()
 glm::ivec2 Chunk::GetPosition() {
 	return position;
 }
-
+/*
 void Chunk::Draw() {
 
 
@@ -41,9 +41,11 @@ void Chunk::Draw() {
 
 	ChunkHandler::GetShader()->setMat4("model", model);
 
-	/*
-	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, indicesSize * (CHUNK_SIZE * CHUNK_SIZE), GL_UNSIGNED_INT, 0);
-	*/
-	cr->Draw();
+	
+	//glBindVertexArray(VAO);
+	//glDrawElements(GL_TRIANGLES, indicesSize * (CHUNK_SIZE * CHUNK_SIZE), GL_UNSIGNED_INT, 0);
+	=
+	//cr->Draw();
 }
+*/
+
