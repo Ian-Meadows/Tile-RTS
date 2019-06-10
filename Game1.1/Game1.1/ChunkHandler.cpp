@@ -109,6 +109,8 @@ namespace ChunkHandler {
 		}
 		shader->use();
 		shader->setInt("chunkSize", CHUNK_SIZE);
+		//send over constants to gpu
+		shader->setInt("SOLIDCOLOR", SOLIDCOLOR);
 	}
 
 	void ChunkHandler::Draw() {

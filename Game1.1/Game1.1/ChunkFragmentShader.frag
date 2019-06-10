@@ -8,7 +8,7 @@ in vec2 texCoord;
 in vec2 unitSelectionTexCoord;
 
 //supposed to be bools
-flat in int solidColor;//1:true //2:false
+flat in int isSolidColor;//1:true //2:false
 flat in int isSelected;//1:true //2:false
 
 uniform sampler2D chunkTexture;
@@ -47,7 +47,7 @@ vec4 GetColor(){
 
 }
 
-
+//returns first vector if w scalar is greater then 0 otherwise the second vector is returned.
 vec4 GetVectorWithPriority(vec4 priority, vec4 extra){
 	if(priority.w > 0.0f){
 		return priority;
@@ -71,8 +71,15 @@ void main(){
 		FragColor = vec4(1, oPos.y, 0 , 1.0f);
 	}
 	*/
-	if(solidColor == 1){
-		FragColor = GetColor();
+	if(isSolidColor == 1){
+		if(isSelected == 1){
+			FragColor = GetVectorWithPriority(texture(unitSelectionTexture, unitSelectionTexCoord) * vec4(unitSelectionColor, 1.0f),
+				GetColor());
+		}
+		else{
+			FragColor = GetColor();
+		}
+		
 	}
 	else{
 		if(isSelected == 1){

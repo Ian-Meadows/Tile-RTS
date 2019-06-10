@@ -1,6 +1,10 @@
 #pragma once
 #include <map>
 #include <string>
+
+//create largest positive number
+#define SOLIDCOLOR (1 << 31) - 1
+
 class TextureAtlas
 {
 public:

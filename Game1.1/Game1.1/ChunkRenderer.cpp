@@ -104,13 +104,20 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 					if (x == 10 && y == 10) {
 						unitNumbers[i] = glm::ivec2(-ta->GetImageLocation("Circle"), 0x9C1BF3);
 					}
+					
 					else {
 						unitNumbers[i] = glm::ivec2(ta->GetImageLocation("2 Dots"), 0x9C1BF3);
 					}
 					
 				}
 				else {
-					unitNumbers[i] = glm::ivec2(ta->GetImageLocation("none"), 0xffffff);
+					if (x == 1 && y == 1) {
+						unitNumbers[i] = glm::ivec2(-ta->GetImageLocation("none"), 0xffffff);
+					}
+					else {
+						unitNumbers[i] = glm::ivec2(ta->GetImageLocation("none"), 0xffffff);
+					}
+					
 				}
 				
 				i++;

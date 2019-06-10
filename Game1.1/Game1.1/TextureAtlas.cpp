@@ -1,8 +1,6 @@
 #include "TextureAtlas.h"
 #include <iostream>
 
-
-
 TextureAtlas::TextureAtlas(int width, int height, int totalImages, int imagesInLength, int spacing, char*** image)
 {
 	this->width = width;
@@ -86,7 +84,7 @@ void TextureAtlas::AddNewImageLocation(std::string name, int location) {
 int TextureAtlas::GetImageLocation(std::string name) {
 	if (name == "none") {
 		//gpu vertex shader expects largest negative number when using a solid color
-		return (1 << 31);
+		return SOLIDCOLOR;
 	}
 	else {
 		return imageLocations[name];
