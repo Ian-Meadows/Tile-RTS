@@ -36,7 +36,7 @@ namespace Window {
 		void ZoomMovement() {
 			glm::vec2 sd = Input::GetScrollDelta();
 			if (sd.y != 0) {
-				SIZE -= sd.y / 15.0f;
+				SIZE -= sd.y / 30.0f;
 				if (SIZE < MINZOOM) {
 					SIZE = MINZOOM;
 				}
