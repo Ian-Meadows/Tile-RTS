@@ -12,6 +12,7 @@ public:
 	void Draw();
 
 	void SetChunk(Chunk* chunk);
+	Chunk* GetChunk();
 
 private:
 	void Init();

@@ -36,6 +36,9 @@ ChunkRenderer::~ChunkRenderer()
 void ChunkRenderer::SetChunk(Chunk* chunk) {
 	this->chunk = chunk;
 }
+Chunk* ChunkRenderer::GetChunk() {
+	return chunk;
+}
 
 
 void ChunkRenderer::Init() {

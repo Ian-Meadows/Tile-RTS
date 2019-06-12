@@ -1,3 +1,4 @@
+#include <math.h>
 #include "Game.h"
 #include "TestRenderer.h"
 #include "ChunkHandler.h"
@@ -6,6 +7,7 @@
 #include "Time.h"
 #include "Input.h"
 #include "Camera.h"
+
 
 namespace Game {
 	namespace {
@@ -28,7 +30,7 @@ namespace Game {
 		it->Update();
 
 
-		/*
+		
 		time += Time::GetDeltaTime();
 		if (time > 1.0) {
 			time = 0;
@@ -39,9 +41,9 @@ namespace Game {
 			std::cout << "Camera Pos: X: " << cameraPos.x << " Y: " << cameraPos.y << " Z: " << cameraPos.z << std::endl;
 
 			glm::vec3 worldPos = Camera::ScreenToWorld(mousePos);
-			std::cout << "World Pos: X: " << worldPos.x / 32.0f << " Y: " << worldPos.y / 32.0f << std::endl;
+			std::cout << "World Pos: X: " << floor(worldPos.x / 32.0f) << " Y: " << floor(worldPos.y / 32.0f) << std::endl;
 		}
-		*/
+		
 		
 
 	}

@@ -9,6 +9,8 @@
 #include "Time.h"
 #include "TextureAtlasCreator.h"
 
+#include "Debugger.h"
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -54,9 +56,6 @@ void AddImagesToAtlas() {
 }
 
 int main() {
-
-
-
 	
 	//init namespaces
 	Window::InitWindow(800, 600);
