@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "TextureAtlasCreator.h"
 #include "Chunk.h"
+#include "ChunkHandler.h"
 
 
 #include "stb_image.h"
@@ -83,6 +84,10 @@ namespace ChunkRenderHandler {
 			shader->setInt("unitSelectionTexture", 1);
 			shader->setVec3("unitSelectionColor", glm::vec3(0.0f, 1.0f, 0.0f));
 		}
+
+		//temp
+		ChunkRenderer* cr1;
+		ChunkRenderer* cr2;
 	}
 
 	void ChunkRenderHandler::Init() {
@@ -96,6 +101,12 @@ namespace ChunkRenderHandler {
 		for (int i = 0; i < INITIALRENDERERS; i++) {
 			CreateNewChunkRenderer();
 		}
+
+		cr1 = new ChunkRenderer();
+		cr2 = new ChunkRenderer();
+
+		cr1->SetChunk(ChunkHandler::GetChunk(glm::ivec2(0, 0)));
+		cr2->SetChunk(ChunkHandler::GetChunk(glm::ivec2(0, 1)));
 
 		shader->use();
 		shader->setInt("chunkSize", CHUNK_SIZE);
@@ -114,7 +125,25 @@ namespace ChunkRenderHandler {
 
 
 		//TODO:actually draw the chunks
+		//first create render square(location where chunks get rendered)
 
+		int width = Window::GetWidth();
+		int height = Window::GetHeight();
+		
+		//get render square 4 corners from screen to world coords
+		glm::vec2 upperLeft = Camera::ScreenToWorld(glm::vec2(0, 0));
+		glm::vec2 upperRight = Camera::ScreenToWorld(glm::vec2(width, 0));
+		glm::vec2 bottomLeft = Camera::ScreenToWorld(glm::vec2(0, height));
+		glm::vec2 bottomRight = Camera::ScreenToWorld(glm::vec2(width, height));
+
+		//convert from world coords to chunk coords
+
+		for (int i = 0; i < renderersInUse.size(); i++) {
+
+		}
+
+		cr1->Draw();
+		cr2->Draw();
 
 	}
 
@@ -130,6 +159,9 @@ namespace ChunkRenderHandler {
 				delete renderersNotInUse[i];
 			}
 		}
+
+		delete cr1;
+		delete cr2;
 
 		//delete textures
 		glDeleteTextures(1, &texture);

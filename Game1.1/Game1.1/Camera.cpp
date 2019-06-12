@@ -113,13 +113,13 @@ namespace Camera {
 
 		glm::mat4 proj = Window::GetPerspective() * view;
 
-		glm::vec4 viewport = glm::vec4(0, 0, width, height);
+		glm::vec4 viewport = glm::vec4(0, height, width, -height);
 		
-		glm::vec3 worldPos = glm::unProject(glm::vec3(pos, 0.0f), glm::mat4(1.0f), proj, viewport);
+		glm::vec3 worldPos = glm::unProject(glm::vec3(pos.x, pos.y, 0.0f), glm::mat4(1.0f), proj, viewport);
 
 		//change worldPos to match chunk/unit alignment
-		worldPos.y *= -1;
 		worldPos.x += UNIT_SIZE / 2.0f;
+		worldPos.y += UNIT_SIZE / 2.0f;
 		return worldPos;
 	}
 

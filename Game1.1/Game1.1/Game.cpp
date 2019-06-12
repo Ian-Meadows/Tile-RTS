@@ -35,15 +35,14 @@ namespace Game {
 			glm::vec2 mousePos = Input::GetMousePosition();
 			std::cout << "Mouse Pos: X: " << mousePos.x << " Y: " << mousePos.y << std::endl;
 
-			glm::vec3 cameraPos = Camera::GetPosition();
+			glm::vec3 cameraPos = Camera::ScreenToWorld(mousePos);
 			std::cout << "Camera Pos: X: " << cameraPos.x << " Y: " << cameraPos.y << " Z: " << cameraPos.z << std::endl;
 
 			glm::vec3 worldPos = Camera::ScreenToWorld(mousePos);
-			std::cout << "World Pos: X: " << worldPos.x << " Y: " << worldPos.y << std::endl;
-
-			
+			std::cout << "World Pos: X: " << worldPos.x / 32.0f << " Y: " << worldPos.y / 32.0f << std::endl;
 		}
 		*/
+		
 
 	}
 	void Game::Draw() {
