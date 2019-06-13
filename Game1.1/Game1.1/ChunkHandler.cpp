@@ -64,7 +64,16 @@ namespace ChunkHandler {
 		chunksList.clear();
 	}
 
+	//TODO::add chunk generation
 	Chunk* ChunkHandler::GetChunk(glm::ivec2 pos) {
-		return chunks[pos];
+		Chunk* c = chunks[pos];
+		if (c == nullptr) {
+			c = new Chunk(pos);
+			chunks[pos] = c;
+		}
+		else {
+			return c;
+		}
+		
 	}
 }

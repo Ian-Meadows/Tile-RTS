@@ -1,6 +1,11 @@
-﻿  ChunkRenderHandler.cpp
-c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(116): warning C4307: '-': integral constant overflow
-c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(158): warning C4018: '<': signed/unsigned mismatch
-c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(169): warning C4018: '<': signed/unsigned mismatch
-c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(174): warning C4018: '<': signed/unsigned mismatch
-  Game1.1.vcxproj -> C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Debug\Game1.1.exe
+﻿  ChunkHandler.cpp
+  ChunkRenderHandler.cpp
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(121): warning C4307: '-': integral constant overflow
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(137): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(219): warning C4307: '-': integral constant overflow
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(234): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(245): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(250): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkhandler.cpp(78): warning C4715: 'ChunkHandler::GetChunk': not all control paths return a value
+  Game1.1.vcxproj -> C:\Users\ian\source\repos\Game1.1\Game1.1\Debug\Game1.1.exe

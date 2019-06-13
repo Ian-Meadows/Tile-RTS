@@ -212,7 +212,7 @@ void ChunkRenderer::Draw() {
 		glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, CHUNK_SIZE * CHUNK_SIZE);
 	}
 	else {
-		std::cout << "ERROR::no chunk set to render" << std::endl;
+		//std::cout << "ERROR::no chunk set to render" << std::endl;
 		return;
 	}
 	
