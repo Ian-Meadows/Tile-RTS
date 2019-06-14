@@ -10,6 +10,9 @@
 #include "TextureAtlasCreator.h"
 #include "SceneHandler.h"
 
+//scenes
+#include "MainScene.h"
+
 #include "Debugger.h"
 
 
@@ -58,6 +61,8 @@ void AddImagesToAtlas() {
 
 void InitSceneHandler() {
 	SceneHandler::Init();
+	SceneHandler::AddScene(new MainScene());
+	SceneHandler::SetCurrentScene("Game");
 }
 
 int main() {
@@ -105,8 +110,6 @@ int main() {
 
 	InitSceneHandler();
 
-	Game::Init();
-
 	while (!glfwWindowShouldClose(window))
 	{
 		//clear window with black
@@ -118,11 +121,9 @@ int main() {
 		//
 		Input::ProcessInput();
 		SceneHandler::Update();
-		Game::Update();
 		Camera::Update();
 		Window::Update();
 		SceneHandler::Draw();
-		Game::Draw();
 
 		//clear keys pressed
 		Input::ClearOldInputs();
@@ -148,8 +149,6 @@ int main() {
 	glfwTerminate();
 
 	SceneHandler::Uninit();
-
-	Game::Uninit();
 	TextureAtlasCreator::Uninit();
 
 	return 0;
