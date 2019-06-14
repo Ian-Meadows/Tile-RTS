@@ -230,7 +230,7 @@ namespace ChunkRenderHandler {
 
 		AssignChunksToRender();
 
-		std::cout << renderersInUse.size() << std::endl;
+		//std::cout << renderersInUse.size() << std::endl;
 		for (int i = 0; i < renderersInUse.size(); i++) {
 			renderersInUse[i]->Draw();
 		}

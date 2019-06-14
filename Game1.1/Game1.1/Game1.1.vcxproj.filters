@@ -37,6 +37,12 @@
     <Filter Include="Header Files\Game">
       <UniqueIdentifier>{4f2c227d-981f-4793-8e26-2030e6161b73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Scenes">
+      <UniqueIdentifier>{0d28a4f2-f603-4385-9cd0-dc7530ee696d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Scenes">
+      <UniqueIdentifier>{af275dd7-f462-46f6-8932-cfb95d2d63d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLibs\glad\src\glad.c">
@@ -90,6 +96,15 @@
     <ClCompile Include="Debugger.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="UIHandler.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneHandler.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -138,6 +153,15 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Debugger.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="UIHandler.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneHandler.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>

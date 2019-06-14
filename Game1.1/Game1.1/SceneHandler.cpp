@@ -1,0 +1,52 @@
+#include "SceneHandler.h"
+#include <vector>
+#include <iostream>
+
+
+namespace SceneHandler {
+	namespace {
+		std::vector<Scene*> scenes;
+		int currentScene;
+	}
+
+	void Init() {
+		currentScene = -1;
+	}
+	void Update() {
+		if (currentScene >= 0 && scenes[currentScene] != nullptr) {
+			scenes[currentScene]->Update();
+		}
+	}
+	void Draw() {
+		if (currentScene >= 0 && scenes[currentScene] != nullptr) {
+			scenes[currentScene]->Draw();
+		}
+	}
+	void Uninit() {
+		for (int i = 0; i < scenes.size(); i++) {
+			delete scenes[i];
+		}
+	}
+
+	Scene* GetCurrentScene() {
+		return scenes[currentScene];
+	}
+
+	void AddScene(Scene* scene) {
+		scenes.push_back(scene);
+	}
+
+	void SetCurrentScene(std::string name) {
+		for (int i = 0; i < scenes.size(); i++) {
+			if (scenes[i]->name == name) {
+				if (currentScene >= 0 && scenes[currentScene] != nullptr) {
+					scenes[currentScene]->Uninit();
+				}
+				currentScene = i;
+				scenes[currentScene]->Init();
+				return;
+			}
+		}
+		std::cout << "ERROR::Scene " << name << " does not exist" << std::endl;
+	}
+}

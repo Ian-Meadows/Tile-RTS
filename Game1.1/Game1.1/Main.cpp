@@ -8,6 +8,7 @@
 #include "Game.h"
 #include "Time.h"
 #include "TextureAtlasCreator.h"
+#include "SceneHandler.h"
 
 #include "Debugger.h"
 
@@ -55,6 +56,10 @@ void AddImagesToAtlas() {
 	
 }
 
+void InitSceneHandler() {
+	SceneHandler::Init();
+}
+
 int main() {
 	
 	//init namespaces
@@ -97,6 +102,9 @@ int main() {
 
 	//glfwSetCursorPosCallback(window, mouse_callback);
 	TextureAtlasCreator::CreateAtlas();
+
+	InitSceneHandler();
+
 	Game::Init();
 
 	while (!glfwWindowShouldClose(window))
@@ -109,9 +117,11 @@ int main() {
 
 		//
 		Input::ProcessInput();
+		SceneHandler::Update();
 		Game::Update();
 		Camera::Update();
 		Window::Update();
+		SceneHandler::Draw();
 		Game::Draw();
 
 		//clear keys pressed
@@ -136,6 +146,8 @@ int main() {
 	
 
 	glfwTerminate();
+
+	SceneHandler::Uninit();
 
 	Game::Uninit();
 	TextureAtlasCreator::Uninit();
