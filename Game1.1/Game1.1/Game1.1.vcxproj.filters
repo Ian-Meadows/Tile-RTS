@@ -120,6 +120,15 @@
     <ClCompile Include="UIElement.cpp">
       <Filter>Source Files\Engine\UITypes</Filter>
     </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\Engine\UITypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files\Engine\UITypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files\Engine\UITypes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -186,6 +195,15 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="UIElement.h">
+      <Filter>Header Files\Engine\UItypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files\Engine\UItypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Header Files\Engine\UItypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
       <Filter>Header Files\Engine\UItypes</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,7 +6,9 @@
 namespace UIHandler {
 	namespace {
 		//TODO::Create UI shader(needs to handle text)
-		Shader* shader;
+		Shader* textShader;
+		Shader* buttonShader;
+		Shader* imageShader;
 	}
 
 	void Init() {

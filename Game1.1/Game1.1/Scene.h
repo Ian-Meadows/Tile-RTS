@@ -3,6 +3,9 @@
 #include <vector>
 
 #include "UIElement.h"
+#include "Text.h"
+#include "Shape.h"
+#include "Image.h"
 
 class Scene
 {
@@ -34,5 +37,8 @@ public:
 
 private:
 	std::vector<UIElement*>* uiElements = nullptr;
+	std::vector<Text*>* textElements = nullptr;
+	std::vector<Shape*>* shapeElements = nullptr;
+	std::vector<Image*>* imageElements = nullptr;
 };
 
