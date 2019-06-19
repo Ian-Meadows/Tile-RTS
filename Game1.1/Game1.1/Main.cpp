@@ -9,6 +9,7 @@
 #include "Time.h"
 #include "TextureAtlasCreator.h"
 #include "SceneHandler.h"
+#include "UIHandler.h"
 
 //scenes
 #include "MainScene.h"
@@ -109,6 +110,7 @@ int main() {
 	TextureAtlasCreator::CreateAtlas();
 
 	InitSceneHandler();
+	UIHandler::Init();
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -124,6 +126,7 @@ int main() {
 		Camera::Update();
 		Window::Update();
 		SceneHandler::Draw();
+		UIHandler::Draw();
 
 		//clear keys pressed
 		Input::ClearOldInputs();
@@ -148,7 +151,9 @@ int main() {
 
 	glfwTerminate();
 
+	UIHandler::Uninit();
 	SceneHandler::Uninit();
+	
 	TextureAtlasCreator::Uninit();
 
 	return 0;

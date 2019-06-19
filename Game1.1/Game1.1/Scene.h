@@ -1,5 +1,8 @@
 #pragma once
 #include <string>
+#include <vector>
+
+#include "UIElement.h"
 
 class Scene
 {
@@ -19,7 +22,17 @@ public:
 	//the scenes name
 	std::string name;
 
-private:
+	//adds the element
+	virtual void AddUIElement(UIElement*) final;
+	//removes and deletes the element
+	virtual bool RemoveUIElement(std::string) final;
+	//only removes element
+	virtual bool RemoveUIElement(UIElement*) final;
 
+
+	virtual std::vector<UIElement*>* GetUIElements() final;
+
+private:
+	std::vector<UIElement*>* uiElements = nullptr;
 };
 
