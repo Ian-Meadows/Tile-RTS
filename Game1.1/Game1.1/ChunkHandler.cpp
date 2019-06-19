@@ -17,6 +17,12 @@ namespace ChunkHandler {
 		std::vector<Chunk*> chunksList;
 		std::unordered_map<glm::ivec2, Chunk*, GLMKeyFunctions, GLMKeyFunctions> chunks;
 
+
+		Chunk* CreateNewChunk(glm::ivec2 pos) {
+			Chunk* c = new Chunk(pos);
+			chunksList.push_back(c);
+			return c;
+		}
 	}
 
 	void ChunkHandler::Init() {
@@ -68,7 +74,7 @@ namespace ChunkHandler {
 	Chunk* ChunkHandler::GetChunk(glm::ivec2 pos) {
 		Chunk* c = chunks[pos];
 		if (c == nullptr) {
-			c = new Chunk(pos);
+			c = CreateNewChunk(pos);
 			chunks[pos] = c;
 		}
 		else {

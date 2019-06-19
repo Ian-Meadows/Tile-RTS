@@ -2,6 +2,7 @@
 #include <glm/glm.hpp>
 #include <glad/glad.h>
 #include "ChunkHandler.h"
+#include "Tile.h"
 
 #define CHUNK_SIZE 32
 #define UNIT_SIZE 1
@@ -13,24 +14,29 @@ init when going to draw(might be expensive to do)
 //lmao wat? the chunk doesn't even draw itsself anymore.
 
 
+enum GenerationLevel { None, Semi, Full};
+
 class Chunk
 {
 public:
 	Chunk(glm::ivec2);
 	~Chunk();
-	//void Draw();
+	
 
 	glm::ivec2 GetPosition();
+
+	void SemiGeneration();
+	void FullGeneration();
+
+	GenerationLevel GetGenerationLevel();
 
 private:
 
 	glm::ivec2 position;
-	/*
-	unsigned int VAO;
-	unsigned int VBO[CHUNK_SIZE * CHUNK_SIZE];
-	unsigned int EBO[CHUNK_SIZE * CHUNK_SIZE];
+	
+	GenerationLevel gl = GenerationLevel::None;
 
-	GLsizei indicesSize;
-	*/
+	//2D with pointer to object
+	Tile*** tiles;
 };
 

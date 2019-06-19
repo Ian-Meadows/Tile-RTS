@@ -43,6 +43,12 @@
     <Filter Include="Header Files\Game\Scenes">
       <UniqueIdentifier>{af275dd7-f462-46f6-8932-cfb95d2d63d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\UITypes">
+      <UniqueIdentifier>{60f4a6e1-701a-43bb-8e80-f252efeb23b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\UItypes">
+      <UniqueIdentifier>{d09db07e-5def-4f17-a9db-baa43df36f4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLibs\glad\src\glad.c">
@@ -108,6 +114,9 @@
     <ClCompile Include="MainScene.cpp">
       <Filter>Source Files\Game\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -169,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="MainScene.h">
       <Filter>Header Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
