@@ -24,7 +24,12 @@ Button::Button() : UIElement()
 	shapeShader->use();
 	shape = new Shape(input);
 
-	position = glm::vec2(0, 0);
+	
+
+	size = glm::vec2(50, 20);
+
+	//this code will lock the button to the corner of the screen
+	position = glm::vec2(UIHandler::GetUpperRight().x - (size.x / 2), UIHandler::GetUpperRight().y - (size.y / 2));
 }
 
 
@@ -37,11 +42,11 @@ void Button::Draw() {
 
 
 	shapeShader->use();
-	shapeShader->setInt("color", 0xffffff);
+	shapeShader->setInt("color", 0xff00ff);
 
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));
-	model = glm::scale(model, glm::vec3(20, 20, 1));
+	model = glm::scale(model, glm::vec3(size, 1));
 	shapeShader->setMat4("model", model);
 	shape->Draw();
 }

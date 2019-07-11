@@ -49,6 +49,12 @@
     <Filter Include="Header Files\Engine\UItypes">
       <UniqueIdentifier>{d09db07e-5def-4f17-a9db-baa43df36f4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Handlers">
+      <UniqueIdentifier>{a8641aec-b84e-412a-b030-7a40ec37a1c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Handlers">
+      <UniqueIdentifier>{de54cc55-9863-4a16-ade8-c41197b9a8a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLibs\glad\src\glad.c">
@@ -58,9 +64,6 @@
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Chunk.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="ChunkHandler.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="ChunkRenderer.cpp">
@@ -90,25 +93,13 @@
     <ClCompile Include="Time.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="TextureAtlas.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="ChunkRenderHandler.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Debugger.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="UIHandler.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneHandler.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="MainScene.cpp">
@@ -132,15 +123,27 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\Engine\UITypes</Filter>
     </ClCompile>
+    <ClCompile Include="ChunkHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkRenderHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="UIHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Chunk.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="ChunkHandler.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="ChunkRenderer.h">
@@ -170,25 +173,13 @@
     <ClInclude Include="Time.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="TextureAtlas.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="ChunkRenderHandler.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Debugger.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="UIHandler.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneHandler.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="MainScene.h">
@@ -209,8 +200,23 @@
     <ClInclude Include="TestUIScene.h">
       <Filter>Header Files\Game\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ChunkHandler.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkRenderHandler.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneHandler.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="UIHandler.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
+    </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Engine\UItypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

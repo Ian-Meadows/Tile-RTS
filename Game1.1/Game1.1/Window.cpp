@@ -3,8 +3,7 @@
 #include "Input.h"
 
 
-#define XRESOLUTION 800
-#define YRESOLUTION 600
+
 
 #define MAXZOOM 2.0f
 #define MINZOOM 0.01f

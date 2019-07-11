@@ -13,6 +13,8 @@ public:
 
 	void Draw();
 
+	glm::vec2 size;
+
 private:
 	Shape* shape;
 

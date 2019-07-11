@@ -35,7 +35,6 @@ vec4 GetColor(){
 
 
 void main(){
-	
 	FragColor = GetColor();
 	
 }

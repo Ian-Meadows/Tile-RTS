@@ -1,6 +1,8 @@
 #pragma once
 #include <glm/glm.hpp>
 
+#define XRESOLUTION 800
+#define YRESOLUTION 600
 
 namespace Window {
 	void InitWindow(int, int);
