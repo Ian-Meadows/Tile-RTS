@@ -30,7 +30,7 @@ void Scene::Update() {
 
 void Scene::_Uninit() {
 	Uninit();
-	for (int i = 0; i < uiElements->size(); i++) {
+	for (unsigned int i = 0; i < uiElements->size(); i++) {
 		delete (*uiElements)[i];
 	}
 	delete uiElements;

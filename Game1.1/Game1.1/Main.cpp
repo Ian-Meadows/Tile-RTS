@@ -1,6 +1,8 @@
 /*
 TODOs before release
-read freetypes licence and do what is says
+-read freetypes licence and do what is says
+-make sure all licences are squared away
+
 
 */
 
@@ -76,6 +78,7 @@ void InitSceneHandler() {
 	SceneHandler::AddScene(new TestUIScene());
 
 	//set current scene
+	//SceneHandler::SetCurrentScene("UITest");
 	SceneHandler::SetCurrentScene("UITest");
 }
 

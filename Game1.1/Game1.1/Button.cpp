@@ -24,7 +24,7 @@ Button::Button() : UIElement()
 	shapeShader->use();
 	shape = new Shape(input);
 
-	
+	text = new Text();
 
 	size = glm::vec2(50, 20);
 
@@ -36,6 +36,7 @@ Button::Button() : UIElement()
 Button::~Button()
 {
 	delete shape;
+	delete text;
 }
 
 void Button::Draw() {
@@ -49,4 +50,7 @@ void Button::Draw() {
 	model = glm::scale(model, glm::vec3(size, 1));
 	shapeShader->setMat4("model", model);
 	shape->Draw();
+
+
+	text->Draw();
 }

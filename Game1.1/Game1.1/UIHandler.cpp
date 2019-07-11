@@ -3,6 +3,8 @@
 #include "Window.h"
 #include <glm/gtc/matrix_transform.hpp>
 
+
+
 #define PERSPECTIVE_SCALE 5.0f
 
 namespace UIHandler {
@@ -17,6 +19,19 @@ namespace UIHandler {
 		glm::mat4 projection;
 
 		glm::ivec2 resolution;
+		/*
+		FT_Library ft;
+		void LoadFeeType() {
+			if (FT_Init_FreeType(&ft)) {
+				std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
+			}
+
+			FT_Face face;
+			if (FT_New_Face(ft, "fonts/arial.ttf", 0, &face)) {
+				std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
+			}
+		}
+		*/
 	}
 
 	void Init() {
@@ -32,6 +47,9 @@ namespace UIHandler {
 		projection = glm::ortho(-(resolution.x / PERSPECTIVE_SCALE), resolution.x / PERSPECTIVE_SCALE,
 			-(resolution.y / PERSPECTIVE_SCALE), resolution.y / PERSPECTIVE_SCALE,
 			0.1f, 10.0f);
+
+
+		//LoadFeeType();
 	}
 	void Draw() {
 		if (currentScene == nullptr) {
@@ -48,7 +66,7 @@ namespace UIHandler {
 
 		//get ui in current scene
 		std::vector<UIElement*>* ui = currentScene->GetUIElements();
-		for (int i = 0; i < (*ui).size(); ++i) {
+		for (unsigned int i = 0; i < (*ui).size(); ++i) {
 			(*ui)[i]->Draw();
 		}
 

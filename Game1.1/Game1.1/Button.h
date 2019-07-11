@@ -3,6 +3,7 @@
 #include "Shader.h"
 
 #include "Shape.h"
+#include "Text.h"
 
 class Button :
 	public UIElement
@@ -17,6 +18,7 @@ public:
 
 private:
 	Shape* shape;
+	Text* text;
 
 	Shader* shapeShader;
 };
