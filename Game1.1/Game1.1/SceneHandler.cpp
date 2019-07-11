@@ -24,7 +24,7 @@ namespace SceneHandler {
 	}
 	void Uninit() {
 		if (currentScene >= 0 && scenes[currentScene] != nullptr) {
-			scenes[currentScene]->Uninit();
+			scenes[currentScene]->_Uninit();
 		}
 		for (int i = 0; i < scenes.size(); i++) {
 			delete scenes[i];
@@ -44,10 +44,12 @@ namespace SceneHandler {
 			if (scenes[i]->name == name) {
 				
 				if (currentScene >= 0 && scenes[currentScene] != nullptr) {
-					scenes[currentScene]->Uninit();
+					scenes[currentScene]->isActive = false;
+					scenes[currentScene]->_Uninit();
 				}
 				currentScene = i;
-				scenes[currentScene]->Init();
+				scenes[currentScene]->isActive = true;
+				scenes[currentScene]->_Init();
 				return;
 			}
 		}

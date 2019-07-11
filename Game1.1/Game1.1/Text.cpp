@@ -2,9 +2,8 @@
 
 
 
-Text::Text() : UIElement()
+Text::Text()
 {
-	name = "Text";
 }
 
 

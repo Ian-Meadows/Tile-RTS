@@ -86,7 +86,7 @@ namespace TextureAtlasCreator {
 
 			textureAtlas->AddNewImageLocation(iFiles[i]->name, i);
 
-			std::cout << size << std::endl;
+			//std::cout << size << std::endl;
 			int imageIndex = 0;
 
 			//if image overflows and will be cut off

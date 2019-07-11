@@ -5,7 +5,6 @@
 #include "UIElement.h"
 #include "Text.h"
 #include "Shape.h"
-#include "Image.h"
 
 class Scene
 {
@@ -14,16 +13,19 @@ public:
 	~Scene();
 
 	//called when scene is set as the current scene
+	virtual void _Init() final;
 	virtual void Init();
 	//use for drawing stuff
 	virtual void Draw();
 	//use for updating stuff
 	virtual void Update();
 	//called when scene is no longer the current scene
+	virtual void _Uninit() final;
 	virtual void Uninit();
 
 	//the scenes name
 	std::string name;
+	bool isActive = false;
 
 	//adds the element
 	virtual void AddUIElement(UIElement*) final;
@@ -37,8 +39,5 @@ public:
 
 private:
 	std::vector<UIElement*>* uiElements = nullptr;
-	std::vector<Text*>* textElements = nullptr;
-	std::vector<Shape*>* shapeElements = nullptr;
-	std::vector<Image*>* imageElements = nullptr;
 };
 

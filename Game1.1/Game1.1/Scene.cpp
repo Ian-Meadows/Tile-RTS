@@ -5,11 +5,17 @@
 Scene::Scene(std::string name)
 {
 	this->name = name;
+
 }
 
 
 Scene::~Scene()
 {
+}
+
+void Scene::_Init() {
+	uiElements = new std::vector<UIElement*>();
+	Init();
 }
 
 void Scene::Init() {
@@ -21,6 +27,15 @@ void Scene::Draw() {
 void Scene::Update() {
 
 }
+
+void Scene::_Uninit() {
+	Uninit();
+	for (int i = 0; i < uiElements->size(); i++) {
+		delete (*uiElements)[i];
+	}
+	delete uiElements;
+}
+
 void Scene::Uninit() {
 
 }

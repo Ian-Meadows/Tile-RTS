@@ -1,7 +1,6 @@
 #pragma once
 #include "UIElement.h"
-class Text :
-	public UIElement
+class Text
 {
 public:
 	Text();

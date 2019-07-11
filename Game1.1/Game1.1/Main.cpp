@@ -13,6 +13,7 @@
 
 //scenes
 #include "MainScene.h"
+#include "TestUIScene.h"
 
 #include "Debugger.h"
 
@@ -62,8 +63,12 @@ void AddImagesToAtlas() {
 
 void InitSceneHandler() {
 	SceneHandler::Init();
+	//add scenes
 	SceneHandler::AddScene(new MainScene());
-	SceneHandler::SetCurrentScene("Game");
+	SceneHandler::AddScene(new TestUIScene());
+
+	//set current scene
+	SceneHandler::SetCurrentScene("UITest");
 }
 
 int main() {
@@ -109,8 +114,9 @@ int main() {
 	//glfwSetCursorPosCallback(window, mouse_callback);
 	TextureAtlasCreator::CreateAtlas();
 
-	InitSceneHandler();
 	UIHandler::Init();
+	InitSceneHandler();
+	
 
 	while (!glfwWindowShouldClose(window))
 	{

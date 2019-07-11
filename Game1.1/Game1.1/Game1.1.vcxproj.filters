@@ -123,10 +123,13 @@
     <ClCompile Include="Text.cpp">
       <Filter>Source Files\Engine\UITypes</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
+    <ClCompile Include="Shape.cpp">
       <Filter>Source Files\Engine\UITypes</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
+    <ClCompile Include="TestUIScene.cpp">
+      <Filter>Source Files\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
       <Filter>Source Files\Engine\UITypes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -200,11 +203,14 @@
     <ClInclude Include="Text.h">
       <Filter>Header Files\Engine\UItypes</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>Header Files\Engine\UItypes</Filter>
-    </ClInclude>
     <ClInclude Include="Shape.h">
       <Filter>Header Files\Engine\UItypes</Filter>
+    </ClInclude>
+    <ClInclude Include="TestUIScene.h">
+      <Filter>Header Files\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +230,12 @@
       <Filter>Resource Files\Shaders\VertexShaders</Filter>
     </None>
     <None Include="ChunkVertexShader.vert">
+      <Filter>Resource Files\Shaders\VertexShaders</Filter>
+    </None>
+    <None Include="ShapeFragmentShader.frag">
+      <Filter>Resource Files\Shaders\FragmentShaders</Filter>
+    </None>
+    <None Include="ShapeVertexShader.vert">
       <Filter>Resource Files\Shaders\VertexShaders</Filter>
     </None>
   </ItemGroup>
