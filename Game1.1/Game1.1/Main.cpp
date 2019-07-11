@@ -1,3 +1,11 @@
+/*
+TODOs before release
+read freetypes licence and do what is says
+
+*/
+
+
+
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
