@@ -1,10 +1,10 @@
 #pragma once
 #include "Shader.h"
 
-/*
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
-*/
+
 
 namespace UIHandler {
 	void Init();
