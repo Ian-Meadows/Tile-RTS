@@ -164,15 +164,30 @@ int main() {
 	}
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
+	//get ending errors
 	
 
-	glfwTerminate();
+	glfwTerminate(); //throws 1282 error
+
+	
 
 	UIHandler::Uninit();
+
+	
+
 	SceneHandler::Uninit();
 	
+	
+
 	TextureAtlasCreator::Uninit();
 
+	/*
+	GLenum error = glGetError();
+	if (error != GL_NO_ERROR) {
+		std::cout << "opengl ERROR: " << error << std::endl;
+	}
+	std::cin.get();
+	*/
 	return 0;
 }
 
