@@ -1,6 +1,7 @@
 #include "TestUIScene.h"
 #include <iostream>
 #include "Button.h"
+#include "Text.h"
 
 
 
@@ -16,6 +17,7 @@ TestUIScene::~TestUIScene()
 
 void TestUIScene::Init() {
 	AddUIElement(new Button());
+	AddUIElement(new Text());
 	test = new TestRenderer();
 }
 

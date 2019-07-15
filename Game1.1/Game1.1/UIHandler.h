@@ -6,10 +6,10 @@
 #include FT_FREETYPE_H
 
 struct Character {
-	GLuint     TextureID;  // ID handle of the glyph texture
-	glm::ivec2 Size;       // Size of glyph
-	glm::ivec2 Bearing;    // Offset from baseline to left/top of glyph
-	GLuint     Advance;    // Offset to advance to next glyph
+	GLuint     textureID;  // ID handle of the glyph texture
+	glm::ivec2 size;       // Size of glyph
+	glm::ivec2 bearing;    // Offset from baseline to left/top of glyph
+	GLuint     advance;    // Offset to advance to next glyph
 };
 
 
@@ -20,6 +20,8 @@ namespace UIHandler {
 
 	Shader* GetTextShader();
 	Shader* GetShapeShader();
+
+	Character GetCharacter(char c);
 
 	glm::vec2 GetUpperLeft();
 	glm::vec2 GetUpperRight();

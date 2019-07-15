@@ -138,6 +138,9 @@
     <ClCompile Include="UIHandler.cpp">
       <Filter>Source Files\Engine\Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="TextElement.cpp">
+      <Filter>Source Files\Engine\UITypes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -218,6 +221,9 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files\Engine\UItypes</Filter>
     </ClInclude>
+    <ClInclude Include="TextElement.h">
+      <Filter>Header Files\Engine\UItypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TestFragmentShader.frag">
@@ -243,6 +249,12 @@
     </None>
     <None Include="ShapeVertexShader.vert">
       <Filter>Resource Files\Shaders\VertexShaders</Filter>
+    </None>
+    <None Include="TextVertexShader.vert">
+      <Filter>Resource Files\Shaders\VertexShaders</Filter>
+    </None>
+    <None Include="TextFragmentShader.frag">
+      <Filter>Resource Files\Shaders\FragmentShaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

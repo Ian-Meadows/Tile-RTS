@@ -3,7 +3,7 @@
 #include "Shader.h"
 
 #include "Shape.h"
-#include "Text.h"
+#include "TextElement.h"
 
 class Button :
 	public UIElement
@@ -18,8 +18,11 @@ public:
 
 private:
 	Shape* shape;
-	Text* text;
+	TextElement* text;
+
+	glm::vec2 textPosition;
 
 	Shader* shapeShader;
+	Shader* textShader;
 };
 

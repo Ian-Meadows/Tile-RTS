@@ -7,6 +7,8 @@ Button::Button() : UIElement()
 {
 	name = "Button";
 	shapeShader = UIHandler::GetShapeShader();
+	textShader = UIHandler::GetTextShader();
+
 	float vert[] = {
 			0.5f,  0.5f, 0.0f,  // top right
 			0.5f, -0.5f, 0.0f,  // bottom right
@@ -24,12 +26,15 @@ Button::Button() : UIElement()
 	shapeShader->use();
 	shape = new Shape(input);
 
-	text = new Text();
+	textShader->use();
+	text = new TextElement(0.15f, "Hello, World!");
 
 	size = glm::vec2(50, 20);
 
 	//this code will lock the button to the corner of the screen
 	position = glm::vec2(UIHandler::GetUpperRight().x - (size.x / 2), UIHandler::GetUpperRight().y - (size.y / 2));
+	
+	textPosition = glm::vec2(size.x / 2, 0);
 }
 
 
@@ -41,7 +46,7 @@ Button::~Button()
 
 void Button::Draw() {
 
-
+	//draw shape
 	shapeShader->use();
 	shapeShader->setInt("color", 0xff00ff);
 
@@ -51,6 +56,12 @@ void Button::Draw() {
 	shapeShader->setMat4("model", model);
 	shape->Draw();
 
+	//draw text
+	textShader->use();
+	textShader->setVec3("textColor", glm::vec3(1.0f, 1.0f, 1.0f));
 
+	model = glm::mat4(1.0f);
+	model = glm::translate(model, glm::vec3(position - textPosition, 0.0f));
+	textShader->setMat4("model", model);
 	text->Draw();
 }

@@ -7,6 +7,7 @@
 
 #define PERSPECTIVE_SCALE 5.0f
 #define CHARACTERS_TO_LOAD 128
+#define CHARACTERS_HEIGHT 50
 
 namespace UIHandler {
 	namespace {
@@ -16,12 +17,12 @@ namespace UIHandler {
 
 		Scene* currentScene = nullptr;
 
-		glm::mat4 view = glm::mat4(1.0f);;
+		glm::mat4 view = glm::mat4(1.0f);
 		glm::mat4 projection;
 
 		glm::ivec2 resolution;
 		
-		std::map<GLchar, Character> Characters;
+		std::map<GLchar, Character> characters;
 
 		FT_Library ft;
 
@@ -38,7 +39,7 @@ namespace UIHandler {
 			}
 
 			//set font size(maybe)
-			FT_Set_Pixel_Sizes(face, 0, 48);
+			FT_Set_Pixel_Sizes(face, 0, CHARACTERS_HEIGHT);
 
 
 			LoadCharacters(face);
@@ -82,7 +83,7 @@ namespace UIHandler {
 					glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
 					face->glyph->advance.x
 				};
-				Characters.insert(std::pair<GLchar, Character>(c, character));
+				characters.insert(std::pair<GLchar, Character>(c, character));
 			}
 			glPixelStorei(GL_UNPACK_ALIGNMENT, 4); // reenable byte-alignment restriction(i think)
 			FT_Done_Face(face);
@@ -93,7 +94,7 @@ namespace UIHandler {
 
 	void Init() {
 		//create shaders
-		textShader = nullptr;
+		textShader = new Shader("TextVertexShader.vert", "TextFragmentShader.frag");
 		shapeShader = new Shader("ShapeVertexShader.vert", "ShapeFragmentShader.frag");
 
 		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -1.0f));
@@ -120,6 +121,9 @@ namespace UIHandler {
 		shapeShader->setMat4("view", view);
 		shapeShader->setMat4("projection", projection);
 		
+		textShader->use();
+		textShader->setMat4("view", view);
+		textShader->setMat4("projection", projection);
 
 		//get ui in current scene
 		std::vector<UIElement*>* ui = currentScene->GetUIElements();
@@ -133,7 +137,7 @@ namespace UIHandler {
 
 		//delete text texures
 		for (GLubyte c = 0; c < CHARACTERS_TO_LOAD; ++c) {
-			glDeleteTextures(1, &Characters[c].TextureID);
+			glDeleteTextures(1, &characters[c].textureID);
 		}
 
 	}
@@ -146,7 +150,9 @@ namespace UIHandler {
 		return shapeShader;
 	}
 
-
+	Character GetCharacter(char c) {
+		return characters[c];
+	}
 
 	glm::vec2 UIHandler::GetUpperLeft() {
 		return glm::vec2(-(resolution.x / PERSPECTIVE_SCALE), resolution.y / PERSPECTIVE_SCALE);
