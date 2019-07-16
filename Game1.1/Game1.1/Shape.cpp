@@ -7,8 +7,6 @@ Shape::Shape(ShapeInput* input)
 {
 	indiSize = input->indiSize;
 	InitShape(input);
-
-	std::cout << "hi" << std::endl;
 }
 
 

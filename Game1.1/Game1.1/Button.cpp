@@ -1,6 +1,7 @@
 #include "Button.h"
 #include "UIHandler.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include "ScreenMath.h"
 
 
 Button::Button() : UIElement()
@@ -32,7 +33,8 @@ Button::Button() : UIElement()
 	size = glm::vec2(50, 20);
 
 	//this code will lock the button to the corner of the screen
-	position = glm::vec2(UIHandler::GetUpperRight().x - (size.x / 2), UIHandler::GetUpperRight().y - (size.y / 2));
+	//position = glm::vec2(UIHandler::GetUpperRight().x - (size.x / 2), UIHandler::GetUpperRight().y - (size.y / 2));
+	position = ScreenMath::GetUpperRight(size);
 	
 	textPosition = glm::vec2(size.x / 2, 0);
 }

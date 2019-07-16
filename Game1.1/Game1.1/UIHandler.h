@@ -5,6 +5,8 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
+#define UI_PERSPECTIVE_SCALE 5.0f
+
 struct Character {
 	GLuint     textureID;  // ID handle of the glyph texture
 	glm::ivec2 size;       // Size of glyph
@@ -23,9 +25,6 @@ namespace UIHandler {
 
 	Character GetCharacter(char c);
 
-	glm::vec2 GetUpperLeft();
-	glm::vec2 GetUpperRight();
-	glm::vec2 GetLowerLeft();
-	glm::vec2 GetLowerRight();
+	glm::ivec2 GetResolution();
 }
 

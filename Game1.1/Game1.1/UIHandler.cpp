@@ -5,7 +5,6 @@
 #include <map>
 
 
-#define PERSPECTIVE_SCALE 5.0f
 #define CHARACTERS_TO_LOAD 128
 #define CHARACTERS_HEIGHT 50
 
@@ -102,8 +101,8 @@ namespace UIHandler {
 		//TODO: actually setup for dynamic resolutions
 		resolution = glm::ivec2(XRESOLUTION, YRESOLUTION);
 
-		projection = glm::ortho(-(resolution.x / PERSPECTIVE_SCALE), resolution.x / PERSPECTIVE_SCALE,
-			-(resolution.y / PERSPECTIVE_SCALE), resolution.y / PERSPECTIVE_SCALE,
+		projection = glm::ortho(-(resolution.x / UI_PERSPECTIVE_SCALE), resolution.x / UI_PERSPECTIVE_SCALE,
+			-(resolution.y / UI_PERSPECTIVE_SCALE), resolution.y / UI_PERSPECTIVE_SCALE,
 			0.1f, 10.0f);
 
 
@@ -154,16 +153,7 @@ namespace UIHandler {
 		return characters[c];
 	}
 
-	glm::vec2 UIHandler::GetUpperLeft() {
-		return glm::vec2(-(resolution.x / PERSPECTIVE_SCALE), resolution.y / PERSPECTIVE_SCALE);
-	}
-	glm::vec2 UIHandler::GetUpperRight() {
-		return glm::vec2(resolution.x / PERSPECTIVE_SCALE, resolution.y / PERSPECTIVE_SCALE);
-	}
-	glm::vec2 UIHandler::GetLowerLeft() {
-		return glm::vec2(-(resolution.x / PERSPECTIVE_SCALE), -(resolution.y / PERSPECTIVE_SCALE));
-	}
-	glm::vec2 UIHandler::GetLowerRight() {
-		return glm::vec2(resolution.x / PERSPECTIVE_SCALE, -(resolution.y / PERSPECTIVE_SCALE));
+	glm::ivec2 GetResolution() {
+		return resolution;
 	}
 }

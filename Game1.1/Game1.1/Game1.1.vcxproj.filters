@@ -55,6 +55,9 @@
     <Filter Include="Header Files\Engine\Handlers">
       <UniqueIdentifier>{de54cc55-9863-4a16-ade8-c41197b9a8a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Utilities">
+      <UniqueIdentifier>{3f6e6df1-2730-41b3-9a2d-1af58a51ee86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLibs\glad\src\glad.c">
@@ -223,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="TextElement.h">
       <Filter>Header Files\Engine\UItypes</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenMath.h">
+      <Filter>Header Files\Engine\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
