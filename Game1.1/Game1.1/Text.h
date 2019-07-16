@@ -20,7 +20,8 @@ public:
 	//note: shader must be already in use
 	void Draw();
 
-	std::string text;
+	void SetText(std::string text);
+	std::string GetText();
 
 	float scale;
 
@@ -30,6 +31,6 @@ private:
 
 	Shader* textShader;
 
-	void Init();
+	void Init(std::string text);
 };
 

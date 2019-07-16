@@ -36,7 +36,7 @@ Button::Button() : UIElement()
 	//position = glm::vec2(UIHandler::GetUpperRight().x - (size.x / 2), UIHandler::GetUpperRight().y - (size.y / 2));
 	position = ScreenMath::GetUpperRight(size);
 	
-	textPosition = glm::vec2(size.x / 2, 0);
+	//textPosition = glm::vec2(size.x / 2, 0);
 }
 
 
@@ -63,7 +63,7 @@ void Button::Draw() {
 	textShader->setVec3("textColor", glm::vec3(1.0f, 1.0f, 1.0f));
 
 	model = glm::mat4(1.0f);
-	model = glm::translate(model, glm::vec3(position - textPosition, 0.0f));
+	model = glm::translate(model, glm::vec3(position - text->GetCenter(), 0.0f));
 	textShader->setMat4("model", model);
 	text->Draw();
 }

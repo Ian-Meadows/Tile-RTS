@@ -1,5 +1,5 @@
 #include "TextElement.h"
-#include "UIHandler.h"
+
 
 
 TextElement::TextElement() {
@@ -44,6 +44,8 @@ void TextElement::Init() {
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+
+	UpdateCenter();
 }
 
 void TextElement::Draw() {
@@ -87,4 +89,37 @@ void TextElement::Draw() {
 	}
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void TextElement::UpdateCenter() {
+
+	if (text == "") {
+		center = glm::vec2(0, 0);
+		return;
+	}
+
+	glm::vec2 size = glm::vec2(0, 0);
+
+	int total = 0;
+	std::string::const_iterator c;
+	for (c = text.begin(); c != text.end(); c++) {
+		++total;
+		Character ch = UIHandler::GetCharacter(*c);
+		size.x += (ch.advance >> 6) * scale;
+		size.y += ch.size.y * scale;
+	}
+	center.x = size.x / 2.0f;
+	center.y = (size.y / total) / 2.0f;
+}
+
+void TextElement::SetText(std::string text) {
+	this->text = text;
+	UpdateCenter();
+}
+std::string TextElement::GetText() {
+	return text;
+}
+
+glm::vec2 TextElement::GetCenter() {
+	return center;
 }
