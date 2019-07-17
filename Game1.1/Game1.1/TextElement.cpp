@@ -98,18 +98,26 @@ void TextElement::UpdateCenter() {
 		return;
 	}
 
-	glm::vec2 size = glm::vec2(0, 0);
+	glm::vec2 temp = glm::vec2(0, 0);
+
+	size.y = 0;
 
 	int total = 0;
 	std::string::const_iterator c;
 	for (c = text.begin(); c != text.end(); c++) {
 		++total;
 		Character ch = UIHandler::GetCharacter(*c);
-		size.x += (ch.advance >> 6) * scale;
-		size.y += ch.size.y * scale;
+		temp.x += (ch.advance >> 6) * scale;
+		temp.y += ch.size.y * scale;
+		if (ch.size.y * scale > size.y) {
+			size.y = ch.size.y * scale;
+		}
 	}
-	center.x = size.x / 2.0f;
-	center.y = (size.y / total) / 2.0f;
+	center.x = temp.x / 2.0f;
+	center.y = (temp.y / total) / 2.0f;
+
+	size.x = temp.x;
+	
 }
 
 void TextElement::SetText(std::string text) {
@@ -122,4 +130,8 @@ std::string TextElement::GetText() {
 
 glm::vec2 TextElement::GetCenter() {
 	return center;
+}
+
+glm::vec2 TextElement::GetSize() {
+	return size;
 }

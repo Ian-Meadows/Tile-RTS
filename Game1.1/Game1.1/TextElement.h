@@ -21,6 +21,9 @@ public:
 	//Get where the center of the text is
 	glm::vec2 GetCenter();
 
+	//get the overall size of the text
+	glm::vec2 GetSize();
+
 	float scale;
 
 private:
@@ -31,7 +34,12 @@ private:
 	//Center of where the text is rendered
 	glm::vec2 center;
 
+	//Size of text
+	glm::vec2 size;
+
 	void Init();
+
+	//size also gets updated
 	void UpdateCenter();
 };
 
