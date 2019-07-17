@@ -9,6 +9,7 @@ public:
 	~UIElement();
 
 	virtual void Draw();
+	virtual void Update();
 
 	//name of ui element default = UI
 	std::string name = "UI";

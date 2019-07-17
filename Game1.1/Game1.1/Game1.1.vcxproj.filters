@@ -78,9 +78,6 @@
     <ClCompile Include="ImageTester.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
@@ -144,6 +141,9 @@
     <ClCompile Include="TextElement.cpp">
       <Filter>Source Files\Engine\UITypes</Filter>
     </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -159,9 +159,6 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="ImageTester.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
@@ -229,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="ScreenMath.h">
       <Filter>Header Files\Engine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -67,3 +67,30 @@ void Button::Draw() {
 	textShader->setMat4("model", model);
 	text->Draw();
 }
+
+void Button::Update() {
+	CheckButton();
+	ButtonUpdated();
+}
+
+
+void Button::CheckButton() {
+
+}
+
+void Button::ButtonPressed() {
+
+}
+void Button::ButtonReleased() {
+
+}
+void Button::MousedEntered() {
+
+}
+void Button::MouseExited() {
+
+}
+
+void Button::ButtonUpdated() {
+
+}

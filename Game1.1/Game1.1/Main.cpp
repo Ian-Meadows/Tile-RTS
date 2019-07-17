@@ -137,11 +137,16 @@ int main() {
 		//update time to get fps and delta time
 		Time::Update();
 
-		//
+		//handle input
 		Input::ProcessInput();
+
+		//update
 		SceneHandler::Update();
 		Camera::Update();
 		Window::Update();
+		UIHandler::Update();
+
+		//draw
 		SceneHandler::Draw();
 		UIHandler::Draw();
 

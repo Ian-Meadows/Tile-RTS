@@ -13,6 +13,7 @@ public:
 	TextElement(float scale, std::string text);
 	~TextElement();
 
+	//note: shader must be already in use
 	void Draw();
 
 	void SetText(std::string text);

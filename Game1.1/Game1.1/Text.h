@@ -17,7 +17,7 @@ public:
 	
 	~Text();
 
-	//note: shader must be already in use
+	
 	void Draw();
 
 	void SetText(std::string text);

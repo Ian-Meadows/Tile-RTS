@@ -18,6 +18,7 @@ struct Character {
 namespace UIHandler {
 	void Init();
 	void Draw();
+	void Update();
 	void Uninit();
 
 	Shader* GetTextShader();

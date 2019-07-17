@@ -91,7 +91,7 @@ namespace UIHandler {
 		
 	}
 
-	void Init() {
+	void UIHandler::Init() {
 		//create shaders
 		textShader = new Shader("TextVertexShader.vert", "TextFragmentShader.frag");
 		shapeShader = new Shader("ShapeVertexShader.vert", "ShapeFragmentShader.frag");
@@ -108,7 +108,7 @@ namespace UIHandler {
 
 		LoadFeeType();
 	}
-	void Draw() {
+	void UIHandler::Draw() {
 		if (currentScene == nullptr) {
 			currentScene = SceneHandler::GetCurrentScene();
 		}
@@ -131,7 +131,23 @@ namespace UIHandler {
 		}
 
 	}
-	void Uninit() {
+
+	void UIHandler::Update() {
+		if (currentScene == nullptr) {
+			currentScene = SceneHandler::GetCurrentScene();
+		}
+		else if (!currentScene->isActive) {
+			currentScene = SceneHandler::GetCurrentScene();
+		}
+
+		std::vector<UIElement*>* ui = currentScene->GetUIElements();
+		for (unsigned int i = 0; i < (*ui).size(); ++i) {
+			(*ui)[i]->Update();
+		}
+	}
+
+
+	void UIHandler::Uninit() {
 		delete shapeShader;
 
 		//delete text texures
