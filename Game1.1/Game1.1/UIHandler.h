@@ -27,5 +27,10 @@ namespace UIHandler {
 	Character GetCharacter(char c);
 
 	glm::ivec2 GetResolution();
+
+	glm::vec2 ScreenToUI(glm::vec2 pos);
+
+	glm::mat4 GetProjection();
+	glm::mat4 GetView();
 }
 

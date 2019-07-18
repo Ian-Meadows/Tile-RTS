@@ -82,4 +82,20 @@ namespace ScreenMath {
 		glm::ivec2 resolution = UIHandler::GetResolution();
 		return glm::vec2((resolution.x / UI_PERSPECTIVE_SCALE) - (size.x / 2), (-resolution.y / UI_PERSPECTIVE_SCALE) + (size.y / 2));
 	}
+
+
+	/*
+	position must be incenter of points
+	x: right
+	y: left
+	z: top
+	w: bottom
+	*/
+	glm::vec4 Get4OuterPoints(glm::vec2 position, glm::vec2 size) {
+		return glm::vec4(
+			position.x + (size.x / 2.0f),
+			position.x - (size.x / 2.0f),
+			position.y + (size.y / 2.0f),
+			position.y - (size.y / 2.0f));
+	}
 }

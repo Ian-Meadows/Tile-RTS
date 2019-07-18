@@ -58,6 +58,12 @@
     <Filter Include="Header Files\Engine\Utilities">
       <UniqueIdentifier>{3f6e6df1-2730-41b3-9a2d-1af58a51ee86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\UI">
+      <UniqueIdentifier>{57e67af3-b5f0-443a-a890-c2d69d09cf2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\UI">
+      <UniqueIdentifier>{0f8224e4-e5a6-4e49-b52a-6a856ad90b8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLibs\glad\src\glad.c">
@@ -144,6 +150,9 @@
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\Engine\Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="TestButton.cpp">
+      <Filter>Source Files\Game\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -229,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\Engine\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="TestButton.h">
+      <Filter>Header Files\Game\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

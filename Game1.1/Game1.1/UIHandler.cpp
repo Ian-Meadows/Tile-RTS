@@ -172,4 +172,24 @@ namespace UIHandler {
 	glm::ivec2 GetResolution() {
 		return resolution;
 	}
+
+	glm::vec2 ScreenToUI(glm::vec2 pos) {
+		int width = Window::GetWidth();
+		int height = Window::GetHeight();
+
+		glm::mat4 proj = UIHandler::GetProjection();
+		glm::mat4 view = UIHandler::GetView();
+
+		glm::vec4 viewport = glm::vec4(0, height, width, -height);
+
+		glm::vec3 uiPos = glm::unProject(glm::vec3(pos.x, pos.y, 0.0f), glm::mat4(1.0f), proj, viewport);
+		return uiPos;
+	}
+
+	glm::mat4 GetProjection() {
+		return projection;
+	}
+	glm::mat4 GetView() {
+		return view;
+	}
 }
