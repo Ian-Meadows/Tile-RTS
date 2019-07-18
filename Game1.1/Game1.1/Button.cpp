@@ -137,8 +137,25 @@ void Button::CheckButton() {
 	glm::vec2 mousePos = UIHandler::ScreenToUI(Input::GetMousePosition());
 
 	glm::vec4 coords = ScreenMath::Get4OuterPoints(position, size);
+
+	
 	if (coords.x >= mousePos.x && coords.y <= mousePos.x && coords.z >= mousePos.y && coords.w <= mousePos.y) {
-		MousedEntered();
+		if (!mouseInside) {
+			mouseInside = true;
+			MouseEntered();
+		}
+		MouseInside();
+
+		if (Input::GetMouseButtonPressed(0)) {
+			ButtonPressed();
+		}
+		else if (Input::GetMouseButtonReleased(0)) {
+			ButtonReleased();
+		}
+	}
+	else if (mouseInside) {
+		mouseInside = false;
+		MouseExited();
 	}
 	
 }
@@ -149,7 +166,10 @@ void Button::ButtonPressed() {
 void Button::ButtonReleased() {
 
 }
-void Button::MousedEntered() {
+void Button::MouseEntered() {
+
+}
+void Button::MouseInside() {
 
 }
 void Button::MouseExited() {

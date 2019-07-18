@@ -37,7 +37,8 @@ public:
 protected:
 	virtual void ButtonPressed();
 	virtual void ButtonReleased();
-	virtual void MousedEntered();
+	virtual void MouseEntered();
+	virtual void MouseInside();
 	virtual void MouseExited();
 
 	
@@ -55,5 +56,10 @@ private:
 	void CheckButton();
 
 	void InitButton(float textSize);
+
+	//button helpers
+	bool mouseInside = false;
+
+
 };
 

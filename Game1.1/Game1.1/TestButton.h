@@ -9,7 +9,7 @@ public:
 
 	void ButtonPressed();
 	void ButtonReleased();
-	void MousedEntered();
+	void MouseEntered();
 	void MouseExited();
 };
 
