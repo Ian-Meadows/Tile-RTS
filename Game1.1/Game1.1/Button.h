@@ -16,9 +16,9 @@ class Button :
 	public UIElement
 {
 public:
-	Button();
-	Button(glm::vec2 position, glm::vec2 size, float textSize);
-	Button(ButtonPosition buttonPos, glm::vec2 size, float textSize);
+	Button(std::string name);
+	Button(std::string name, glm::vec2 position, glm::vec2 size, float textSize);
+	Button(std::string name, ButtonPosition buttonPos, glm::vec2 size, float textSize);
 	~Button();
 
 	void Draw();

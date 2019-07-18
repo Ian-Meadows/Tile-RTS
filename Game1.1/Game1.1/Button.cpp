@@ -8,9 +8,9 @@
 #include "Debugger.h"
 
 
-Button::Button() : UIElement()
+Button::Button(std::string name) : UIElement()
 {
-	name = "Button";
+	this->name = name;
 	
 
 	size = glm::vec2(50, 20);
@@ -25,13 +25,17 @@ Button::Button() : UIElement()
 	InitButton(0.15f);
 }
 
-Button::Button(glm::vec2 position, glm::vec2 size, float textSize) {
+Button::Button(std::string name, glm::vec2 position, glm::vec2 size, float textSize) {
+	this->name = name;
+
 	InitButton(textSize);
 
 	this->size = size;
 	this->position = position;
 }
-Button::Button(ButtonPosition buttonPos, glm::vec2 size, float textSize) {
+Button::Button(std::string name, ButtonPosition buttonPos, glm::vec2 size, float textSize) {
+	this->name = name;
+
 	InitButton(textSize);
 
 	this->size = size;

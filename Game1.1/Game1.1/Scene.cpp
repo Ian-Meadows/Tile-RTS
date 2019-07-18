@@ -30,8 +30,12 @@ void Scene::Update() {
 
 void Scene::_Uninit() {
 	Uninit();
+	DeleteOldUIElements();
 	for (unsigned int i = 0; i < uiElements->size(); i++) {
-		delete (*uiElements)[i];
+		if ((*uiElements)[i] != nullptr) {
+			delete (*uiElements)[i];
+		}
+		
 	}
 	delete uiElements;
 }
@@ -49,7 +53,8 @@ bool Scene::RemoveUIElement(std::string name) {
 		if ((*uiElements)[i] != nullptr && (*uiElements)[i]->name == name) {
 			UIElement* element = (*uiElements)[i];
 			uiElements->erase(uiElements->begin() + i);
-			delete element;
+			//delete element;
+			uiElementsToDelete.push_back(element);
 			return true;
 		}
 	}
@@ -59,10 +64,22 @@ bool Scene::RemoveUIElement(UIElement* element) {
 	for (unsigned int i = 0; i < uiElements->size(); ++i) {
 		if ((*uiElements)[i] == element) {
 			uiElements->erase(uiElements->begin() + i);
+			uiElementsToDelete.push_back(element);
 			return true;
 		}
 	}
 	return false;
+}
+
+void Scene::DeleteOldUIElements() {
+	for (unsigned int i = 0; i < uiElementsToDelete.size(); ++i) {
+		if (uiElementsToDelete[i] != nullptr) {
+			delete uiElementsToDelete[i];
+		}
+		
+	}
+
+	uiElementsToDelete.clear();
 }
 
 

@@ -1,7 +1,7 @@
 #include "TestButton.h"
+#include "SceneHandler.h"
 
-
-TestButton::TestButton() : Button(ButtonPosition::TopLeft, glm::vec2(50, 20), 0.15f)
+TestButton::TestButton() : Button("Test Button", ButtonPosition::TopLeft, glm::vec2(50, 20), 0.15f)
 {
 	buttonColor = 0x00ffff;
 	textColor = glm::vec3(0, 0, 0);
@@ -19,6 +19,7 @@ void TestButton::ButtonPressed() {
 }
 void TestButton::ButtonReleased() {
 	buttonColor = 0xff0000;
+	SceneHandler::GetCurrentScene()->RemoveUIElement(this);
 }
 void TestButton::MouseEntered() {
 	buttonColor = 0x0000ff;

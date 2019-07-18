@@ -37,7 +37,10 @@ public:
 
 	virtual std::vector<UIElement*>* GetUIElements() final;
 
+	virtual void DeleteOldUIElements() final;
+
 private:
 	std::vector<UIElement*>* uiElements = nullptr;
+	std::vector<UIElement*> uiElementsToDelete;
 };
 

@@ -14,6 +14,7 @@ namespace SceneHandler {
 	}
 	void Update() {
 		if (currentScene >= 0 && scenes[currentScene] != nullptr) {
+			scenes[currentScene]->DeleteOldUIElements();
 			scenes[currentScene]->Update();
 		}
 	}
