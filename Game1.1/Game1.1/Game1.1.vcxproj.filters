@@ -153,6 +153,9 @@
     <ClCompile Include="TestButton.cpp">
       <Filter>Source Files\Game\UI</Filter>
     </ClCompile>
+    <ClCompile Include="TestText.cpp">
+      <Filter>Source Files\Game\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -240,6 +243,9 @@
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
     <ClInclude Include="TestButton.h">
+      <Filter>Header Files\Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TestText.h">
       <Filter>Header Files\Game\UI</Filter>
     </ClInclude>
   </ItemGroup>
