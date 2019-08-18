@@ -36,6 +36,8 @@ ChunkRenderer::~ChunkRenderer()
 void ChunkRenderer::SetChunk(Chunk* chunk) {
 	this->chunk = chunk;
 }
+
+
 Chunk* ChunkRenderer::GetChunk() {
 	return chunk;
 }
@@ -190,23 +192,33 @@ void ChunkRenderer::SetBasicTextureCoordinates() {
 
 }
 
+void ChunkRenderer::RenderSetup() {
+	glm::mat4 model = glm::mat4(1.0f);
+	glm::ivec2 position = chunk->GetPosition();
+
+	//do math to create model
+	model = glm::translate(model, glm::vec3(position.x * CHUNK_SIZE * UNIT_SIZE, position.y * CHUNK_SIZE * UNIT_SIZE, 0));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::scale(model, glm::vec3(UNIT_SIZE, UNIT_SIZE, UNIT_SIZE));
+
+	//set model on gpu
+	ChunkRenderHandler::GetShader()->setMat4("model", model);
+}
+
 void ChunkRenderer::Draw() {
 
 	//SetUnitNumbers(false);
 	if (chunk != nullptr) {
 
-		glm::mat4 model = glm::mat4(1.0f);
-		glm::ivec2 position = chunk->GetPosition();
+		RenderSetup();
 
-		//do math to create model
-		model = glm::translate(model, glm::vec3(position.x * CHUNK_SIZE * UNIT_SIZE, position.y * CHUNK_SIZE * UNIT_SIZE, 0));
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-		model = glm::scale(model, glm::vec3(UNIT_SIZE, UNIT_SIZE, UNIT_SIZE));
+		if (chunk->CheckForRenderUpdate() || chunk != previousChunk) {
+			SetUnitInfo(false);
+			previousChunk = chunk;
+			chunk->Rendered();
+		}
 
-		//set model on gpu
-		ChunkRenderHandler::GetShader()->setMat4("model", model);
-
-		SetUnitInfo(false);
+		
 
 		//bind vao
 		glBindVertexArray(VAO);

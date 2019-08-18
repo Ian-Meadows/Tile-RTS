@@ -19,7 +19,6 @@ struct GLMKeyFunctions {
 namespace ChunkHandler {
 	void Init();
 
-	void Draw();
 
 	void Uninit();
 

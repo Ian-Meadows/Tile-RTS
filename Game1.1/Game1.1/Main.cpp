@@ -79,7 +79,7 @@ void InitSceneHandler() {
 
 	//set current scene
 	//SceneHandler::SetCurrentScene("UITest");
-	SceneHandler::SetCurrentScene("UITest");
+	SceneHandler::SetCurrentScene("Game");
 }
 
 int main() {

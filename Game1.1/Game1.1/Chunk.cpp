@@ -55,4 +55,12 @@ GenerationLevel Chunk::GetGenerationLevel() {
 	return gl;
 }
 
+bool Chunk::CheckForRenderUpdate() {
+	return unrenderedUpdate;
+}
+
+void Chunk::Rendered() {
+	unrenderedUpdate = false;
+}
+
 

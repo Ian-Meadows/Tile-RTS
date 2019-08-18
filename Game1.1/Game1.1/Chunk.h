@@ -30,6 +30,11 @@ public:
 
 	GenerationLevel GetGenerationLevel();
 
+	//returns true if there is a new update to the chunk
+	bool CheckForRenderUpdate();
+
+	void Rendered();
+
 private:
 
 	glm::ivec2 position;
@@ -38,5 +43,7 @@ private:
 
 	//2D with pointer to object
 	Tile*** tiles;
+
+	bool unrenderedUpdate = true;
 };
 
