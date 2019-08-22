@@ -136,9 +136,13 @@ namespace ChunkRenderHandler {
 			//set chunks already being rendered
 			for (int i = 0; i < renderersInUse.size();) {
 				if (renderersInUse[i]->GetChunk() != nullptr) {
-					glm::ivec2 pos = renderersInUse[i]->GetChunk()->GetPosition();
-					if (pos.x >= startX && pos.y >= startY && pos.x < endX && pos.y < endY) {
+					//get position of chunk location inside of bool array
+					glm::ivec2 pos = renderersInUse[i]->GetChunk()->GetPosition() - glm::ivec2(startX, endY);
+
+					//check if in array
+					if (pos.x >= 0 && pos.y >= 0 && pos.x < arrayWidth && pos.y < arrayHeight) {
 						chunksRendered[pos.x][pos.y] = true;
+						
 						//increment when not removing
 						i++;
 					}
@@ -148,7 +152,6 @@ namespace ChunkRenderHandler {
 						//renderersInUse[i]->SetChunk(nullptr);
 						//remove from in use
 						renderersInUse.erase(renderersInUse.begin() + i);
-
 					}
 				}
 				else {
@@ -191,8 +194,10 @@ namespace ChunkRenderHandler {
 		}
 
 		//temp
+		/*
 		ChunkRenderer* cr1;
 		ChunkRenderer* cr2;
+		*/
 	}
 
 	void ChunkRenderHandler::Init() {
@@ -206,13 +211,13 @@ namespace ChunkRenderHandler {
 		for (int i = 0; i < INITIALRENDERERS; i++) {
 			CreateNewChunkRenderer(true);
 		}
-
+		/*
 		cr1 = new ChunkRenderer();
 		cr2 = new ChunkRenderer();
 
 		cr1->SetChunk(ChunkHandler::GetChunk(glm::ivec2(0, 0)));
 		cr2->SetChunk(ChunkHandler::GetChunk(glm::ivec2(0, 1)));
-
+		*/
 		shader->use();
 		shader->setInt("chunkSize", CHUNK_SIZE);
 		//send over constants to gpu
@@ -252,10 +257,10 @@ namespace ChunkRenderHandler {
 				delete renderersNotInUse[i];
 			}
 		}
-
+		/*
 		delete cr1;
 		delete cr2;
-
+		*/
 		//delete textures
 		glDeleteTextures(1, &texture);
 		glDeleteTextures(1, &unitSelectionTexture);

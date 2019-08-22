@@ -12,7 +12,8 @@ namespace Window {
 	//use for private methods and variables
 	namespace {
 		int WIDTH, HEIGHT;
-		float SIZE = 0.25f;
+		//float SIZE = 0.25f;
+		float SIZE = 0.01f;
 
 		glm::mat4 perspective;
 

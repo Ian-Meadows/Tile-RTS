@@ -38,8 +38,6 @@ ChunkRenderer::~ChunkRenderer()
 void ChunkRenderer::SetChunk(Chunk* chunk) {
 	this->chunk = chunk;
 
-	Debugger::PrintVector(chunk->GetPosition(), "Chunk Set");
-
 }
 
 
@@ -147,8 +145,6 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 		glVertexAttribDivisor(2, 1);
 	}
 	else {
-
-		Debugger::PrintVector(chunk->GetPosition(), "re rendering");
 
 
 		int i = 0;
