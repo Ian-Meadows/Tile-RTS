@@ -9,6 +9,8 @@
 #include "TextureAtlasCreator.h"
 
 
+#include "Debugger.h"
+
 
 ChunkRenderer::ChunkRenderer()
 {
@@ -35,6 +37,9 @@ ChunkRenderer::~ChunkRenderer()
 
 void ChunkRenderer::SetChunk(Chunk* chunk) {
 	this->chunk = chunk;
+
+	Debugger::PrintVector(chunk->GetPosition(), "Chunk Set");
+
 }
 
 
@@ -99,10 +104,13 @@ void ChunkRenderer::SetPositions() {
 
 void ChunkRenderer::SetUnitInfo(bool firstTime) {
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[2]);
+
+	TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
+
 	if (firstTime) {
 		unitNumbers = new glm::ivec2[CHUNK_SIZE * CHUNK_SIZE];
 
-		TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
+		
 
 		int i = 0;
 		for (int x = 0; x < CHUNK_SIZE; x++) {
@@ -140,6 +148,21 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 	}
 	else {
 
+		Debugger::PrintVector(chunk->GetPosition(), "re rendering");
+
+
+		int i = 0;
+		for (int x = 0; x < CHUNK_SIZE; x++) {
+			for (int y = 0; y < CHUNK_SIZE; y++) {
+				unitNumbers[i] = chunk->GetTileInfo(glm::ivec2(x, y), ta);
+
+				i++;
+			}
+		}
+
+
+		//glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void *data)
+		glBufferSubData(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0]);
 	}
 }
 

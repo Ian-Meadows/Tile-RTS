@@ -119,7 +119,7 @@ int main() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//init input namespace
-	Time::Init(false);
+	Time::Init(true);
 	Input::InitInput(window);
 
 	//glfwSetCursorPosCallback(window, mouse_callback);

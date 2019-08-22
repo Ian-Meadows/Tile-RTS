@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include "ChunkHandler.h"
 #include "Tile.h"
+#include "TextureAtlas.h"
 
 #define CHUNK_SIZE 32
 #define UNIT_SIZE 1
@@ -34,6 +35,12 @@ public:
 	bool CheckForRenderUpdate();
 
 	void Rendered();
+
+
+
+	TileType chunkType = TileType::Empty;
+
+	glm::ivec2 GetTileInfo(glm::ivec2 tilePos, TextureAtlas* ta);
 
 private:
 

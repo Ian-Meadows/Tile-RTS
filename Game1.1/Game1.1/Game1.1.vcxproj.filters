@@ -165,6 +165,9 @@
     <ClCompile Include="Soldier.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="ChunkGenerator.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -265,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="Soldier.h">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkGenerator.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
