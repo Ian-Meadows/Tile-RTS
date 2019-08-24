@@ -105,68 +105,68 @@
     <ClCompile Include="Debugger.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="MainScene.cpp">
-      <Filter>Source Files\Game\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="UIElement.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
-    </ClCompile>
-    <ClCompile Include="TestUIScene.cpp">
-      <Filter>Source Files\Game\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
-    </ClCompile>
     <ClCompile Include="ChunkHandler.cpp">
       <Filter>Source Files\Engine\Handlers</Filter>
     </ClCompile>
     <ClCompile Include="ChunkRenderHandler.cpp">
       <Filter>Source Files\Engine\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="SceneHandler.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="UIHandler.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="TextElement.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\Engine\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="TestButton.cpp">
-      <Filter>Source Files\Game\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="TestText.cpp">
-      <Filter>Source Files\Game\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Unit.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Building.cpp">
-      <Filter>Source Files\Engine</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Soldier.cpp">
-      <Filter>Source Files\Engine</Filter>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ChunkGenerator.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Soldier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestUIScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -206,71 +206,71 @@
     <ClInclude Include="Debugger.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="MainScene.h">
-      <Filter>Header Files\Game\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="UIElement.h">
-      <Filter>Header Files\Engine\UItypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Header Files\Engine\UItypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Header Files\Engine\UItypes</Filter>
-    </ClInclude>
-    <ClInclude Include="TestUIScene.h">
-      <Filter>Header Files\Game\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="ChunkHandler.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
     <ClInclude Include="ChunkRenderHandler.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="SceneHandler.h">
-      <Filter>Header Files\Engine\Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>Header Files\Engine\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="UIHandler.h">
-      <Filter>Header Files\Engine\Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files\Engine\UItypes</Filter>
-    </ClInclude>
-    <ClInclude Include="TextElement.h">
-      <Filter>Header Files\Engine\UItypes</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenMath.h">
-      <Filter>Header Files\Engine\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="TestButton.h">
-      <Filter>Header Files\Game\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="TestText.h">
-      <Filter>Header Files\Game\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Unit.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Building.h">
-      <Filter>Header Files\Engine</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Soldier.h">
-      <Filter>Header Files\Engine</Filter>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ChunkGenerator.h">
-      <Filter>Header Files\Engine\Handlers</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Soldier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestUIScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -295,14 +295,14 @@
     <None Include="ShapeFragmentShader.frag">
       <Filter>Resource Files\Shaders\FragmentShaders</Filter>
     </None>
+    <None Include="TextFragmentShader.frag">
+      <Filter>Resource Files\Shaders\FragmentShaders</Filter>
+    </None>
     <None Include="ShapeVertexShader.vert">
       <Filter>Resource Files\Shaders\VertexShaders</Filter>
     </None>
     <None Include="TextVertexShader.vert">
       <Filter>Resource Files\Shaders\VertexShaders</Filter>
-    </None>
-    <None Include="TextFragmentShader.frag">
-      <Filter>Resource Files\Shaders\FragmentShaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
