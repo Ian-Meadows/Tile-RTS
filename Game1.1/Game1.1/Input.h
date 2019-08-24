@@ -39,9 +39,13 @@ namespace Input {
 	void ProcessInput();
 	void ClearOldInputs();
 
-	bool GetKeyPressed(int);
-	bool GetKeyReleased(int);
-	bool GetKeyHeld(int);
+	bool GetKeyPressed(int key);
+	bool GetKeyReleased(int key);
+	bool GetKeyHeld(int key);
+
+	bool GetMouseButtonPressed(int button);
+	bool GetMouseButtonReleased(int button);
+	bool GetMouseButtonHeld(int button);
 
 	glm::vec2 GetScrollDelta();
 	glm::vec2 GetMousePosition();

@@ -9,6 +9,8 @@
 #include "TextureAtlasCreator.h"
 
 
+#include "Debugger.h"
+
 
 ChunkRenderer::ChunkRenderer()
 {
@@ -35,7 +37,10 @@ ChunkRenderer::~ChunkRenderer()
 
 void ChunkRenderer::SetChunk(Chunk* chunk) {
 	this->chunk = chunk;
+
 }
+
+
 Chunk* ChunkRenderer::GetChunk() {
 	return chunk;
 }
@@ -97,10 +102,13 @@ void ChunkRenderer::SetPositions() {
 
 void ChunkRenderer::SetUnitInfo(bool firstTime) {
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[2]);
+
+	TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
+
 	if (firstTime) {
 		unitNumbers = new glm::ivec2[CHUNK_SIZE * CHUNK_SIZE];
 
-		TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
+		
 
 		int i = 0;
 		for (int x = 0; x < CHUNK_SIZE; x++) {
@@ -138,6 +146,19 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 	}
 	else {
 
+
+		int i = 0;
+		for (int x = 0; x < CHUNK_SIZE; x++) {
+			for (int y = 0; y < CHUNK_SIZE; y++) {
+				unitNumbers[i] = chunk->GetTileInfo(glm::ivec2(x, y), ta);
+
+				i++;
+			}
+		}
+
+
+		//glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void *data)
+		glBufferSubData(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0]);
 	}
 }
 
@@ -190,21 +211,33 @@ void ChunkRenderer::SetBasicTextureCoordinates() {
 
 }
 
+void ChunkRenderer::RenderSetup() {
+	glm::mat4 model = glm::mat4(1.0f);
+	glm::ivec2 position = chunk->GetPosition();
+
+	//do math to create model
+	model = glm::translate(model, glm::vec3(position.x * CHUNK_SIZE * UNIT_SIZE, position.y * CHUNK_SIZE * UNIT_SIZE, 0));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::scale(model, glm::vec3(UNIT_SIZE, UNIT_SIZE, UNIT_SIZE));
+
+	//set model on gpu
+	ChunkRenderHandler::GetShader()->setMat4("model", model);
+}
+
 void ChunkRenderer::Draw() {
 
 	//SetUnitNumbers(false);
 	if (chunk != nullptr) {
 
-		glm::mat4 model = glm::mat4(1.0f);
-		glm::ivec2 position = chunk->GetPosition();
+		RenderSetup();
 
-		//do math to create model
-		model = glm::translate(model, glm::vec3(position.x * CHUNK_SIZE * UNIT_SIZE, position.y * CHUNK_SIZE * UNIT_SIZE, 0));
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-		model = glm::scale(model, glm::vec3(UNIT_SIZE, UNIT_SIZE, UNIT_SIZE));
+		if (chunk->CheckForRenderUpdate() || chunk != previousChunk) {
+			SetUnitInfo(false);
+			previousChunk = chunk;
+			chunk->Rendered();
+		}
 
-		//set model on gpu
-		ChunkRenderHandler::GetShader()->setMat4("model", model);
+		
 
 		//bind vao
 		glBindVertexArray(VAO);

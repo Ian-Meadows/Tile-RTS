@@ -17,6 +17,8 @@ public:
 private:
 	void Init();
 
+	void RenderSetup();
+
 	void SetPositions();
 	void SetUnitInfo(bool);
 	void SetTextureCoordinates();
@@ -31,7 +33,9 @@ private:
 	unsigned int VBO[5];
 	unsigned int EBO;
 
-	Chunk* chunk;
+	Chunk* previousChunk = nullptr;
+
+	Chunk* chunk = nullptr;
 
 	glm::ivec2* positions;
 

@@ -12,7 +12,7 @@
 
 #include "stb_image.h"
 
-#define INITIALRENDERERS 9
+#define INITIALRENDERERS 48
 
 namespace ChunkRenderHandler {
 	namespace {
@@ -23,9 +23,13 @@ namespace ChunkRenderHandler {
 		Shader* shader;
 		unsigned int texture, unitSelectionTexture;
 
-		void CreateNewChunkRenderer() {
-			renderersNotInUse.push_back(new ChunkRenderer());
+		ChunkRenderer* CreateNewChunkRenderer(bool addToVector) {
+			ChunkRenderer* cr = new ChunkRenderer();
+			if (addToVector) {
+				renderersNotInUse.push_back(cr);
+			}
 			totalRenderers++;
+			return cr;
 		}
 
 		void InitTexture() {
@@ -116,8 +120,10 @@ namespace ChunkRenderHandler {
 			//create mask to remove the negative bit
 			int mask = (1 << 31) - 1;
 			//remove negative bit
-			arrayWidth &= mask;
-			arrayHeight &= mask;
+			arrayWidth = abs(arrayWidth) + 1;
+			arrayHeight = abs(arrayHeight) + 1;
+
+			
 
 			//init bool 2d array for chunks to render
 			bool** chunksRendered = new bool*[arrayWidth];
@@ -128,32 +134,70 @@ namespace ChunkRenderHandler {
 				}
 			}
 			//set chunks already being rendered
-			for (int i = 0; i < renderersInUse.size(); i++) {
-				glm::ivec2 pos = renderersInUse[i]->GetChunk()->GetPosition();
-				if (pos.x >= startX && pos.y >= startY && pos.x <= endX && pos.y <= endY) {
-					chunksRendered[pos.x][pos.y] = true;
+			for (int i = 0; i < renderersInUse.size();) {
+				if (renderersInUse[i]->GetChunk() != nullptr) {
+					//get position of chunk location inside of bool array
+					glm::ivec2 pos = renderersInUse[i]->GetChunk()->GetPosition() - glm::ivec2(startX, endY);
+
+					//check if in array
+					if (pos.x >= 0 && pos.y >= 0 && pos.x < arrayWidth && pos.y < arrayHeight) {
+						chunksRendered[pos.x][pos.y] = true;
+						
+						//increment when not removing
+						i++;
+					}
+					else {
+						//add to not in use
+						renderersNotInUse.push_back(renderersInUse[i]);
+						//renderersInUse[i]->SetChunk(nullptr);
+						//remove from in use
+						renderersInUse.erase(renderersInUse.begin() + i);
+					}
 				}
 				else {
-					//TODO::remove from rendering
-
+					//add to not in use
+					renderersNotInUse.push_back(renderersInUse[i]);
+					//remove from in use
+					renderersInUse.erase(renderersInUse.begin() + i);
 				}
+				
 			}
 
 			//setup renderers not in use
 			for (int x = 0; x < arrayWidth; x++) {
 				for (int y = 0; y < arrayHeight; y++) {
 					if (!chunksRendered[x][y]) {
-						//TODO::set renderers not in use to chunks to be rendered
+						ChunkRenderer* cr;
+						if (renderersNotInUse.size() > 0) {
+							cr = renderersNotInUse[0];
+							renderersNotInUse.erase(renderersNotInUse.begin());
+						}
+						else {
+							cr = CreateNewChunkRenderer(false);
+						}
+						renderersInUse.push_back(cr);
+						cr->SetChunk(ChunkHandler::GetChunk(glm::ivec2(x + startX, y + endY)));
+						chunksRendered[x][y] = true;
 					}
 				}
 			}
 
+			//delete chunks rendered bool array
+			//std::cout << "width: " << arrayWidth << std::endl;
+			for (int i = 0; i < arrayWidth; i++) {
+				//std::cout << i << ", ";
+				delete[] chunksRendered[i];
+			}
+			//std::cout << std::endl;
+			delete[] chunksRendered;
 			
 		}
 
 		//temp
+		/*
 		ChunkRenderer* cr1;
 		ChunkRenderer* cr2;
+		*/
 	}
 
 	void ChunkRenderHandler::Init() {
@@ -165,15 +209,15 @@ namespace ChunkRenderHandler {
 
 		//create initial renderers
 		for (int i = 0; i < INITIALRENDERERS; i++) {
-			CreateNewChunkRenderer();
+			CreateNewChunkRenderer(true);
 		}
-
+		/*
 		cr1 = new ChunkRenderer();
 		cr2 = new ChunkRenderer();
 
 		cr1->SetChunk(ChunkHandler::GetChunk(glm::ivec2(0, 0)));
 		cr2->SetChunk(ChunkHandler::GetChunk(glm::ivec2(0, 1)));
-
+		*/
 		shader->use();
 		shader->setInt("chunkSize", CHUNK_SIZE);
 		//send over constants to gpu
@@ -189,16 +233,15 @@ namespace ChunkRenderHandler {
 		glBindTexture(GL_TEXTURE_2D, texture);
 		glBindTexture(GL_TEXTURE_2D, unitSelectionTexture);
 
-		//TODO::finish
 		AssignChunksToRender();
 
-		//TODO::have renderers draw
+		//std::cout << renderersInUse.size() << std::endl;
 		for (int i = 0; i < renderersInUse.size(); i++) {
-
+			renderersInUse[i]->Draw();
 		}
 
-		cr1->Draw();
-		cr2->Draw();
+		//cr1->Draw();
+		//cr2->Draw();
 
 	}
 
@@ -214,10 +257,10 @@ namespace ChunkRenderHandler {
 				delete renderersNotInUse[i];
 			}
 		}
-
+		/*
 		delete cr1;
 		delete cr2;
-
+		*/
 		//delete textures
 		glDeleteTextures(1, &texture);
 		glDeleteTextures(1, &unitSelectionTexture);

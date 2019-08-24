@@ -3,8 +3,7 @@
 #include "Input.h"
 
 
-#define XRESOLUTION 800
-#define YRESOLUTION 600
+
 
 #define MAXZOOM 2.0f
 #define MINZOOM 0.01f
@@ -13,7 +12,8 @@ namespace Window {
 	//use for private methods and variables
 	namespace {
 		int WIDTH, HEIGHT;
-		float SIZE = 0.25f;
+		//float SIZE = 0.25f;
+		float SIZE = 0.01f;
 
 		glm::mat4 perspective;
 

@@ -12,6 +12,10 @@ namespace Input {
 		std::vector<int> keysReleased;
 		std::vector<int> keysHeld;
 
+		std::vector<int> mouseButtonPressed;
+		std::vector<int> mouseButtonReleased;
+		std::vector<int> mouseButtonHeld;
+
 		glm::vec2 scrollDelta;
 		glm::vec2 mousePosition;
 
@@ -32,9 +36,26 @@ namespace Input {
 				keysReleased.push_back(key);
 
 				//TODO:Make faster
-				for (int i = 0; i < keysHeld.size(); i++) {
+				for (unsigned int i = 0; i < keysHeld.size(); ++i) {
 					if (keysHeld[i] == key) {
 						keysHeld.erase(keysHeld.begin() + i);
+					}
+				}
+			}
+		}
+
+		void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+			if (action == GLFW_PRESS) {
+				mouseButtonPressed.push_back(button);
+				mouseButtonHeld.push_back(button);
+			}
+			else if (action == GLFW_RELEASE) {
+				mouseButtonReleased.push_back(button);
+
+				//TODO:Make faster
+				for (unsigned int i = 0; i < mouseButtonHeld.size(); ++i) {
+					if (mouseButtonHeld[i] == button) {
+						mouseButtonHeld.erase(mouseButtonHeld.begin() + i);
 					}
 				}
 			}
@@ -51,6 +72,7 @@ namespace Input {
 		glfwSetCursorPosCallback(window, MouseCallback);
 		glfwSetKeyCallback(window, KeyCallback);
 		glfwSetScrollCallback(window, ScrollCallback);
+		glfwSetMouseButtonCallback(window, MouseButtonCallback);
 	}
 
 
@@ -70,11 +92,13 @@ namespace Input {
 	void Input::ClearOldInputs() {
 		keysPressed.clear();
 		keysReleased.clear();
+		mouseButtonPressed.clear();
+		mouseButtonReleased.clear();
 		scrollDelta = glm::vec2(0.0f, 0.0f);
 	}
 
 	bool GetKeyPressed(int key) {
-		for (int i = 0; i < keysPressed.size(); i++) {
+		for (unsigned int i = 0; i < keysPressed.size(); ++i) {
 			if (key == keysPressed[i]) {
 				return true;
 			}
@@ -83,7 +107,7 @@ namespace Input {
 	}
 
 	bool GetKeyReleased(int key) {
-		for (int i = 0; i < keysReleased.size(); i++) {
+		for (unsigned int i = 0; i < keysReleased.size(); ++i) {
 			if (key == keysReleased[i]) {
 				return true;
 			}
@@ -92,8 +116,36 @@ namespace Input {
 	}
 
 	bool GetKeyHeld(int key) {
-		for (int i = 0; i < keysHeld.size(); i++) {
+		for (unsigned int i = 0; i < keysHeld.size(); ++i) {
 			if (key == keysHeld[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	bool GetMouseButtonPressed(int button) {
+		for (unsigned int i = 0; i < mouseButtonPressed.size(); ++i) {
+			if (button == mouseButtonPressed[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool GetMouseButtonReleased(int button) {
+		for (unsigned int i = 0; i < mouseButtonReleased.size(); ++i) {
+			if (button == mouseButtonReleased[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool GetMouseButtonHeld(int button) {
+		for (unsigned int i = 0; i < mouseButtonHeld.size(); ++i) {
+			if (button == mouseButtonHeld[i]) {
 				return true;
 			}
 		}

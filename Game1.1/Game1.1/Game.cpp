@@ -3,6 +3,7 @@
 #include "TestRenderer.h"
 #include "ChunkHandler.h"
 #include "ChunkRenderHandler.h"
+#include "ChunkGenerator.h"
 #include "ImageTester.h"
 #include "Time.h"
 #include "Input.h"
@@ -21,6 +22,7 @@ namespace Game {
 	void Game::Init() {
 		ChunkHandler::Init();
 		ChunkRenderHandler::Init();
+		ChunkGenerator::Init();
 		test = new TestRenderer();
 		it = new ImageTester();
 	}
@@ -30,7 +32,7 @@ namespace Game {
 		it->Update();
 
 
-		
+		/*
 		time += Time::GetDeltaTime();
 		if (time > 1.0) {
 			time = 0;
@@ -43,7 +45,7 @@ namespace Game {
 			glm::vec3 worldPos = Camera::ScreenToWorld(mousePos);
 			std::cout << "World Pos: X: " << floor(worldPos.x / 32.0f) << " Y: " << floor(worldPos.y / 32.0f) << std::endl;
 		}
-		
+		*/
 		
 
 	}
@@ -54,6 +56,7 @@ namespace Game {
 	}
 
 	void Game::Uninit() {
+		ChunkGenerator::Uninit();
 		ChunkHandler::Uninit();
 		ChunkRenderHandler::UnInit();
 		delete test;

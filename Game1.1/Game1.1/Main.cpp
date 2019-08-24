@@ -1,3 +1,13 @@
+/*
+TODOs before release
+-read freetypes licence and do what is says
+-make sure all licences are squared away
+
+
+*/
+
+
+
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -8,6 +18,12 @@
 #include "Game.h"
 #include "Time.h"
 #include "TextureAtlasCreator.h"
+#include "SceneHandler.h"
+#include "UIHandler.h"
+
+//scenes
+#include "MainScene.h"
+#include "TestUIScene.h"
 
 #include "Debugger.h"
 
@@ -55,6 +71,17 @@ void AddImagesToAtlas() {
 	
 }
 
+void InitSceneHandler() {
+	SceneHandler::Init();
+	//add scenes
+	SceneHandler::AddScene(new MainScene());
+	SceneHandler::AddScene(new TestUIScene());
+
+	//set current scene
+	//SceneHandler::SetCurrentScene("UITest");
+	SceneHandler::SetCurrentScene("Game");
+}
+
 int main() {
 	
 	//init namespaces
@@ -92,12 +119,15 @@ int main() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//init input namespace
-	Time::Init(false);
+	Time::Init(true);
 	Input::InitInput(window);
 
 	//glfwSetCursorPosCallback(window, mouse_callback);
 	TextureAtlasCreator::CreateAtlas();
-	Game::Init();
+
+	UIHandler::Init();
+	InitSceneHandler();
+	
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -107,12 +137,18 @@ int main() {
 		//update time to get fps and delta time
 		Time::Update();
 
-		//
+		//handle input
 		Input::ProcessInput();
-		Game::Update();
+
+		//update
+		SceneHandler::Update();
 		Camera::Update();
 		Window::Update();
-		Game::Draw();
+		UIHandler::Update();
+
+		//draw
+		SceneHandler::Draw();
+		UIHandler::Draw();
 
 		//clear keys pressed
 		Input::ClearOldInputs();
@@ -133,13 +169,30 @@ int main() {
 	}
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
+	//get ending errors
 	
 
-	glfwTerminate();
+	glfwTerminate(); //throws 1282 error
 
-	Game::Uninit();
+	
+
+	UIHandler::Uninit();
+
+	
+
+	SceneHandler::Uninit();
+	
+	
+
 	TextureAtlasCreator::Uninit();
 
+	/*
+	GLenum error = glGetError();
+	if (error != GL_NO_ERROR) {
+		std::cout << "opengl ERROR: " << error << std::endl;
+	}
+	std::cin.get();
+	*/
 	return 0;
 }
 

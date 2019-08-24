@@ -17,10 +17,17 @@ namespace ChunkHandler {
 		std::vector<Chunk*> chunksList;
 		std::unordered_map<glm::ivec2, Chunk*, GLMKeyFunctions, GLMKeyFunctions> chunks;
 
+
+		Chunk* CreateNewChunk(glm::ivec2 pos) {
+			Chunk* c = new Chunk(pos);
+			chunksList.push_back(c);
+			chunks[pos] = c;
+			return c;
+		}
 	}
 
 	void ChunkHandler::Init() {
-
+		/*
 		Chunk* temp = new Chunk(glm::ivec2(0, 0));
 		chunks[glm::ivec2(0, 0)] = temp;
 		temp = new Chunk(glm::ivec2(0, 1));
@@ -39,21 +46,7 @@ namespace ChunkHandler {
 		else {
 			std::cout << "not found" << std::endl;
 		}
-		
-	}
-
-	void ChunkHandler::Draw() {
-		
-
-		Chunk* chunk = chunks[glm::ivec2(0, 0)];
-		Chunk* chunk2 = chunks[glm::ivec2(0, 1)];
-		if (chunk != nullptr) {
-			//chunk->Draw();
-		}
-		if (chunk2 != nullptr) {
-			//chunk2->Draw();
-		}
-
+		*/
 	}
 
 	void ChunkHandler::Uninit() {
@@ -64,7 +57,16 @@ namespace ChunkHandler {
 		chunksList.clear();
 	}
 
+	//TODO::add chunk generation
 	Chunk* ChunkHandler::GetChunk(glm::ivec2 pos) {
-		return chunks[pos];
+		Chunk* c = chunks[pos];
+		if (c == nullptr) {
+			c = CreateNewChunk(pos);
+			return c;
+		}
+		else {
+			return c;
+		}
+		
 	}
 }
