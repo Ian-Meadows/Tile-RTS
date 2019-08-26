@@ -5,6 +5,7 @@
 #include "Time.h"
 #include "ChunkGenerator.h"
 #include "TextureAtlas.h"
+#include "ChunkRenderer.h"
 
 Chunk::Chunk(glm::ivec2 position)
 {
@@ -40,6 +41,43 @@ Chunk::~Chunk()
 }
 
 
+//Takes local Coords and non null unit(does not check if null). Places unit in position if possible
+bool Chunk::PlaceUnit(glm::ivec2 position, Unit* unit) {
+	if (OutOfRange(position)) {
+		return false;
+	}
+
+	if (tiles[position.x][position.y]->unit == nullptr) {
+		tiles[position.x][position.y]->unit = unit;
+
+		cr->UpdateSingleUnitRender(position, tiles[position.x][position.y]->GetUnitNumbers(ChunkHandler::GetTextureAtlas()));
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
+
+//Takes local Coords. Returns unit at coords
+Unit* Chunk::GetUnit(glm::ivec2 position) {
+	if (OutOfRange(position)) {
+		return nullptr;
+	}
+
+	return tiles[position.x][position.y]->unit;
+}
+
+//Takes local Coords. Sets unit to null
+void Chunk::ClearUnit(glm::ivec2 position) {
+	if (OutOfRange(position)) {
+		return;
+	}
+
+	tiles[position.x][position.y]->unit = nullptr;
+	cr->UpdateSingleUnitRender(position, tiles[position.x][position.y]->GetUnitNumbers(ChunkHandler::GetTextureAtlas()));
+}
+
 glm::ivec2 Chunk::GetTileInfo(glm::ivec2 tilePos, TextureAtlas* ta) {
 	return tiles[tilePos.x][tilePos.y]->GetUnitNumbers(ta);
 }
@@ -69,5 +107,17 @@ bool Chunk::CheckForRenderUpdate() {
 void Chunk::Rendered() {
 	unrenderedUpdate = false;
 }
+
+void Chunk::SetChunkRenderer(ChunkRenderer* cr) {
+	this->cr = cr;
+}
+
+bool Chunk::OutOfRange(glm::ivec2 coords) {
+	if (coords.x < 0 || coords.y < 0 || coords.x >= CHUNK_SIZE || coords.y >= CHUNK_SIZE) {
+		return true;
+	}
+	return false;
+}
+
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
+#include "TextureAtlasCreator.h"
 
 class Chunk;
 
@@ -24,5 +25,9 @@ namespace ChunkHandler {
 
 	Chunk* GetChunk(glm::ivec2 pos);
 
+	//uses global coordinates
+	void MoveUnit(glm::ivec2 startPosition, glm::ivec2 endPosition);
+
+	TextureAtlas* GetTextureAtlas();
 }
 

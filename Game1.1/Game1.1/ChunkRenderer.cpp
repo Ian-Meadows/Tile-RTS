@@ -211,6 +211,22 @@ void ChunkRenderer::SetBasicTextureCoordinates() {
 
 }
 
+
+
+void ChunkRenderer::UpdateSingleUnitRender(glm::ivec2 position, glm::ivec2 info) {
+	glBindBuffer(GL_ARRAY_BUFFER, VBO[2]);
+
+	int maxSize = CHUNK_SIZE * CHUNK_SIZE;
+
+	//TODO::might wanna swap x and y
+	int pos = position.x + (position.y * CHUNK_SIZE);
+
+	//glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void *data)
+	glBufferSubData(GL_ARRAY_BUFFER, pos, sizeof(glm::ivec2), &info);
+
+}
+
+
 void ChunkRenderer::RenderSetup() {
 	glm::mat4 model = glm::mat4(1.0f);
 	glm::ivec2 position = chunk->GetPosition();

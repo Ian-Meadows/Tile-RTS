@@ -10,6 +10,15 @@ public:
 	//
 	int texture;
 	bool selected = false;
+
+
+	bool IsMovable();
+
+protected:
 	bool movable;
+
+
+
+
 };
 

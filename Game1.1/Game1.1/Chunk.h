@@ -17,6 +17,10 @@ init when going to draw(might be expensive to do)
 
 enum GenerationLevel { None, Semi, Full};
 
+//forward include
+class ChunkRenderer;
+
+
 class Chunk
 {
 public:
@@ -42,6 +46,17 @@ public:
 
 	glm::ivec2 GetTileInfo(glm::ivec2 tilePos, TextureAtlas* ta);
 
+	void SetChunkRenderer(ChunkRenderer* cr);
+
+	//Takes local Coords and non null unit(does not check if null). Places unit in position if possible
+	bool PlaceUnit(glm::ivec2 position, Unit* unit);
+
+	//Takes local Coords. Returns unit at coords
+	Unit* GetUnit(glm::ivec2 position);
+
+	//Takes local Coords. Sets unit to null
+	void ClearUnit(glm::ivec2 position);
+
 private:
 
 	glm::ivec2 position;
@@ -52,5 +67,10 @@ private:
 	Tile*** tiles;
 
 	bool unrenderedUpdate = true;
+
+	ChunkRenderer* cr;
+
+	//TODO:check if this is needed
+	bool OutOfRange(glm::ivec2 coords);
 };
 

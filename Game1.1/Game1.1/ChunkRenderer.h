@@ -14,6 +14,8 @@ public:
 	void SetChunk(Chunk* chunk);
 	Chunk* GetChunk();
 
+	void UpdateSingleUnitRender(glm::ivec2 position, glm::ivec2 info);
+
 private:
 	void Init();
 
