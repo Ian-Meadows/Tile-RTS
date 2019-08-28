@@ -83,7 +83,8 @@ void InitSceneHandler() {
 }
 
 int main() {
-	
+
+
 	//init namespaces
 	Window::InitWindow(800, 600);
 	Camera::Init(glm::vec3(0, 0, -1), 0.0f);

@@ -32,8 +32,6 @@ namespace Game {
 		temp = new Soldier(glm::ivec2(5, 5));
 		//place unit
 		ChunkHandler::PlaceUnit(glm::ivec2(5, 5), temp);
-
-
 	}
 
 	void Game::Update() {

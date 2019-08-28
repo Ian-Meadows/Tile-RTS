@@ -168,6 +168,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="TileBackgroundHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -271,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TileBackgroundHandler.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
