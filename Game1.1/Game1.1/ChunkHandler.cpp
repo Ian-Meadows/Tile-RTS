@@ -9,7 +9,8 @@
 #include "Window.h"
 #include "TextureAtlasCreator.h"
 #include "Chunk.h"
-
+#include "Unit.h"
+#include "Debugger.h"
 
 #include "stb_image.h"
 
@@ -117,10 +118,26 @@ namespace ChunkHandler {
 			return;
 		}
 
+		
+
 		//move
 		endChunk->PlaceUnit(localEndPos, unitToMove);
 		//clear old location
 		startChunk->ClearUnit(localStartPos);
 
+	}
+
+	bool ChunkHandler::PlaceUnit(glm::ivec2 postion, Unit* unit) {
+		//get chunk coords
+		glm::ivec2 chunkPos = glm::ivec2(floor(postion.x / (float)CHUNK_SIZE), floor(postion.y / (float)CHUNK_SIZE));
+
+		//get chunk at coords
+		Chunk* chunk = GetChunk(chunkPos);
+
+		//get local coords
+		glm::ivec2 localCoords = postion - (chunkPos * CHUNK_SIZE);
+
+		//place unit
+		return chunk->PlaceUnit(localCoords, unit);
 	}
 }

@@ -1,4 +1,8 @@
 #pragma once
+#include "ChunkHandler.h"
+#include "Time.h"
+
+
 class Unit
 {
 public:
@@ -13,6 +17,9 @@ public:
 
 
 	bool IsMovable();
+
+	virtual void Update();
+
 
 protected:
 	bool movable;

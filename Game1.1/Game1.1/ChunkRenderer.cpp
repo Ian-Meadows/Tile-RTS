@@ -37,7 +37,7 @@ ChunkRenderer::~ChunkRenderer()
 
 void ChunkRenderer::SetChunk(Chunk* chunk) {
 	this->chunk = chunk;
-
+	chunk->SetChunkRenderer(this);
 }
 
 
@@ -214,15 +214,19 @@ void ChunkRenderer::SetBasicTextureCoordinates() {
 
 
 void ChunkRenderer::UpdateSingleUnitRender(glm::ivec2 position, glm::ivec2 info) {
+
+
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[2]);
 
 	int maxSize = CHUNK_SIZE * CHUNK_SIZE;
 
 	//TODO::might wanna swap x and y
-	int pos = position.x + (position.y * CHUNK_SIZE);
+	//int pos = position.x + (position.y * CHUNK_SIZE);
+	int pos = position.y + (position.x * CHUNK_SIZE);
+
 
 	//glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void *data)
-	glBufferSubData(GL_ARRAY_BUFFER, pos, sizeof(glm::ivec2), &info);
+	glBufferSubData(GL_ARRAY_BUFFER, pos * sizeof(glm::ivec2), sizeof(glm::ivec2), &info);
 
 }
 

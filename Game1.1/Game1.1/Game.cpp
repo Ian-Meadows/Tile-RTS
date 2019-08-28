@@ -8,6 +8,7 @@
 #include "Time.h"
 #include "Input.h"
 #include "Camera.h"
+#include "Soldier.h"
 
 
 namespace Game {
@@ -17,6 +18,8 @@ namespace Game {
 
 		double time = 0.0;
 
+		Soldier* temp;
+
 	}
 
 	void Game::Init() {
@@ -25,12 +28,19 @@ namespace Game {
 		ChunkGenerator::Init();
 		test = new TestRenderer();
 		it = new ImageTester();
+
+		temp = new Soldier(glm::ivec2(5, 5));
+		//place unit
+		ChunkHandler::PlaceUnit(glm::ivec2(5, 5), temp);
+
+
 	}
 
 	void Game::Update() {
 		test->Update();
 		it->Update();
 
+		temp->Update();
 
 		/*
 		time += Time::GetDeltaTime();

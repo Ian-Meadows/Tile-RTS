@@ -2,7 +2,9 @@
 #include <glm/glm.hpp>
 #include "TextureAtlasCreator.h"
 
+
 class Chunk;
+class Unit;
 
 struct GLMKeyFunctions {
 	size_t operator()(const glm::ivec2& k)const
@@ -27,6 +29,9 @@ namespace ChunkHandler {
 
 	//uses global coordinates
 	void MoveUnit(glm::ivec2 startPosition, glm::ivec2 endPosition);
+
+	//uses global coordinates. returns if unit could be placed
+	bool PlaceUnit(glm::ivec2 postion, Unit* unit);
 
 	TextureAtlas* GetTextureAtlas();
 }

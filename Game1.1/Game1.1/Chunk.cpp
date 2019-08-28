@@ -49,8 +49,11 @@ bool Chunk::PlaceUnit(glm::ivec2 position, Unit* unit) {
 
 	if (tiles[position.x][position.y]->unit == nullptr) {
 		tiles[position.x][position.y]->unit = unit;
+		if (cr != nullptr) {
+			cr->UpdateSingleUnitRender(position, tiles[position.x][position.y]->GetUnitNumbers(ChunkHandler::GetTextureAtlas()));
 
-		cr->UpdateSingleUnitRender(position, tiles[position.x][position.y]->GetUnitNumbers(ChunkHandler::GetTextureAtlas()));
+			
+		}
 		return true;
 	}
 	else {
@@ -75,7 +78,10 @@ void Chunk::ClearUnit(glm::ivec2 position) {
 	}
 
 	tiles[position.x][position.y]->unit = nullptr;
-	cr->UpdateSingleUnitRender(position, tiles[position.x][position.y]->GetUnitNumbers(ChunkHandler::GetTextureAtlas()));
+	if (cr != nullptr) {
+		cr->UpdateSingleUnitRender(position, tiles[position.x][position.y]->GetUnitNumbers(ChunkHandler::GetTextureAtlas()));
+	}
+	
 }
 
 glm::ivec2 Chunk::GetTileInfo(glm::ivec2 tilePos, TextureAtlas* ta) {
