@@ -5,6 +5,8 @@ layout (location = 2) in ivec2 unitInformation;
 layout (location = 3) in vec2 wholeTexCoords;
 layout (location = 4) in vec2 basicTexCoords;
 
+uniform ivec2 backgroundTiles[255];
+
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
@@ -26,6 +28,18 @@ flat out int isSelected;//1:true //2:false
 
 //unit type constants(sent from cpu)
 uniform int SOLIDCOLOR;
+
+
+#define MASK_TILE 255 << 24
+
+//want to use unitInformation.y of position alpha
+void GetBackgroundTile(){
+	int color = unitInformation.y;
+
+	int tile = (color & MASK_TILE) >> 24;
+
+}
+
 
 void SetTextCoords(){
 
@@ -70,6 +84,7 @@ void main()
 	oPos = aPos * unitInformation.x;
 	oPos.x = unitInformation.x;
 	SetTextCoords();
+	GetBackgroundTile();
 	unitColor = unitInformation.y;
 
 	unitSelectionTexCoord = basicTexCoords;

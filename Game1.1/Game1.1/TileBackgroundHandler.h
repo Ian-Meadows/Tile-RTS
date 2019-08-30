@@ -13,6 +13,11 @@ struct TileBackground {
 	//y:color
 	glm::ivec2 info;
 
+	/*
+	string: name
+	x: image number from texure atlas
+	y: color
+	*/
 	TileBackground(std::string name, glm::ivec2 info) {
 		this->name = name;
 		this->info = info;
@@ -26,8 +31,18 @@ namespace TileBackgroundHandler {
 
 	void Uninit();
 
+	/*
+	string: name
+	x: image number from texure atlas
+	y: color
+	*/
 	void AddTileBackground(std::string name, glm::ivec2 info);
 
 	glm::ivec2 GetBackgroundInfo(std::string name);
+
+	int GetBackgroundLocation(std::string name);
+
+	//note: returns array of size 255
+	glm::ivec2* GetAllBackgroundInfo();
 }
 

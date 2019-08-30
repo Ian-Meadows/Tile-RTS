@@ -20,6 +20,7 @@ TODOs before release
 #include "TextureAtlasCreator.h"
 #include "SceneHandler.h"
 #include "UIHandler.h"
+#include "TileBackgroundHandler.h"
 
 //scenes
 #include "MainScene.h"
@@ -71,6 +72,16 @@ void AddImagesToAtlas() {
 	
 }
 
+void AddTileBackground() {
+
+	TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
+
+	TileBackgroundHandler::AddTileBackground("Green blank", glm::ivec2(ta->GetImageLocation("none"), 0x00ff00));
+	TileBackgroundHandler::AddTileBackground("Blue blank", glm::ivec2(ta->GetImageLocation("none"), 0x0000ff));
+	TileBackgroundHandler::AddTileBackground("Red blank", glm::ivec2(ta->GetImageLocation("none"), 0xff0000));
+	TileBackgroundHandler::AddTileBackground("Black blank", glm::ivec2(ta->GetImageLocation("none"), 0x000000));
+}
+
 void InitSceneHandler() {
 	SceneHandler::Init();
 	//add scenes
@@ -91,6 +102,9 @@ int main() {
 	TextureAtlasCreator::Init(100, 20);
 
 	AddImagesToAtlas();
+
+	TileBackgroundHandler::Init();
+	
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -125,6 +139,8 @@ int main() {
 
 	//glfwSetCursorPosCallback(window, mouse_callback);
 	TextureAtlasCreator::CreateAtlas();
+
+	AddTileBackground();
 
 	UIHandler::Init();
 	InitSceneHandler();

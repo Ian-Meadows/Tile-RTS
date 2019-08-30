@@ -1,12 +1,14 @@
 #include "ChunkRenderHandler.h"
 #include <vector>
 #include <math.h>
+#include <sstream>
 
 #include "Camera.h"
 #include "Window.h"
 #include "TextureAtlasCreator.h"
 #include "Chunk.h"
 #include "ChunkHandler.h"
+#include "TileBackgroundHandler.h"
 
 #include "Debugger.h"
 
@@ -193,6 +195,19 @@ namespace ChunkRenderHandler {
 			
 		}
 
+		//note:shader should already be in use
+		void LoadBackgroundTileInfo() {
+			glm::ivec2* backgrounds = TileBackgroundHandler::GetAllBackgroundInfo();
+
+			for (int i = 0; i < MAX_BG_TEXTURES; i++) {
+				std::stringstream ss;
+				std::string index;
+				ss << i;
+				index = ss.str();
+				shader->setIVec2(("backgroundTiles[" + index + "]").c_str(), backgrounds[i]);
+			}
+		}
+
 		//temp
 		/*
 		ChunkRenderer* cr1;
@@ -222,6 +237,8 @@ namespace ChunkRenderHandler {
 		shader->setInt("chunkSize", CHUNK_SIZE);
 		//send over constants to gpu
 		shader->setInt("SOLIDCOLOR", SOLIDCOLOR);
+
+		LoadBackgroundTileInfo();
 	}
 	void ChunkRenderHandler::Draw() {
 		shader->use();

@@ -4,9 +4,7 @@
 namespace TileBackgroundHandler {
 	namespace {
 
-		void PushToGPU() {
-
-		}
+		
 
 		int currentIndex = 0;
 		TileBackground* tileBackgrounds[MAX_BG_TEXTURES];
@@ -31,7 +29,6 @@ namespace TileBackgroundHandler {
 		for (int i = 0; i < MAX_BG_TEXTURES; i++) {
 			tileBackgrounds[i] = nullptr;
 		}
-		PushToGPU();
 	}
 
 	void TileBackgroundHandler::Uninit() {
@@ -58,7 +55,37 @@ namespace TileBackgroundHandler {
 	}
 
 	glm::ivec2 TileBackgroundHandler::GetBackgroundInfo(std::string name) {
-		return glm::ivec2(0, 0);
+		for (int i = 0; i < MAX_BG_TEXTURES; i++) {
+			if (tileBackgrounds[i]->name == name) {
+				return tileBackgrounds[i]->info;
+			}
+		}
+		std::cout << name << " does not exist as a background texture" << std::endl;
+		return glm::ivec2(-1, -1);
+	}
+
+	int GetBackgroundLocation(std::string name) {
+		for (int i = 0; i < MAX_BG_TEXTURES; i++) {
+			if (tileBackgrounds[i]->name == name) {
+				return i;
+			}
+		}
+		std::cout << name << " does not exist as a background texture" << std::endl;
+		return -1;
+	}
+
+	glm::ivec2* TileBackgroundHandler::GetAllBackgroundInfo() {
+		glm::ivec2 backgrounds[MAX_BG_TEXTURES];
+		for (int i = 0; i < MAX_BG_TEXTURES; i++) {
+			if (tileBackgrounds[i] != nullptr) {
+				backgrounds[i] = tileBackgrounds[i]->info;
+			}
+			else {
+				backgrounds[i] = glm::ivec2(-1, -1);
+			}
+			
+		}
+		return backgrounds;
 	}
 
 }

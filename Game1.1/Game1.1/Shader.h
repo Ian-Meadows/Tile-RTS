@@ -143,6 +143,13 @@ public:
 	}
 
 
+
+
+	void setIVec2(const std::string &name, const glm::ivec2 &value) const {
+		glUniform2iv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
+	}
+
+
 private:
 	// utility function for checking shader compilation/linking errors.
 	// ------------------------------------------------------------------------
