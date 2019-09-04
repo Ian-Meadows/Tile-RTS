@@ -32,6 +32,12 @@ namespace Game {
 		temp = new Soldier(glm::ivec2(5, 5));
 		//place unit
 		ChunkHandler::PlaceUnit(glm::ivec2(5, 5), temp);
+
+		ChunkHandler::PlaceUnit(glm::ivec2(5, -5), new Soldier(glm::ivec2(5, -5)));
+
+		ChunkHandler::PlaceUnit(glm::ivec2(-5, 5), new Soldier(glm::ivec2(-5, 5)));
+
+		ChunkHandler::PlaceUnit(glm::ivec2(-5, -5), new Soldier(glm::ivec2(-5, -5)));
 	}
 
 	void Game::Update() {
@@ -58,9 +64,9 @@ namespace Game {
 
 	}
 	void Game::Draw() {
-		test->Draw();
+		//test->Draw();
 		ChunkRenderHandler::Draw();
-		it->Draw();
+		//it->Draw();
 	}
 
 	void Game::Uninit() {

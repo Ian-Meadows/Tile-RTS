@@ -79,7 +79,7 @@ void AddTileBackground() {
 	TileBackgroundHandler::AddTileBackground("Green blank", glm::ivec2(ta->GetImageLocation("none"), 0x00ff00));
 	TileBackgroundHandler::AddTileBackground("Blue blank", glm::ivec2(ta->GetImageLocation("none"), 0x0000ff));
 	TileBackgroundHandler::AddTileBackground("Red blank", glm::ivec2(ta->GetImageLocation("none"), 0xff0000));
-	TileBackgroundHandler::AddTileBackground("Black blank", glm::ivec2(ta->GetImageLocation("none"), 0x000000));
+	TileBackgroundHandler::AddTileBackground("Black blank", glm::ivec2(ta->GetImageLocation("none"), 0x0f00f0));
 }
 
 void InitSceneHandler() {

@@ -1,3 +1,8 @@
-﻿  TileBackgroundHandler.cpp
-c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\tilebackgroundhandler.cpp(88): warning C4172: returning address of local variable or temporary: backgrounds
-  Game1.1.vcxproj -> C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Debug\Game1.1.exe
+﻿  ChunkRenderHandler.cpp
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(123): warning C4307: '-': integral constant overflow
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(139): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(239): warning C4307: '-': integral constant overflow
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(256): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\game1.1\game1.1\game1.1\chunkrenderhandler.cpp(272): warning C4018: '<': signed/unsigned mismatch
+  Game1.1.vcxproj -> C:\Users\ian\source\repos\Game1.1\Game1.1\Debug\Game1.1.exe

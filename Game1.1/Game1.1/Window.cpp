@@ -13,7 +13,7 @@ namespace Window {
 	namespace {
 		int WIDTH, HEIGHT;
 		//float SIZE = 0.25f;
-		float SIZE = 0.01f;
+		float SIZE = 0.10f;
 
 		glm::mat4 perspective;
 
