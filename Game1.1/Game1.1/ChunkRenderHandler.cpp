@@ -197,7 +197,9 @@ namespace ChunkRenderHandler {
 
 		//note:shader should already be in use
 		void LoadBackgroundTileInfo() {
-			glm::ivec2* backgrounds = TileBackgroundHandler::GetAllBackgroundInfo();
+
+			glm::ivec2 backgrounds[MAX_BG_TEXTURES];
+			TileBackgroundHandler::GetAllBackgroundInfo(backgrounds);
 
 			for (int i = 0; i < MAX_BG_TEXTURES; i++) {
 				std::stringstream ss;

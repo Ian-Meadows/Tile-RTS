@@ -17,6 +17,7 @@ public:
 	Unit* unit = nullptr;
 
 	//returns texture number, and color for the unit or tile;
+	//note: y is color, but has background tile transplanted in it.
 	glm::ivec2 GetUnitNumbers(TextureAtlas* ta);
 
 	TileType tileType;
@@ -24,7 +25,9 @@ public:
 private:
 	glm::ivec2 position;
 
+	std::string GetTileTypeString(TileType tt);
 
+	int GetColorWithBGTile(int color, int tile);
 
 };
 

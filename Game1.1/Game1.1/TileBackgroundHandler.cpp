@@ -1,6 +1,8 @@
 #include "TileBackgroundHandler.h"
 #include <iostream>
 
+#include "Debugger.h"
+
 namespace TileBackgroundHandler {
 	namespace {
 
@@ -74,8 +76,7 @@ namespace TileBackgroundHandler {
 		return -1;
 	}
 
-	glm::ivec2* TileBackgroundHandler::GetAllBackgroundInfo() {
-		glm::ivec2 backgrounds[MAX_BG_TEXTURES];
+	void GetAllBackgroundInfo(glm::ivec2 backgrounds[MAX_BG_TEXTURES]) {
 		for (int i = 0; i < MAX_BG_TEXTURES; i++) {
 			if (tileBackgrounds[i] != nullptr) {
 				backgrounds[i] = tileBackgrounds[i]->info;
@@ -83,9 +84,7 @@ namespace TileBackgroundHandler {
 			else {
 				backgrounds[i] = glm::ivec2(-1, -1);
 			}
-			
 		}
-		return backgrounds;
 	}
 
 }

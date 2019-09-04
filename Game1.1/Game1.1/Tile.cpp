@@ -1,4 +1,5 @@
 #include "Tile.h"
+#include "TileBackgroundHandler.h"
 
 
 
@@ -13,34 +14,45 @@ Tile::~Tile()
 {
 }
 
+int Tile::GetColorWithBGTile(int color, int tile) {
+	return color | (tile << 24);
+}
+
 glm::ivec2 Tile::GetUnitNumbers(TextureAtlas* ta) {
 	if (unit != nullptr) {
 		if (unit->selected) {
 			//negative texture to show its selected
-			return glm::ivec2(-unit->texture, unit->color);
+			//return glm::ivec2(-unit->texture, unit->color);
+			return glm::ivec2(-unit->texture, GetColorWithBGTile(unit->color,
+				TileBackgroundHandler::GetBackgroundLocation(GetTileTypeString(tileType))));
 		}
 		else {
-			return glm::ivec2(unit->texture, unit->color);
+			//return glm::ivec2(unit->texture, unit->color);
+			return glm::ivec2(unit->texture, GetColorWithBGTile(unit->color,
+				TileBackgroundHandler::GetBackgroundLocation(GetTileTypeString(tileType))));
 		}
 	}
 	else {
-		switch (tileType) {
+		return TileBackgroundHandler::GetBackgroundInfo(GetTileTypeString(tileType));
+	}
+}
+
+std::string Tile::GetTileTypeString(TileType tt) {
+	switch (tt) {
 		case Empty:
-			return glm::ivec2(ta->GetImageLocation("none"), 0x000000);
+			return "Black blank";
 			break;
 		case Fire:
-			return glm::ivec2(ta->GetImageLocation("none"), 0xff0000);
+			return "Red blank";
 			break;
 		case Water:
-			return glm::ivec2(ta->GetImageLocation("none"), 0x0000ff);
+			return "Blue blank";
 			break;
 		case Biomass:
-			return glm::ivec2(ta->GetImageLocation("none"), 0x00ff00);
+			return "Green blank";
 			break;
 		default:
-			return glm::ivec2(ta->GetImageLocation("none"), 0xffffff);
+			return "Black blank";
 			break;
-		}
-		
 	}
 }

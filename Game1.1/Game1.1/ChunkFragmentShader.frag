@@ -88,6 +88,20 @@ vec4 GetVectorWithPriority(vec4 priority, vec4 extra){
 	}
 }
 
+//todo: maybe change.
+vec4 GetVectorWithPriorityBlend(vec4 priority, vec4 extra){
+	if(priority.w == 1.0f){
+		return priority;
+	}
+	else if(priority.w == 0.0f){
+		return extra;
+	}
+	else{
+		vec3 mixture = mix(priority.xyz, extra.xyz, priority.w);
+		return vec4(mixture, 1.0f);
+	}
+}
+
 void main(){
 	
 	/*
@@ -114,35 +128,30 @@ void main(){
 		}
 		
 	}
+	//render background tile
 	else{
-		
+		//mix main, selection, and background textures 
 		if(isSelected == TRUE){
 			FragColor = GetVectorWithPriority(texture(unitSelectionTexture, unitSelectionTexCoord) * vec4(unitSelectionColor, 1.0f),
 				texture(chunkTexture, texCoord) * GetColor(unitColor));
 		}
+		//mix main and background textures
 		else{
 			//texture(chunkTexture, tileTexCoords) * GetColor(tileColor);
 			//FragColor = texture(chunkTexture, texCoord) * GetColor(unitColor);
 			if(tileIsSolidColor == TRUE){
-			/*
-				FragColor = GetVectorWithPriority(texture(chunkTexture, texCoord) * GetColor(unitColor),
+			
+				FragColor = GetVectorWithPriorityBlend(texture(chunkTexture, texCoord) * GetColor(unitColor),
 					GetColor(tileColor));
-					*/
-					if(tileTexCoords.x == -1){
-						FragColor = GetColor(0xff00ff);
-					}
-					else{
-						FragColor = GetColor(0xff00ff);
-					}
-					
 			}
 			else{
-			/*
-				FragColor = GetVectorWithPriority(texture(chunkTexture, texCoord) * GetColor(unitColor),
+			
+				FragColor = GetVectorWithPriorityBlend(texture(chunkTexture, texCoord) * GetColor(unitColor),
 					texture(chunkTexture, tileTexCoords) * GetColor(tileColor));
+					/*
+					FragColor = texture(chunkTexture, tileTexCoords) * GetColor(tileColor);
+					//FragColor = GetColor(tileColor);
 					*/
-					//FragColor = texture(chunkTexture, tileTexCoords) * GetColor(0xff00ff);
-					FragColor = GetColor(0xff00ff);
 			}
 			
 			

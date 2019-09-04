@@ -110,7 +110,8 @@ void GetBackgroundTile(){
 	int tile = (color & MASK_TILE) >> 24;
 
 	//reverse mask
-	color = (color & (~MASK_TILE));
+	unitColor = (color - (tile << 24));
+	
 
 	//check if tile exists
 	if(backgroundTiles[tile].x == -1){
@@ -121,6 +122,8 @@ void GetBackgroundTile(){
 	}
 
 	tileColor = backgroundTiles[tile].y;
+	
+	
 
 	int tileType = backgroundTiles[tile].x;
 	if(tileType == SOLIDCOLOR){
@@ -170,7 +173,7 @@ void main()
 	GetBackgroundTile();
 	HandleMainTexture();
 	
-	unitColor = unitInformation.y;
+	//unitColor = unitInformation.y;
 
 	unitSelectionTexCoord = basicTexCoords;
 }

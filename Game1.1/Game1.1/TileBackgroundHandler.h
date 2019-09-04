@@ -43,6 +43,6 @@ namespace TileBackgroundHandler {
 	int GetBackgroundLocation(std::string name);
 
 	//note: returns array of size 255
-	glm::ivec2* GetAllBackgroundInfo();
+	void GetAllBackgroundInfo(glm::ivec2 backgrounds[MAX_BG_TEXTURES]);
 }
 
