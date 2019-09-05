@@ -18,7 +18,7 @@ Soldier::~Soldier()
 {
 }
 
-void Soldier::Update() {
+bool Soldier::Update() {
 	time += Time::GetDeltaTime();
 
 	if (time >= 0.1f) {
@@ -29,4 +29,5 @@ void Soldier::Update() {
 
 		
 	}
+	return false;
 }

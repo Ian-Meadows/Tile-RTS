@@ -15,6 +15,10 @@ bool Unit::IsMovable() {
 	return movable;
 }
 
-void Unit::Update() {
+bool Unit::Update() {
+	return true;
+}
 
+double Unit::GetUpdateRate() {
+	return ur;
 }

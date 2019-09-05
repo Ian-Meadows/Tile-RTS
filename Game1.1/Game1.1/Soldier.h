@@ -11,7 +11,7 @@ public:
 	Soldier(glm::ivec2 pos);
 	~Soldier();
 
-	void Update();
+	bool Update();
 
 private:
 	float time = 0.0f;

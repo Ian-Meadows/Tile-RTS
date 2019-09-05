@@ -171,6 +171,12 @@
     <ClCompile Include="TileBackgroundHandler.cpp">
       <Filter>Source Files\Engine\Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="Updater.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdaterHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -276,6 +282,12 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="TileBackgroundHandler.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Updater.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdaterHandler.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
   </ItemGroup>

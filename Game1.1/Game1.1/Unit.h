@@ -18,13 +18,16 @@ public:
 
 	bool IsMovable();
 
-	virtual void Update();
+	//returns true if done updating
+	virtual bool Update();
 
+	double GetUpdateRate();
 
 protected:
 	bool movable;
 
-
+	//update rate
+	double ur;
 
 
 };

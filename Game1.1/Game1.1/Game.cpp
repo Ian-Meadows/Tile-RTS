@@ -9,6 +9,7 @@
 #include "Input.h"
 #include "Camera.h"
 #include "Soldier.h"
+#include "UpdaterHandler.h"
 
 
 namespace Game {
@@ -26,6 +27,9 @@ namespace Game {
 		ChunkHandler::Init();
 		ChunkRenderHandler::Init();
 		ChunkGenerator::Init();
+
+		UpdaterHandler::Init();
+
 		test = new TestRenderer();
 		it = new ImageTester();
 
@@ -41,6 +45,9 @@ namespace Game {
 	}
 
 	void Game::Update() {
+
+		UpdaterHandler::Update();
+
 		test->Update();
 		it->Update();
 
@@ -73,6 +80,7 @@ namespace Game {
 		ChunkGenerator::Uninit();
 		ChunkHandler::Uninit();
 		ChunkRenderHandler::UnInit();
+		UpdaterHandler::Uninit();
 		delete test;
 		delete it;
 	}
