@@ -1,3 +1,4 @@
 ﻿  Soldier.cpp
 c:\users\ian\source\repos\lolingham4645\game1.1\game1.1\game1.1\soldier.cpp(22): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  LINK : C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Debug\Game1.1.exe not found or not built by the last incremental link; performing full link
   Game1.1.vcxproj -> C:\Users\ian\Source\Repos\Lolingham4645\Game1.1\Game1.1\Debug\Game1.1.exe
