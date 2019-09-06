@@ -177,6 +177,9 @@
     <ClCompile Include="UpdaterHandler.cpp">
       <Filter>Source Files\Engine\Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="UnitCreator.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -288,6 +291,9 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="UpdaterHandler.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitCreator.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
   </ItemGroup>
