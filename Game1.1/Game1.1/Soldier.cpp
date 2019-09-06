@@ -11,6 +11,8 @@ Soldier::Soldier(glm::ivec2 pos) : Unit()
 	movable = true;
 
 	this->pos = pos;
+
+	ur = 0.1;
 }
 
 
@@ -19,15 +21,19 @@ Soldier::~Soldier()
 }
 
 bool Soldier::Update() {
+	/*
 	time += Time::GetDeltaTime();
 
 	if (time >= 0.1f) {
 		time = 0;
 		
-		ChunkHandler::MoveUnit(pos, glm::ivec2(pos.x + 1, pos.y));
-		pos = glm::ivec2(pos.x + 1, pos.y);
+		
 
 		
 	}
-	return false;
+	*/
+	ChunkHandler::MoveUnit(pos, glm::ivec2(pos.x + 1, pos.y));
+	pos = glm::ivec2(pos.x + 1, pos.y);
+
+	return true;
 }

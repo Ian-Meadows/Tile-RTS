@@ -18,7 +18,7 @@ public:
 
 	bool IsMovable();
 
-	//returns true if done updating
+	//returns false if done updating
 	virtual bool Update();
 
 	double GetUpdateRate();

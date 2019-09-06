@@ -1,10 +1,13 @@
 #include "Updater.h"
 #include "Time.h"
 
+#include "Debugger.h"
+
 
 Updater::Updater(double ut)
 {
 	this->ut = ut;
+	
 }
 
 
@@ -21,6 +24,21 @@ void Updater::Update() {
 }
 
 void Updater::UpdateUnits() {
+	if (units.size() <= 0) {
+		//todo: may want to delete
+		return;
+	}
+
+	int size = units.size();
+
+	for (int i = 0; i < size; ++i) {
+		Unit* unit = units.front();
+		units.pop();
+		if (unit->Update()) {
+			units.push(unit);
+		}
+	}
+
 
 }
 
@@ -30,6 +48,7 @@ double Updater::GetUpdateTime() {
 
 void Updater::AddUnit(Unit* unit) {
 	units.push(unit);
+	
 }
 
 

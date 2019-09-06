@@ -19,7 +19,7 @@ namespace Game {
 
 		double time = 0.0;
 
-		Soldier* temp;
+		
 
 	}
 
@@ -33,15 +33,21 @@ namespace Game {
 		test = new TestRenderer();
 		it = new ImageTester();
 
-		temp = new Soldier(glm::ivec2(5, 5));
-		//place unit
+		Soldier* temp = new Soldier(glm::ivec2(5, 5));
+		UpdaterHandler::AddUnitToUpdater(temp);
 		ChunkHandler::PlaceUnit(glm::ivec2(5, 5), temp);
 
-		ChunkHandler::PlaceUnit(glm::ivec2(5, -5), new Soldier(glm::ivec2(5, -5)));
+		temp = new Soldier(glm::ivec2(5, -5));
+		UpdaterHandler::AddUnitToUpdater(temp);
+		ChunkHandler::PlaceUnit(glm::ivec2(5, -5), temp);
 
-		ChunkHandler::PlaceUnit(glm::ivec2(-5, 5), new Soldier(glm::ivec2(-5, 5)));
+		temp = new Soldier(glm::ivec2(-5, 5));
+		UpdaterHandler::AddUnitToUpdater(temp);
+		ChunkHandler::PlaceUnit(glm::ivec2(-5, 5), temp);
 
-		ChunkHandler::PlaceUnit(glm::ivec2(-5, -5), new Soldier(glm::ivec2(-5, -5)));
+		temp = new Soldier(glm::ivec2(-5, -5));
+		UpdaterHandler::AddUnitToUpdater(temp);
+		ChunkHandler::PlaceUnit(glm::ivec2(-5, -5), temp);
 	}
 
 	void Game::Update() {
@@ -51,7 +57,7 @@ namespace Game {
 		test->Update();
 		it->Update();
 
-		temp->Update();
+		//temp->Update();
 
 		/*
 		time += Time::GetDeltaTime();

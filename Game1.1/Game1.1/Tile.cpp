@@ -12,6 +12,9 @@ Tile::Tile(glm::ivec2 position, TileType tileType)
 
 Tile::~Tile()
 {
+	if (unit != nullptr) {
+		delete unit;
+	}
 }
 
 int Tile::GetColorWithBGTile(int color, int tile) {

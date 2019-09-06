@@ -16,7 +16,7 @@ bool Unit::IsMovable() {
 }
 
 bool Unit::Update() {
-	return true;
+	return false;
 }
 
 double Unit::GetUpdateRate() {
