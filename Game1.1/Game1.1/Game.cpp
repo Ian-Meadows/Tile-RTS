@@ -10,6 +10,7 @@
 #include "Camera.h"
 #include "Soldier.h"
 #include "UpdaterHandler.h"
+#include "UnitCreator.h"
 
 
 namespace Game {
@@ -33,21 +34,10 @@ namespace Game {
 		test = new TestRenderer();
 		it = new ImageTester();
 
-		Soldier* temp = new Soldier(glm::ivec2(5, 5));
-		UpdaterHandler::AddUnitToUpdater(temp);
-		ChunkHandler::PlaceUnit(glm::ivec2(5, 5), temp);
-
-		temp = new Soldier(glm::ivec2(5, -5));
-		UpdaterHandler::AddUnitToUpdater(temp);
-		ChunkHandler::PlaceUnit(glm::ivec2(5, -5), temp);
-
-		temp = new Soldier(glm::ivec2(-5, 5));
-		UpdaterHandler::AddUnitToUpdater(temp);
-		ChunkHandler::PlaceUnit(glm::ivec2(-5, 5), temp);
-
-		temp = new Soldier(glm::ivec2(-5, -5));
-		UpdaterHandler::AddUnitToUpdater(temp);
-		ChunkHandler::PlaceUnit(glm::ivec2(-5, -5), temp);
+		UnitCreator::CreateUnit(new Soldier(glm::ivec2(5, 5)));
+		UnitCreator::CreateUnit(new Soldier(glm::ivec2(-5, 5)));
+		UnitCreator::CreateUnit(new Soldier(glm::ivec2(-5, -5)));
+		UnitCreator::CreateUnit(new Soldier(glm::ivec2(5, -5)));
 	}
 
 	void Game::Update() {

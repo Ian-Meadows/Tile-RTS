@@ -4,7 +4,7 @@ class Building :
 	public Unit
 {
 public:
-	Building();
+	Building(glm::ivec2 position);
 	~Building();
 };
 

@@ -2,7 +2,7 @@
 
 
 
-Building::Building() : Unit()
+Building::Building(glm::ivec2 position) : Unit(position)
 {
 }
 

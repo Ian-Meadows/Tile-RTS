@@ -12,7 +12,9 @@ namespace UnitCreator {
 	3: multi place
 	*/
 
-	void CreateUnit(Unit* unit, glm::ivec2 position, bool duplicate);
+	//for single units. returns true if unit could be placed
+	bool CreateUnit(Unit* unit);
+	//for multi tile units
 	void CreateUnit(Unit* unit, glm::ivec2* positions, unsigned int size);
 
 	void Uninit();

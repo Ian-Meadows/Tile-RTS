@@ -2,8 +2,9 @@
 
 
 
-Unit::Unit()
+Unit::Unit(glm::ivec2 position)
 {
+	this->position = position;
 }
 
 
@@ -21,4 +22,8 @@ bool Unit::Update() {
 
 double Unit::GetUpdateRate() {
 	return ur;
+}
+
+glm::ivec2 Unit::GetPosition() {
+	return position;
 }
