@@ -55,7 +55,7 @@ public:
 	Unit* GetUnit(glm::ivec2 position);
 
 	//Takes local Coords. Sets unit to null
-	void ClearUnit(glm::ivec2 position);
+	bool ClearUnit(glm::ivec2 position);
 
 private:
 

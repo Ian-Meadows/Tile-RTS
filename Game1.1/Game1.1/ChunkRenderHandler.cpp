@@ -169,6 +169,12 @@ namespace ChunkRenderHandler {
 			for (int x = 0; x < arrayWidth; x++) {
 				for (int y = 0; y < arrayHeight; y++) {
 					if (!chunksRendered[x][y]) {
+
+						Chunk* chunk = ChunkHandler::GetChunk(glm::ivec2(x + startX, y + endY));
+						if (chunk == nullptr) {
+							continue;
+						}
+
 						ChunkRenderer* cr;
 						if (renderersNotInUse.size() > 0) {
 							cr = renderersNotInUse[0];
@@ -178,7 +184,7 @@ namespace ChunkRenderHandler {
 							cr = CreateNewChunkRenderer(false);
 						}
 						renderersInUse.push_back(cr);
-						cr->SetChunk(ChunkHandler::GetChunk(glm::ivec2(x + startX, y + endY)));
+						cr->SetChunk(chunk);
 						chunksRendered[x][y] = true;
 					}
 				}

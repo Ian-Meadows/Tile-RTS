@@ -14,46 +14,44 @@
 
 #include "stb_image.h"
 
+
 namespace ChunkHandler {
 	namespace {
 		std::vector<Chunk*> chunksList;
 		std::unordered_map<glm::ivec2, Chunk*, GLMKeyFunctions, GLMKeyFunctions> chunks;
 
+		glm::ivec2 worldSize;
 
 		Chunk* CreateNewChunk(glm::ivec2 pos) {
-			Chunk* c = new Chunk(pos);
-			chunksList.push_back(c);
-			chunks[pos] = c;
-			return c;
+			if (worldSize == INFINITE_WORLD ||
+				(worldSize.x >= abs(pos.x) && worldSize.y >= abs(pos.y))) {
+				Chunk* c = new Chunk(pos);
+				chunksList.push_back(c);
+				chunks[pos] = c;
+				return c;
+			}
+			else {
+				return nullptr;
+			}
 		}
 
 		TextureAtlas* ta;
-
+		
 	}
 
-	void ChunkHandler::Init() {
-		/*
-		Chunk* temp = new Chunk(glm::ivec2(0, 0));
-		chunks[glm::ivec2(0, 0)] = temp;
-		temp = new Chunk(glm::ivec2(0, 1));
-		chunks[glm::ivec2(0, 1)] = temp;
-		std::unordered_map<glm::ivec2, Chunk*>::iterator it = chunks.find(glm::ivec2(0, 0));
-		if (it != chunks.end()) {
-			std::cout << "found" << std::endl;
-		}
-		else {
-			std::cout << "not found" << std::endl;
-		}
-
-		if (chunks[glm::ivec2(0, 1)] != nullptr) {
-			std::cout << "found" << std::endl;
-		}
-		else {
-			std::cout << "not found" << std::endl;
-		}
-		*/
+	void ChunkHandler::Init(glm::ivec2 worldSize, bool fullyLoadWorld) {
+		
+		ChunkHandler::worldSize = worldSize;
 
 		ta = TextureAtlasCreator::GetAtlas(false);
+
+		if (fullyLoadWorld && worldSize != INFINITE_WORLD) {
+			for (int x = -worldSize.x; x <= worldSize.x; ++x) {
+				for (int y = -worldSize.y; y <= worldSize.y; ++y) {
+					CreateNewChunk(glm::ivec2(x, y));
+				}
+			}
+		}
 	}
 
 	void ChunkHandler::Uninit() {
@@ -82,7 +80,7 @@ namespace ChunkHandler {
 	}
 
 
-	void ChunkHandler::MoveUnit(glm::ivec2 startPosition, glm::ivec2 endPosition) {
+	bool ChunkHandler::MoveUnit(glm::ivec2 startPosition, glm::ivec2 endPosition) {
 		//step 1: get coords first
 		//step 2: check if its possible to move
 		//step 3: move unit
@@ -101,6 +99,9 @@ namespace ChunkHandler {
 			startChunk = GetChunk(startChunkPos);
 			endChunk = GetChunk(endChunkPos);
 		}
+		if (startChunk == nullptr || endChunk == nullptr) {
+			return false;
+		}
 
 		glm::ivec2 localStartPos = startPosition - (startChunkPos * CHUNK_SIZE);
 		glm::ivec2 localEndPos = endPosition - (endChunkPos * CHUNK_SIZE);
@@ -108,23 +109,26 @@ namespace ChunkHandler {
 		if (endChunk->GetUnit(localEndPos) != nullptr) {
 			//unable to move unit location is occupied
 			std::cout << "Unable to move unit location is occupied" << std::endl;
-			return;
+			return false;
 		}
 
 		Unit* unitToMove = startChunk->GetUnit(localStartPos);
 		if (unitToMove == nullptr || !unitToMove->IsMovable()) {
 			//unit does not exist or is immobile
 			std::cout << "Unable to move unit" << std::endl;
-			return;
+			return false;
 		}
 
 		
 
 		//move
-		endChunk->PlaceUnit(localEndPos, unitToMove);
+		if (!endChunk->PlaceUnit(localEndPos, unitToMove)) {
+			return false;
+		}
 		//clear old location
 		startChunk->ClearUnit(localStartPos);
 
+		return true;
 	}
 
 	bool ChunkHandler::PlaceUnit(glm::ivec2 postion, Unit* unit) {
@@ -134,10 +138,18 @@ namespace ChunkHandler {
 		//get chunk at coords
 		Chunk* chunk = GetChunk(chunkPos);
 
+		if (chunk == nullptr) {
+			return false;
+		}
+
 		//get local coords
 		glm::ivec2 localCoords = postion - (chunkPos * CHUNK_SIZE);
 
 		//place unit
 		return chunk->PlaceUnit(localCoords, unit);
+	}
+
+	glm::ivec2 ChunkHandler::GetWorldSize() {
+		return worldSize;
 	}
 }

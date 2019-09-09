@@ -21,8 +21,10 @@ Soldier::~Soldier()
 }
 
 bool Soldier::Update() {
-	ChunkHandler::MoveUnit(position, glm::ivec2(position.x + 1, position.y));
-	position = glm::ivec2(position.x + 1, position.y);
+	if (ChunkHandler::MoveUnit(position, glm::ivec2(position.x + 1, position.y))) {
+		position = glm::ivec2(position.x + 1, position.y);
+	}
+	
 
 	return true;
 }

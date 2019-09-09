@@ -2,6 +2,8 @@
 #include <glm/glm.hpp>
 #include "TextureAtlasCreator.h"
 
+#define INFINITE_WORLD glm::ivec2(0, 0)
+
 
 class Chunk;
 class Unit;
@@ -20,19 +22,24 @@ struct GLMKeyFunctions {
 };
 
 namespace ChunkHandler {
-	void Init();
+
+	//set size of world. Note:for infinite set worldSize to 0
+	void Init(glm::ivec2 worldSize, bool fullyLoadWorld);
 
 
 	void Uninit();
 
+	//note: can return null with finite world size
 	Chunk* GetChunk(glm::ivec2 pos);
 
-	//uses global coordinates
-	void MoveUnit(glm::ivec2 startPosition, glm::ivec2 endPosition);
+	//uses global coordinates. 
+	bool MoveUnit(glm::ivec2 startPosition, glm::ivec2 endPosition);
 
-	//uses global coordinates. returns if unit could be placed
+	//uses global coordinates. returns true if unit could be placed
 	bool PlaceUnit(glm::ivec2 postion, Unit* unit);
 
 	TextureAtlas* GetTextureAtlas();
+
+	glm::ivec2 GetWorldSize();
 }
 

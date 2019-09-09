@@ -72,16 +72,17 @@ Unit* Chunk::GetUnit(glm::ivec2 position) {
 }
 
 //Takes local Coords. Sets unit to null
-void Chunk::ClearUnit(glm::ivec2 position) {
+bool Chunk::ClearUnit(glm::ivec2 position) {
 	if (OutOfRange(position)) {
-		return;
+		return false;
 	}
 
 	tiles[position.x][position.y]->unit = nullptr;
 	if (cr != nullptr && cr->GetChunk() == this) {
 		cr->UpdateSingleUnitRender(position, tiles[position.x][position.y]->GetUnitNumbers(ChunkHandler::GetTextureAtlas()));
+		return true;
 	}
-	
+	return false;
 }
 
 glm::ivec2 Chunk::GetTileInfo(glm::ivec2 tilePos, TextureAtlas* ta) {
