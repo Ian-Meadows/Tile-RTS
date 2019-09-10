@@ -147,8 +147,11 @@ void Button::CheckButton() {
 		if (!mouseInside) {
 			mouseInside = true;
 			MouseEntered();
+			
 		}
 		MouseInside();
+
+		Input::MouseIsOverUI();
 
 		if (Input::GetMouseButtonPressed(0)) {
 			ButtonPressed();
@@ -160,6 +163,8 @@ void Button::CheckButton() {
 	else if (mouseInside) {
 		mouseInside = false;
 		MouseExited();
+
+		Input::MouseNotOverUI();
 	}
 	
 }

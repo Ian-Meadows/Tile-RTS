@@ -49,6 +49,10 @@ namespace Input {
 
 	glm::vec2 GetScrollDelta();
 	glm::vec2 GetMousePosition();
+
+	void MouseIsOverUI();
+	void MouseNotOverUI();
+	bool GetMouseOverUI();
 }
 
 

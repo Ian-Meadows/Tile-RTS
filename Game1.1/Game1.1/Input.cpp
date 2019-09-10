@@ -19,6 +19,8 @@ namespace Input {
 		glm::vec2 scrollDelta;
 		glm::vec2 mousePosition;
 
+		bool mouseOverUI = false;
+
 		void MouseCallback(GLFWwindow* window, double xpos, double ypos) {
 			mousePosition = glm::vec2(xpos, ypos);
 		}
@@ -150,6 +152,16 @@ namespace Input {
 			}
 		}
 		return false;
+	}
+
+	void MouseIsOverUI() {
+		mouseOverUI = true;
+	}
+	void MouseNotOverUI() {
+		mouseOverUI = false;
+	}
+	bool GetMouseOverUI() {
+		return mouseOverUI;
 	}
 }
 

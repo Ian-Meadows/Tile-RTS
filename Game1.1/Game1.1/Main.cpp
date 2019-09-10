@@ -136,7 +136,6 @@ int main() {
 	//init input namespace
 	Time::Init(true);
 	Input::InitInput(window);
-
 	//glfwSetCursorPosCallback(window, mouse_callback);
 	TextureAtlasCreator::CreateAtlas();
 
@@ -156,6 +155,7 @@ int main() {
 
 		//handle input
 		Input::ProcessInput();
+
 
 		//update
 		SceneHandler::Update();
@@ -194,8 +194,6 @@ int main() {
 	
 
 	UIHandler::Uninit();
-
-	
 
 	SceneHandler::Uninit();
 	
