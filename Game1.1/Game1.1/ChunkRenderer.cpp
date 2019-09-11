@@ -138,7 +138,7 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 			}
 		}
 
-		glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0], GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0], GL_STREAM_DRAW);
 		
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(glm::ivec2), (void*)0);
 		glEnableVertexAttribArray(2);
