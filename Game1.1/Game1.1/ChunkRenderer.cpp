@@ -1,4 +1,4 @@
-#include "ChunkRenderer.h"
+﻿#include "ChunkRenderer.h"
 #include "Chunk.h"
 #include "ChunkRenderHandler.h"
 #include "Window.h"
@@ -109,36 +109,17 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 		unitNumbers = new glm::ivec2[CHUNK_SIZE * CHUNK_SIZE];
 
 		
-
+		/*
 		int i = 0;
-		for (int x = 0; x < CHUNK_SIZE; x++) {
-			for (int y = 0; y < CHUNK_SIZE; y++) {
-				//send a negative number for gpu showing unit is selected
-				if (x > 2 && x < CHUNK_SIZE - 2 && y > 2 && y < CHUNK_SIZE - 2) {
-					if (x == 10 && y == 10) {
-						unitNumbers[i] = glm::ivec2(-ta->GetImageLocation("Circle"), 0x9C1BF3);
-					}
-					
-					else {
-						unitNumbers[i] = glm::ivec2(ta->GetImageLocation("2 Dots"), 0x9C1BF3);
-					}
-					
-				}
-				else {
-					if (x == 1 && y == 1) {
-						unitNumbers[i] = glm::ivec2(-ta->GetImageLocation("none"), 0xffffff);
-					}
-					else {
-						unitNumbers[i] = glm::ivec2(ta->GetImageLocation("none"), 0xffffff);
-					}
-					
-				}
+		for (int x = 0; x < CHUNK_SIZE; ++x) {
+			for (int y = 0; y < CHUNK_SIZE; ++y) {
+				unitNumbers[i] = glm::ivec2(ta->GetImageLocation("none"), 0x9C1BF3);
 				
-				i++;
+				++i;
 			}
 		}
-
-		glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0], GL_STREAM_DRAW);
+		*/
+		glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_STREAM_DRAW);
 		
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(glm::ivec2), (void*)0);
 		glEnableVertexAttribArray(2);
@@ -148,17 +129,35 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 
 
 		int i = 0;
-		for (int x = 0; x < CHUNK_SIZE; x++) {
-			for (int y = 0; y < CHUNK_SIZE; y++) {
+		for (int x = 0; x < CHUNK_SIZE; ++x) {
+			for (int y = 0; y < CHUNK_SIZE; ++y) {
 				unitNumbers[i] = chunk->GetTileInfo(glm::ivec2(x, y), ta);
 
-				i++;
+				++i;
 			}
 		}
 
 
 		//glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void *data)
-		glBufferSubData(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0]);
+		//glBufferSubData(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0]);
+		//glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_STREAM_DRAW);
+
+		
+		void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+		// now copy data into memory
+		memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
+		// make sure to tell OpenGL we're done with the pointer
+		glUnmapBuffer(GL_ARRAY_BUFFER);
+		
+
+		/*
+		//void *glMapBufferRange(GLenum target​, GLintptr offset​, GLsizeiptr length​, GLbitfield access​);
+		void* ptr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), GL_WRITE_ONLY | GL_MAP_UNSYNCHRONIZED_BIT);
+		memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
+		// make sure to tell OpenGL we're done with the pointer
+		glUnmapBuffer(GL_ARRAY_BUFFER);
+		*/
+
 	}
 }
 
@@ -256,13 +255,14 @@ void ChunkRenderer::Draw() {
 			previousChunk = chunk;
 			chunk->Rendered();
 		}
-
-		
-
 		//bind vao
 		glBindVertexArray(VAO);
 		//render chunk
 		glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, CHUNK_SIZE * CHUNK_SIZE);
+
+		
+
+		
 	}
 	else {
 		std::cout << "ERROR::no chunk set to render" << std::endl;
