@@ -142,13 +142,13 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 		//glBufferSubData(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0]);
 		//glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_STREAM_DRAW);
 
-		
+		/*
 		void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 		// now copy data into memory
 		memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
 		// make sure to tell OpenGL we're done with the pointer
 		glUnmapBuffer(GL_ARRAY_BUFFER);
-		
+		*/
 
 		/*
 		//void *glMapBufferRange(GLenum target​, GLintptr offset​, GLsizeiptr length​, GLbitfield access​);
@@ -157,6 +157,18 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 		// make sure to tell OpenGL we're done with the pointer
 		glUnmapBuffer(GL_ARRAY_BUFFER);
 		*/
+
+		void* ptr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), GL_MAP_WRITE_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
+		
+		if (ptr == nullptr) {
+			std::cout << "buffer range is null" << std::endl;
+			return;
+		}
+		memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
+		// make sure to tell OpenGL we're done with the pointer
+		glUnmapBuffer(GL_ARRAY_BUFFER);
+
+
 
 	}
 }
