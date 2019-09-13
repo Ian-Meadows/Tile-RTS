@@ -43,7 +43,7 @@ private:
 
 	glm::ivec2* unitNumbers;
 
-
+	void* unitBufferPtr = nullptr;
 
 };
 

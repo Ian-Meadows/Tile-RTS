@@ -119,7 +119,11 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 			}
 		}
 		*/
-		glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_STREAM_DRAW);
+		//glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_STREAM_DRAW);
+
+		//glBufferStorage(GLenum target, GLsizeiptr size, const GLvoid * data, GLbitfield flags);
+		glBufferStorage(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, 
+			GL_MAP_WRITE_BIT);
 		
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(glm::ivec2), (void*)0);
 		glEnableVertexAttribArray(2);
@@ -158,13 +162,18 @@ void ChunkRenderer::SetUnitInfo(bool firstTime) {
 		glUnmapBuffer(GL_ARRAY_BUFFER);
 		*/
 
-		void* ptr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), GL_MAP_WRITE_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
+		if (unitBufferPtr == nullptr) {
+			
+		}
 		
-		if (ptr == nullptr) {
+		
+		unitBufferPtr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2),
+			GL_MAP_WRITE_BIT);
+		if (unitBufferPtr == nullptr) {
 			std::cout << "buffer range is null" << std::endl;
 			return;
 		}
-		memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
+		memcpy(unitBufferPtr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
 		// make sure to tell OpenGL we're done with the pointer
 		glUnmapBuffer(GL_ARRAY_BUFFER);
 
@@ -237,8 +246,18 @@ void ChunkRenderer::UpdateSingleUnitRender(glm::ivec2 position, glm::ivec2 info)
 
 
 	//glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void *data)
-	glBufferSubData(GL_ARRAY_BUFFER, pos * sizeof(glm::ivec2), sizeof(glm::ivec2), &info);
+	//glBufferSubData(GL_ARRAY_BUFFER, pos * sizeof(glm::ivec2), sizeof(glm::ivec2), &info);
 
+	void* ptr = glMapBufferRange(GL_ARRAY_BUFFER, pos * sizeof(glm::ivec2), sizeof(glm::ivec2),
+		GL_MAP_WRITE_BIT);
+
+	if (ptr == nullptr) {
+		std::cout << "buffer range is null" << std::endl;
+		return;
+	}
+	memcpy(ptr, &info, sizeof(glm::ivec2));
+	// make sure to tell OpenGL we're done with the pointer
+	glUnmapBuffer(GL_ARRAY_BUFFER);
 }
 
 
