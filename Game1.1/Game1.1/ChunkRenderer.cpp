@@ -19,16 +19,17 @@ ChunkRenderer::ChunkRenderer()
 
 	Init();
 	SetPositions();
-	SetUnitInfo(true);
+	//SetUnitInfo(true);
 	SetTextureCoordinates();
 	SetBasicTextureCoordinates();
+	InitUnitInfo();
 }
 
 
 ChunkRenderer::~ChunkRenderer()
 {
 	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(4, VBO);
+	glDeleteBuffers(5, VBO);
 	glDeleteBuffers(1, &EBO);
 
 	delete[] positions;
@@ -100,93 +101,79 @@ void ChunkRenderer::SetPositions() {
 	glVertexAttribDivisor(1, 1);
 }
 
-void ChunkRenderer::SetUnitInfo(bool firstTime) {
+void ChunkRenderer::InitUnitInfo() {
+
+	unitNumbers = new glm::ivec2[CHUNK_SIZE * CHUNK_SIZE];
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO[2]);
+	glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_DYNAMIC_DRAW);
+	glVertexAttribIPointer(2, 2, GL_INT, sizeof(glm::ivec2), (void*)0);
+	glEnableVertexAttribArray(2);
+	glVertexAttribDivisor(2, 1);
+
+}
+
+void ChunkRenderer::SetUnitInfo() {
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[2]);
 
 	TextureAtlas* ta = TextureAtlasCreator::GetAtlas(false);
 
-	if (firstTime) {
-		unitNumbers = new glm::ivec2[CHUNK_SIZE * CHUNK_SIZE];
+	int i = 0;
+	for (int x = 0; x < CHUNK_SIZE; ++x) {
+		for (int y = 0; y < CHUNK_SIZE; ++y) {
+			unitNumbers[i] = chunk->GetTileInfo(glm::ivec2(x, y), ta);
 
-		
-		/*
-		int i = 0;
-		for (int x = 0; x < CHUNK_SIZE; ++x) {
-			for (int y = 0; y < CHUNK_SIZE; ++y) {
-				unitNumbers[i] = glm::ivec2(ta->GetImageLocation("none"), 0x9C1BF3);
-				
-				++i;
-			}
+			++i;
 		}
-		*/
-		glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_DYNAMIC_DRAW);
-
-		//glBufferStorage(GLenum target, GLsizeiptr size, const GLvoid * data, GLbitfield flags);
-		//glBufferStorage(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_MAP_WRITE_BIT);
-		
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(glm::ivec2), (void*)0);
-		glEnableVertexAttribArray(2);
-		glVertexAttribDivisor(2, 1);
 	}
-	else {
 
 
-		int i = 0;
-		for (int x = 0; x < CHUNK_SIZE; ++x) {
-			for (int y = 0; y < CHUNK_SIZE; ++y) {
-				unitNumbers[i] = chunk->GetTileInfo(glm::ivec2(x, y), ta);
+	//glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void *data)
+	glBufferSubData(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0]);
+	//glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_STREAM_DRAW);
 
-				++i;
-			}
-		}
+	/*
+	void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	// now copy data into memory
+	memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
+	// make sure to tell OpenGL we're done with the pointer
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	*/
 
+	/*
+	//void *glMapBufferRange(GLenum target​, GLintptr offset​, GLsizeiptr length​, GLbitfield access​);
+	void* ptr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), GL_WRITE_ONLY | GL_MAP_UNSYNCHRONIZED_BIT);
+	memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
+	// make sure to tell OpenGL we're done with the pointer
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	*/
 
-		//glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void *data)
-		//glBufferSubData(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), &unitNumbers[0]);
-		//glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_STREAM_DRAW);
-
-		/*
-		void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-		// now copy data into memory
-		memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
-		// make sure to tell OpenGL we're done with the pointer
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		*/
-
-		/*
-		//void *glMapBufferRange(GLenum target​, GLintptr offset​, GLsizeiptr length​, GLbitfield access​);
-		void* ptr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), GL_WRITE_ONLY | GL_MAP_UNSYNCHRONIZED_BIT);
-		memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
-		// make sure to tell OpenGL we're done with the pointer
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		*/
-
-		/*
-		if (unitBufferPtr == nullptr) {
-			
-		}
-		
-		
-		unitBufferPtr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2),
-			GL_MAP_WRITE_BIT);
-		if (unitBufferPtr == nullptr) {
-			std::cout << "buffer range is null" << std::endl;
-			return;
-		}
-		memcpy(unitBufferPtr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
-		// make sure to tell OpenGL we're done with the pointer
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		*/
-
-		glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_DYNAMIC_DRAW);
-		void* ptr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2),
-			GL_MAP_WRITE_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
-		memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
-		// make sure to tell OpenGL we're done with the pointer
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-
+	/*
+	if (unitBufferPtr == nullptr) {
 
 	}
+
+
+	unitBufferPtr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2),
+		GL_MAP_WRITE_BIT);
+	if (unitBufferPtr == nullptr) {
+		std::cout << "buffer range is null" << std::endl;
+		return;
+	}
+	memcpy(unitBufferPtr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
+	// make sure to tell OpenGL we're done with the pointer
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	*/
+
+	/*
+	//orphaning
+	glBufferData(GL_ARRAY_BUFFER, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2), NULL, GL_DYNAMIC_DRAW);
+	void* ptr = glMapBufferRange(GL_ARRAY_BUFFER, 0, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2),
+		GL_MAP_WRITE_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
+	memcpy(ptr, unitNumbers, CHUNK_SIZE * CHUNK_SIZE * sizeof(glm::ivec2));
+	// make sure to tell OpenGL we're done with the pointer
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	*/
 }
 
 void ChunkRenderer::SetTextureCoordinates() {
@@ -288,7 +275,7 @@ void ChunkRenderer::Draw() {
 		RenderSetup();
 
 		if (chunk->CheckForRenderUpdate() || chunk != previousChunk) {
-			SetUnitInfo(false);
+			SetUnitInfo();
 			previousChunk = chunk;
 			chunk->Rendered();
 		}

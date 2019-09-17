@@ -18,22 +18,24 @@ public:
 
 private:
 	void Init();
+	void InitUnitInfo();
 
 	void RenderSetup();
 
 	void SetPositions();
-	void SetUnitInfo(bool);
+	void SetUnitInfo();
 	void SetTextureCoordinates();
 	void SetBasicTextureCoordinates();
 
 	unsigned int VAO;
 	//0:shape
 	//1:position
-	//2:unit number
-	//3:texCoords
-	//4:basicTexCoords
+	//2:unit info
+	//2:texCoords
+	//3:basicTexCoords
 	unsigned int VBO[5];
 	unsigned int EBO;
+
 
 	Chunk* previousChunk = nullptr;
 

@@ -18,7 +18,6 @@ uniform int imgSize;
 uniform int spacing;
 
 
-out vec3 oPos;
 //basic textures info
 flat out int unitColor;
 out vec2 texCoord;
@@ -166,8 +165,6 @@ void main()
     gl_Position = projection *  view * model * vec4(aPos.x + bPos.x, aPos.y + bPos.y, aPos.z, 1.0);
 	//gl_Position = vec4(aPos, 1.0);
 	//gl_Position = projection *  view * vec4(aPos, 1.0);
-	oPos = aPos * unitInformation.x;
-	oPos.x = unitInformation.x;
 	//SetTextCoords();
 
 	GetBackgroundTile();
