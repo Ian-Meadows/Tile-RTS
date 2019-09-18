@@ -33,9 +33,9 @@
 
 /.vs
 *.vcxproj
-/Game1.1/.vs/Game1.1/v15/Browse.VC.opendb
-/Game1.1/.vs/Game1.1/v15/Browse.VC.db
-/Game1.1/.vs/Game1.1/v15/ipch/AutoPCH/456b4c2d48f407eb
-/Game1.1/.vs/Game1.1/v15/ipch/AutoPCH
-/Game1.1/.vs/Game1.1/v15/ipch/AutoPCH
+/Tile-RTS/.vs/Tile-RTS/v15/Browse.VC.opendb
+/Tile-RTS/.vs/Tile-RTS/v15/Browse.VC.db
+/Tile-RTS/.vs/Tile-RTS/v15/ipch/AutoPCH/456b4c2d48f407eb
+/Tile-RTS/.vs/Tile-RTS/v15/ipch/AutoPCH
+/Tile-RTS/.vs/Tile-RTS/v15/ipch/AutoPCH
 *.ipch

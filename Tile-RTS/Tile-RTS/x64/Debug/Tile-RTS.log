@@ -1,0 +1,74 @@
+﻿  Building.cpp
+  Button.cpp
+  Camera.cpp
+  Chunk.cpp
+  ChunkGenerator.cpp
+  ChunkHandler.cpp
+  ChunkRenderer.cpp
+  ChunkRenderHandler.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\chunkrenderhandler.cpp(123): warning C4307: '-': integral constant overflow
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\chunkrenderhandler.cpp(247): warning C4307: '-': integral constant overflow
+  Debugger.cpp
+  Game.cpp
+  ImageTester.cpp
+  Input.cpp
+  Main.cpp
+  MainScene.cpp
+  Scene.cpp
+  SceneHandler.cpp
+  Shader.cpp
+  Shape.cpp
+  Soldier.cpp
+  TestButton.cpp
+  Generating Code...
+  Compiling...
+  TestRenderer.cpp
+  TestText.cpp
+  TestUIScene.cpp
+  Text.cpp
+  TextElement.cpp
+  TextureAtlas.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\textureatlas.cpp(87): warning C4307: '-': integral constant overflow
+  TextureAtlasCreator.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\textureatlascreator.cpp(44): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Tile.cpp
+  TileBackgroundHandler.cpp
+  Time.cpp
+  UIElement.cpp
+  UIHandler.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\uihandler.cpp(84): warning C4838: conversion from 'FT_Pos' to 'GLuint' requires a narrowing conversion
+  Unit.cpp
+  UnitCreator.cpp
+  Updater.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\updater.cpp(32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  UpdaterHandler.cpp
+  Window.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\window.cpp(72): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  glad.c
+Input.obj : error LNK2019: unresolved external symbol glfwSetWindowShouldClose referenced in function "void __cdecl Input::ProcessInput(void)" (?ProcessInput@Input@@YAXXZ)
+Input.obj : error LNK2019: unresolved external symbol glfwGetKey referenced in function "void __cdecl Input::ProcessInput(void)" (?ProcessInput@Input@@YAXXZ)
+Input.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "void __cdecl Input::InitInput(struct GLFWwindow *)" (?InitInput@Input@@YAXPEAUGLFWwindow@@@Z)
+Input.obj : error LNK2019: unresolved external symbol glfwSetMouseButtonCallback referenced in function "void __cdecl Input::InitInput(struct GLFWwindow *)" (?InitInput@Input@@YAXPEAUGLFWwindow@@@Z)
+Input.obj : error LNK2019: unresolved external symbol glfwSetCursorPosCallback referenced in function "void __cdecl Input::InitInput(struct GLFWwindow *)" (?InitInput@Input@@YAXPEAUGLFWwindow@@@Z)
+Input.obj : error LNK2019: unresolved external symbol glfwSetScrollCallback referenced in function "void __cdecl Input::InitInput(struct GLFWwindow *)" (?InitInput@Input@@YAXPEAUGLFWwindow@@@Z)
+Main.obj : error LNK2019: unresolved external symbol glfwInit referenced in function main
+Main.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function main
+Main.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function main
+Main.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function main
+Main.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function main
+Main.obj : error LNK2019: unresolved external symbol glfwSetFramebufferSizeCallback referenced in function main
+Main.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function main
+Main.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function main
+Main.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function main
+Main.obj : error LNK2019: unresolved external symbol glfwGetProcAddress referenced in function main
+Time.obj : error LNK2019: unresolved external symbol glfwGetTime referenced in function "void __cdecl Time::Init(bool)" (?Init@Time@@YAX_N@Z)
+UIHandler.obj : error LNK2019: unresolved external symbol FT_Init_FreeType referenced in function "void __cdecl UIHandler::`anonymous namespace'::LoadFeeType(void)" (?LoadFeeType@?A0x2b721648@UIHandler@@YAXXZ)
+UIHandler.obj : error LNK2019: unresolved external symbol FT_Done_FreeType referenced in function "void __cdecl UIHandler::`anonymous namespace'::LoadCharacters(struct FT_FaceRec_ *)" (?LoadCharacters@?A0x2b721648@UIHandler@@YAXPEAUFT_FaceRec_@@@Z)
+UIHandler.obj : error LNK2019: unresolved external symbol FT_New_Face referenced in function "void __cdecl UIHandler::`anonymous namespace'::LoadFeeType(void)" (?LoadFeeType@?A0x2b721648@UIHandler@@YAXXZ)
+UIHandler.obj : error LNK2019: unresolved external symbol FT_Done_Face referenced in function "void __cdecl UIHandler::`anonymous namespace'::LoadCharacters(struct FT_FaceRec_ *)" (?LoadCharacters@?A0x2b721648@UIHandler@@YAXPEAUFT_FaceRec_@@@Z)
+UIHandler.obj : error LNK2019: unresolved external symbol FT_Set_Pixel_Sizes referenced in function "void __cdecl UIHandler::`anonymous namespace'::LoadFeeType(void)" (?LoadFeeType@?A0x2b721648@UIHandler@@YAXXZ)
+UIHandler.obj : error LNK2019: unresolved external symbol FT_Load_Char referenced in function "void __cdecl UIHandler::`anonymous namespace'::LoadCharacters(struct FT_FaceRec_ *)" (?LoadCharacters@?A0x2b721648@UIHandler@@YAXPEAUFT_FaceRec_@@@Z)
+C:\Users\ian\Source\Repos\Tile-RTS\Tile-RTS\Tile-RTS\CPPLibs\Libs\glfw3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\ian\Source\Repos\Tile-RTS\Tile-RTS\Tile-RTS\CPPLibs\Libs\freetype.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\ian\Source\Repos\Tile-RTS\Tile-RTS\x64\Debug\Tile-RTS.exe : fatal error LNK1120: 23 unresolved externals

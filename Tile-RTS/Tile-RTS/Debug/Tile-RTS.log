@@ -1,0 +1,53 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Game1.1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Building.cpp
+  Button.cpp
+  Camera.cpp
+  Chunk.cpp
+  ChunkGenerator.cpp
+  ChunkHandler.cpp
+  ChunkRenderer.cpp
+  ChunkRenderHandler.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\chunkrenderhandler.cpp(123): warning C4307: '-': integral constant overflow
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\chunkrenderhandler.cpp(139): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\chunkrenderhandler.cpp(247): warning C4307: '-': integral constant overflow
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\chunkrenderhandler.cpp(264): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\chunkrenderhandler.cpp(275): warning C4018: '<': signed/unsigned mismatch
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\chunkrenderhandler.cpp(280): warning C4018: '<': signed/unsigned mismatch
+  Debugger.cpp
+  Game.cpp
+  ImageTester.cpp
+  Input.cpp
+  Main.cpp
+  MainScene.cpp
+  Scene.cpp
+  SceneHandler.cpp
+  Shader.cpp
+  Shape.cpp
+  Soldier.cpp
+  TestButton.cpp
+  Generating Code...
+  Compiling...
+  TestRenderer.cpp
+  TestText.cpp
+  TestUIScene.cpp
+  Text.cpp
+  TextElement.cpp
+  TextureAtlas.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\textureatlas.cpp(87): warning C4307: '-': integral constant overflow
+  TextureAtlasCreator.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\textureatlascreator.cpp(154): warning C4018: '<': signed/unsigned mismatch
+  Tile.cpp
+  TileBackgroundHandler.cpp
+  Time.cpp
+  UIElement.cpp
+  UIHandler.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\uihandler.cpp(84): warning C4838: conversion from 'FT_Pos' to 'GLuint' requires a narrowing conversion
+  Unit.cpp
+  UnitCreator.cpp
+  Updater.cpp
+  UpdaterHandler.cpp
+  Window.cpp
+c:\users\ian\source\repos\tile-rts\tile-rts\tile-rts\window.cpp(72): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  glad.c
+  Tile-RTS.vcxproj -> C:\Users\ian\Source\Repos\Tile-RTS\Tile-RTS\Debug\Tile-RTS.exe
