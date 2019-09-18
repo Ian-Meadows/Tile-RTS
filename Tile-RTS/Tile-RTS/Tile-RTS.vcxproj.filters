@@ -64,6 +64,12 @@
     <Filter Include="Header Files\Game\UI">
       <UniqueIdentifier>{0f8224e4-e5a6-4e49-b52a-6a856ad90b8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Handlers">
+      <UniqueIdentifier>{72e82776-6d64-450e-a8e7-def9208ad58a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Handlers">
+      <UniqueIdentifier>{aa7c0347-3a27-4949-8199-7ba7e23c855c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLibs\glad\src\glad.c">
