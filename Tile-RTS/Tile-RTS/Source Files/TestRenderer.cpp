@@ -9,7 +9,7 @@
 TestRenderer::TestRenderer()
 {
 
-	shader = new Shader("TestVertexShader.vert", "TestFragmentShader.frag");
+	shader = new Shader("Shaders/Vertex/TestVertexShader.vert", "Shaders/Fragment/TestFragmentShader.frag");
 	
 	InitShape();
 

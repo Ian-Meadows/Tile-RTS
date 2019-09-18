@@ -13,7 +13,7 @@ ImageTester::ImageTester()
 	rotation = 0.0f;
 	size = 200;
 
-	shader = new Shader("ImageVertexShader.vert", "ImageFragmentShader.frag");
+	shader = new Shader("Shaders/Vertex/ImageVertexShader.vert", "Shaders/Fragment/ImageFragmentShader.frag");
 
 	InitShape();
 	InitTexture();

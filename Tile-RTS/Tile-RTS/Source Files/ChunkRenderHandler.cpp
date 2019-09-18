@@ -225,7 +225,7 @@ namespace ChunkRenderHandler {
 
 	void ChunkRenderHandler::Init() {
 
-		shader = new Shader("ChunkVertexShader.vert", "ChunkFragmentShader.frag");
+		shader = new Shader("Shaders/Vertex/ChunkVertexShader.vert", "Shaders/Fragment/ChunkFragmentShader.frag");
 
 		InitTexture();
 		LoadUnitSelectionTexture("Images/OutLine.png");

@@ -93,8 +93,8 @@ namespace UIHandler {
 
 	void UIHandler::Init() {
 		//create shaders
-		textShader = new Shader("TextVertexShader.vert", "TextFragmentShader.frag");
-		shapeShader = new Shader("ShapeVertexShader.vert", "ShapeFragmentShader.frag");
+		textShader = new Shader("Shaders/Vertex/TextVertexShader.vert", "Shaders/Fragment/TextFragmentShader.frag");
+		shapeShader = new Shader("Shaders/Vertex/ShapeVertexShader.vert", "Shaders/Fragment/ShapeFragmentShader.frag");
 
 		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -1.0f));
 
