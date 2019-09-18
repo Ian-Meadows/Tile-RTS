@@ -11,7 +11,7 @@
 #include "Soldier.h"
 #include "UpdaterHandler.h"
 #include "UnitCreator.h"
-
+#include "CommanderHandler.h"
 
 namespace Game {
 	namespace {
@@ -44,8 +44,9 @@ namespace Game {
 
 		UpdaterHandler::Update();
 
-		test->Update();
-		it->Update();
+		//test->Update();
+		//it->Update();
+
 
 		//temp->Update();
 

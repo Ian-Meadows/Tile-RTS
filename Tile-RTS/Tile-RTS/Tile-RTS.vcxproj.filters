@@ -49,9 +49,6 @@
     <Filter Include="Header Files\Engine\UItypes">
       <UniqueIdentifier>{d09db07e-5def-4f17-a9db-baa43df36f4e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Handlers">
-      <UniqueIdentifier>{a8641aec-b84e-412a-b030-7a40ec37a1c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\Handlers">
       <UniqueIdentifier>{de54cc55-9863-4a16-ade8-c41197b9a8a3}</UniqueIdentifier>
     </Filter>
@@ -70,121 +67,133 @@
     <Filter Include="Header Files\Game\Handlers">
       <UniqueIdentifier>{aa7c0347-3a27-4949-8199-7ba7e23c855c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Handlers\Handlers">
+      <UniqueIdentifier>{a8641aec-b84e-412a-b030-7a40ec37a1c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Handlers">
+      <UniqueIdentifier>{d6d56d83-ab61-41f1-bc0d-a271142ae653}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLibs\glad\src\glad.c">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\ChunkRenderHandler.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\ChunkHandler.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\SceneHandler.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\UIHandler.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\TileBackgroundHandler.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\UpdaterHandler.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Window.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Camera.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Chunk.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\ChunkGenerator.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\ChunkRenderer.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Debugger.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Game.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Input.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Main.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Scene.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Shader.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\TextureAtlas.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Tile.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Time.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Unit.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Updater.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\ImageTester.cpp">
+    <ClCompile Include="Commander.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\TestRenderer.cpp">
+    <ClCompile Include="CommanderHandler.cpp">
+      <Filter>Source Files\Game\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkRenderHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="TileBackgroundHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAtlasCreator.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitCreator.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdaterHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="UIHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files\Engine\UITypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\Engine\UITypes</Filter>
+    </ClCompile>
+    <ClCompile Include="TextElement.cpp">
+      <Filter>Source Files\Engine\UITypes</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElement.cpp">
+      <Filter>Source Files\Engine\UITypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Engine\UITypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkGenerator.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkHandler.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkRenderer.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugger.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAtlas.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Updater.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Building.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\MainScene.cpp">
+    <ClCompile Include="ImageTester.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TestRenderer.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScene.cpp">
       <Filter>Source Files\Game\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\TestUIScene.cpp">
+    <ClCompile Include="TestUIScene.cpp">
       <Filter>Source Files\Game\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\TestButton.cpp">
-      <Filter>Source Files\Game\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\TestText.cpp">
-      <Filter>Source Files\Game\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\UIElement.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\TextElement.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Text.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Button.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Building.cpp">
+    <ClCompile Include="Soldier.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\Soldier.cpp">
-      <Filter>Source Files\Game</Filter>
+    <ClCompile Include="TestButton.cpp">
+      <Filter>Source Files\Game\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\UnitCreator.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\TextureAtlasCreator.cpp">
-      <Filter>Source Files\Engine\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\Shape.cpp">
-      <Filter>Source Files\Engine\UITypes</Filter>
+    <ClCompile Include="TestText.cpp">
+      <Filter>Source Files\Game\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,119 +255,125 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header Files\Building.h">
-      <Filter>Header Files\Engine</Filter>
+    <ClInclude Include="Commander.h">
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Camera.h">
-      <Filter>Header Files\Engine</Filter>
+    <ClInclude Include="CommanderHandler.h">
+      <Filter>Header Files\Game\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Chunk.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\ChunkGenerator.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\ChunkRenderer.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Debugger.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Game.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Input.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Scene.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Shader.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Soldier.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\TextureAtlas.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Tile.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Time.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Unit.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Updater.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\UnitCreator.h">
+    <ClInclude Include="ChunkRenderHandler.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\UpdaterHandler.h">
+    <ClInclude Include="SceneHandler.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Window.h">
+    <ClInclude Include="TileBackgroundHandler.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\TileBackgroundHandler.h">
+    <ClInclude Include="UIHandler.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\TextureAtlasCreator.h">
+    <ClInclude Include="UpdaterHandler.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\UIHandler.h">
+    <ClInclude Include="Window.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\SceneHandler.h">
+    <ClInclude Include="UnitCreator.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\ChunkRenderHandler.h">
+    <ClInclude Include="TextureAtlasCreator.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\ChunkHandler.h">
+    <ClInclude Include="Camera.h">
       <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Button.h">
+    <ClInclude Include="Building.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
       <Filter>Header Files\Engine\UItypes</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Text.h">
+    <ClInclude Include="Shape.h">
       <Filter>Header Files\Engine\UItypes</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\TextElement.h">
+    <ClInclude Include="Text.h">
       <Filter>Header Files\Engine\UItypes</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\UIElement.h">
+    <ClInclude Include="TextElement.h">
       <Filter>Header Files\Engine\UItypes</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Shape.h">
-      <Filter>Header Files\Engine\UItypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\stb_image.h">
-      <Filter>Header Files\Engine\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\ScreenMath.h">
-      <Filter>Header Files\Engine\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\MainScene.h">
+    <ClInclude Include="TestUIScene.h">
       <Filter>Header Files\Game\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\TestUIScene.h">
+    <ClInclude Include="MainScene.h">
       <Filter>Header Files\Game\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\TestButton.h">
+    <ClInclude Include="UIElement.h">
+      <Filter>Header Files\Engine\UItypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Updater.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Chunk.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkGenerator.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkHandler.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkRenderer.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugger.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Soldier.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAtlas.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Header Files\Engine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenMath.h">
+      <Filter>Header Files\Engine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="TestRenderer.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageTester.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TestButton.h">
       <Filter>Header Files\Game\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\TestText.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\ImageTester.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\TestRenderer.h">
-      <Filter>Header Files\Game</Filter>
+    <ClInclude Include="TestText.h">
+      <Filter>Header Files\Game\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
