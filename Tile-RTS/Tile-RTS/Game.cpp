@@ -31,6 +31,8 @@ namespace Game {
 
 		UpdaterHandler::Init();
 
+		CommanderHandler::Init();
+
 		test = new TestRenderer();
 		it = new ImageTester();
 
@@ -47,6 +49,7 @@ namespace Game {
 		//test->Update();
 		//it->Update();
 
+		CommanderHandler::Update();
 
 		//temp->Update();
 
@@ -78,6 +81,8 @@ namespace Game {
 		ChunkHandler::Uninit();
 		ChunkRenderHandler::UnInit();
 		UpdaterHandler::Uninit();
+		CommanderHandler::Uninit();
+
 		delete test;
 		delete it;
 	}
