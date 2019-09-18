@@ -73,13 +73,16 @@
     <Filter Include="Source Files\Engine\Handlers">
       <UniqueIdentifier>{d6d56d83-ab61-41f1-bc0d-a271142ae653}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Commanders">
+      <UniqueIdentifier>{32323302-eda8-4c95-9e94-3f2d1118d60f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Commanders">
+      <UniqueIdentifier>{effefb17-394f-45da-8b23-20225bf6ddfc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLibs\glad\src\glad.c">
       <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Commander.cpp">
-      <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="CommanderHandler.cpp">
       <Filter>Source Files\Game\Handlers</Filter>
@@ -195,6 +198,15 @@
     <ClCompile Include="TestText.cpp">
       <Filter>Source Files\Game\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Commander.cpp">
+      <Filter>Source Files\Game\Commanders</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCommander.cpp">
+      <Filter>Source Files\Game\Commanders</Filter>
+    </ClCompile>
+    <ClCompile Include="AICommander.cpp">
+      <Filter>Source Files\Game\Commanders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\archer.png">
@@ -255,9 +267,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Commander.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="CommanderHandler.h">
       <Filter>Header Files\Game\Handlers</Filter>
     </ClInclude>
@@ -374,6 +383,15 @@
     </ClInclude>
     <ClInclude Include="TestText.h">
       <Filter>Header Files\Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Commander.h">
+      <Filter>Header Files\Game\Commanders</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCommander.h">
+      <Filter>Header Files\Game\Commanders</Filter>
+    </ClInclude>
+    <ClInclude Include="AICommander.h">
+      <Filter>Header Files\Game\Commanders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
