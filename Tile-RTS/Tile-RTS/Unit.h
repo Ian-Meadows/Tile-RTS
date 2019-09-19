@@ -4,6 +4,8 @@
 #include <iostream>
 #include <glm/glm.hpp>
 
+class Tile;
+
 class Unit
 {
 public:
@@ -14,8 +16,8 @@ public:
 	int color;
 	//
 	int texture;
-	bool selected = false;
-
+	
+	int commanderID;
 
 	bool IsMovable();
 
@@ -26,6 +28,16 @@ public:
 
 	glm::ivec2 GetPosition();
 
+	void SetTarget(Tile* tile);
+	void SetTarget(Unit* unit);
+	void SetTarget(Tile* tile, Unit* unit);
+	
+	void Select();
+
+	bool GetSelected();
+
+	bool GetIsUpdating();
+
 protected:
 
 	bool movable;
@@ -35,6 +47,12 @@ protected:
 
 	glm::ivec2 position;
 
+	Tile* tileTarget = nullptr;
+	Unit* unitTarget = nullptr;
+
+	bool selected = false;
+
+	bool isUpdating = false;
 
 };
 

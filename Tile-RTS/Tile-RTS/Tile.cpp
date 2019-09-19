@@ -23,7 +23,7 @@ int Tile::GetColorWithBGTile(int color, int tile) {
 
 glm::ivec2 Tile::GetUnitNumbers(TextureAtlas* ta) {
 	if (unit != nullptr) {
-		if (unit->selected) {
+		if (unit->GetSelected()) {
 			//negative texture to show its selected
 			//return glm::ivec2(-unit->texture, unit->color);
 			return glm::ivec2(-unit->texture, GetColorWithBGTile(unit->color,
@@ -58,4 +58,8 @@ std::string Tile::GetTileTypeString(TileType tt) {
 			return "Black blank";
 			break;
 	}
+}
+
+glm::ivec2 Tile::GetPosition() {
+	return position;
 }

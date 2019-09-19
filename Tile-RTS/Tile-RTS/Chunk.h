@@ -51,8 +51,12 @@ public:
 	//Takes local Coords and non null unit(does not check if null). Places unit in position if possible
 	bool PlaceUnit(glm::ivec2 position, Unit* unit);
 
+	bool UpdateTileImage(glm::ivec2 position);
+
 	//Takes local Coords. Returns unit at coords
 	Unit* GetUnit(glm::ivec2 position);
+
+	Tile* GetTile(glm::ivec2 position);
 
 	//Takes local Coords. Sets unit to null
 	bool ClearUnit(glm::ivec2 position);

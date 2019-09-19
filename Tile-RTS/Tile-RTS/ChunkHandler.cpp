@@ -11,6 +11,7 @@
 #include "Chunk.h"
 #include "Unit.h"
 #include "Debugger.h"
+#include "Tile.h"
 
 #include "stb_image.h"
 
@@ -131,9 +132,9 @@ namespace ChunkHandler {
 		return true;
 	}
 
-	bool ChunkHandler::PlaceUnit(glm::ivec2 postion, Unit* unit) {
+	bool ChunkHandler::PlaceUnit(glm::ivec2 position, Unit* unit) {
 		//get chunk coords
-		glm::ivec2 chunkPos = glm::ivec2(floor(postion.x / (float)CHUNK_SIZE), floor(postion.y / (float)CHUNK_SIZE));
+		glm::ivec2 chunkPos = glm::ivec2(floor(position.x / (float)CHUNK_SIZE), floor(position.y / (float)CHUNK_SIZE));
 
 		//get chunk at coords
 		Chunk* chunk = GetChunk(chunkPos);
@@ -143,13 +144,61 @@ namespace ChunkHandler {
 		}
 
 		//get local coords
-		glm::ivec2 localCoords = postion - (chunkPos * CHUNK_SIZE);
+		glm::ivec2 localCoords = position - (chunkPos * CHUNK_SIZE);
 
 		//place unit
 		return chunk->PlaceUnit(localCoords, unit);
 	}
 
+	bool UpdateTileImage(glm::ivec2 position) {
+		//get chunk coords
+		glm::ivec2 chunkPos = glm::ivec2(floor(position.x / (float)CHUNK_SIZE), floor(position.y / (float)CHUNK_SIZE));
+
+		//get chunk at coords
+		Chunk* chunk = GetChunk(chunkPos);
+
+		if (chunk == nullptr) {
+			return false;
+		}
+
+		//get local coords
+		glm::ivec2 localCoords = position - (chunkPos * CHUNK_SIZE);
+
+		return chunk->UpdateTileImage(localCoords);
+
+
+	}
+
 	glm::ivec2 ChunkHandler::GetWorldSize() {
 		return worldSize;
+	}
+
+	Unit* ChunkHandler::GetUnit(glm::ivec2 pos) {
+		glm::ivec2 chunkPos = glm::ivec2(floor(pos.x / (float)CHUNK_SIZE), floor(pos.y / (float)CHUNK_SIZE));
+		glm::ivec2 unitPos = pos - (chunkPos * CHUNK_SIZE);
+
+
+		Chunk* chunk = GetChunk(chunkPos);
+		if (chunk == nullptr) {
+			return nullptr;
+		}
+
+		return chunk->GetUnit(unitPos);
+
+	}
+
+	Tile* ChunkHandler::GetTile(glm::ivec2 pos) {
+		glm::ivec2 chunkPos = glm::ivec2(floor(pos.x / (float)CHUNK_SIZE), floor(pos.y / (float)CHUNK_SIZE));
+		glm::ivec2 unitPos = pos - (chunkPos * CHUNK_SIZE);
+
+
+		Chunk* chunk = GetChunk(chunkPos);
+
+		if (chunk == nullptr) {
+			return nullptr;
+		}
+
+		return chunk->GetTile(unitPos);
+
 	}
 }

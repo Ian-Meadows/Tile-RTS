@@ -7,6 +7,8 @@
 #include "TextureAtlas.h"
 #include "ChunkRenderer.h"
 
+#include "Debugger.h"
+
 Chunk::Chunk(glm::ivec2 position)
 {
 	this->position = position;
@@ -65,6 +67,7 @@ bool Chunk::PlaceUnit(glm::ivec2 position, Unit* unit) {
 //Takes local Coords. Returns unit at coords
 Unit* Chunk::GetUnit(glm::ivec2 position) {
 	if (OutOfRange(position)) {
+		Debugger::PrintVector(position);
 		return nullptr;
 	}
 
@@ -78,6 +81,18 @@ bool Chunk::ClearUnit(glm::ivec2 position) {
 	}
 
 	tiles[position.x][position.y]->unit = nullptr;
+	if (cr != nullptr && cr->GetChunk() == this) {
+		cr->UpdateSingleUnitRender(position, tiles[position.x][position.y]->GetUnitNumbers(ChunkHandler::GetTextureAtlas()));
+		return true;
+	}
+	return false;
+}
+
+bool Chunk::UpdateTileImage(glm::ivec2 position) {
+	if (OutOfRange(position)) {
+		return false;
+	}
+
 	if (cr != nullptr && cr->GetChunk() == this) {
 		cr->UpdateSingleUnitRender(position, tiles[position.x][position.y]->GetUnitNumbers(ChunkHandler::GetTextureAtlas()));
 		return true;
@@ -124,6 +139,13 @@ bool Chunk::OutOfRange(glm::ivec2 coords) {
 		return true;
 	}
 	return false;
+}
+
+Tile* Chunk::GetTile(glm::ivec2 position) {
+	if (OutOfRange(position)) {
+		return nullptr;
+	}
+	return tiles[position.x][position.y];
 }
 
 

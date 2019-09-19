@@ -22,6 +22,8 @@ public:
 
 	TileType tileType;
 
+	glm::ivec2 GetPosition();
+
 private:
 	glm::ivec2 position;
 

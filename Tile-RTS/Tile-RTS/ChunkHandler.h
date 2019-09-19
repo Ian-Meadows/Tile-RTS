@@ -7,6 +7,7 @@
 
 class Chunk;
 class Unit;
+class Tile;
 
 struct GLMKeyFunctions {
 	size_t operator()(const glm::ivec2& k)const
@@ -32,11 +33,17 @@ namespace ChunkHandler {
 	//note: can return null with finite world size
 	Chunk* GetChunk(glm::ivec2 pos);
 
+	Unit* GetUnit(glm::ivec2 pos);
+
+	Tile* GetTile(glm::ivec2 pos);
+
 	//uses global coordinates. 
 	bool MoveUnit(glm::ivec2 startPosition, glm::ivec2 endPosition);
 
 	//uses global coordinates. returns true if unit could be placed
-	bool PlaceUnit(glm::ivec2 postion, Unit* unit);
+	bool PlaceUnit(glm::ivec2 position, Unit* unit);
+
+	bool UpdateTileImage(glm::ivec2 position);
 
 	TextureAtlas* GetTextureAtlas();
 

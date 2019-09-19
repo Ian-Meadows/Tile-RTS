@@ -25,7 +25,7 @@ namespace Game {
 	}
 
 	void Game::Init() {
-		ChunkHandler::Init(INFINITE_WORLD, false);
+		ChunkHandler::Init(glm::ivec2(2, 2), true);
 		ChunkRenderHandler::Init();
 		ChunkGenerator::Init();
 

@@ -9,6 +9,8 @@ public:
 
 	int GetColor();
 
+	int ID;
+
 protected:
 	int color;
 	int totalUnits;

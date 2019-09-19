@@ -9,5 +9,5 @@ namespace CommanderHandler{
 
 	void AddCommander(Commander* commander);
 
-	void DeleteCommander(Commander* commander);
+	Commander* GetCommander(int index);
 }

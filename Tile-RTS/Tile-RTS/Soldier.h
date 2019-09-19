@@ -14,6 +14,11 @@ public:
 	bool Update();
 
 private:
-	float time = 0.0f;
+
+	bool MoveUp();
+	bool MoveDown();
+	bool MoveLeft();
+	bool MoveRight();
+
 };
 

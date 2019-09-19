@@ -7,6 +7,8 @@
 namespace CommanderHandler {
 	namespace {
 		std::vector<Commander*> commanders;
+
+		int currentCommanderID = 0;
 	}
 	void Init() {
 		AddCommander(new PlayerCommander(0x5050ff));
@@ -28,10 +30,17 @@ namespace CommanderHandler {
 	}
 
 	void AddCommander(Commander* commander) {
+		commander->ID = currentCommanderID;
 		commanders.push_back(commander);
+		++currentCommanderID;
 	}
 
-	void DeleteCommander(Commander* commander) {
-
+	Commander* GetCommander(int index) {
+		if (index >= commanders.size()) {
+			return nullptr;
+		}
+		else {
+			return commanders[index];
+		}
 	}
 }

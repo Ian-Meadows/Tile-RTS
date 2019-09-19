@@ -129,9 +129,6 @@
     <ClCompile Include="ChunkGenerator.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="ChunkHandler.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="ChunkRenderer.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
@@ -206,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="AICommander.cpp">
       <Filter>Source Files\Game\Commanders</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkHandler.cpp">
+      <Filter>Source Files\Engine\Handlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -330,9 +330,6 @@
     <ClInclude Include="ChunkGenerator.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="ChunkHandler.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="ChunkRenderer.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
@@ -349,9 +346,6 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Soldier.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="TextureAtlas.h">
@@ -392,6 +386,12 @@
     </ClInclude>
     <ClInclude Include="AICommander.h">
       <Filter>Header Files\Game\Commanders</Filter>
+    </ClInclude>
+    <ClInclude Include="Soldier.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkHandler.h">
+      <Filter>Header Files\Engine\Handlers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
